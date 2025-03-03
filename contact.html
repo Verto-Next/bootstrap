@@ -91,16 +91,22 @@
 <body>
 
 <!-- Header START -->
-<header class="header-sticky header-absolute">
+<header class="header-sticky header-absolute" data-bs-theme="dark">
 	<!-- Logo Nav START -->
-	<nav class="navbar navbar-expand-xl">
-		<div class="container">
+	<nav class="navbar navbar-expand-xl px-lg-5">
+		<div class="container-fluid">
 			<!-- Logo START -->
-			<a class="navbar-brand me-0" href="index.html">
-				<img class="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
-				<img class="dark-mode-item navbar-brand-item" src="assets/images/logo-light.svg" alt="logo">
+			<a class="navbar-brand me-5" href="index.html">
+				<img class="light-mode-item navbar-brand-item" src="assets/images/navbar1.png" alt="logo">
+				<img class="dark-mode-item navbar-brand-item" src="assets/images/navbar1.png" alt="logo">
 			</a>
 			<!-- Logo END -->
+			<!-- Logo START -->
+			<a class="navbar-brand me-5" href="index.html">
+				<img class="light-mode-item navbar-brand-item" src="assets/images/name_and_motto.png" alt="logo">
+				<img class="dark-mode-item navbar-brand-item" src="assets/images/name_and_motto.png" alt="logo">
+			</a>
+			<!-- Logo END -->			 
 
 			<!-- Main navbar START -->
 			<div class="navbar-collapse collapse" id="navbarCollapse">
@@ -108,32 +114,17 @@
 
 					<!-- Nav item -->
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Demos</a>
+						<a class="nav-link dropdown-toggle active" href="#" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Our Company</a>
 						<div class="dropdown-menu dropdown-menu-size-lg p-3">
 							<div class="row pt-2">
 								<!-- Image and button -->
 								<div class="col-sm-6">
 									<ul class="list-unstyled">
-										<li> <a class="dropdown-item" href="index.html">Classic Default</a> </li>
-										<li> <a class="dropdown-item" href="index-creative-agency.html">Creative Agency</a> </li>
-										<li> <a class="dropdown-item" href="index-digital-agency.html">Digital Agency</a> </li>
-										<li> <a class="dropdown-item" href="index-design-agency.html">Design Agency</a> </li>
-										<li> <a class="dropdown-item" href="index-seo-agency.html">SEO Agency</a> </li>
-										<li> <a class="dropdown-item" href="index-landing-product.html">Product Landing</a> </li>
-										<li> <a class="dropdown-item" href="index-mobile-app-showcase.html">Mobile App Showcase</a> </li>
-									</ul>
-								</div>
-
-								<!-- Index nav links -->
-								<div class="col-sm-6">
-									<ul class="list-unstyled">
-										<li> <a class="dropdown-item" href="index-saas.html">SaaS v.1</a> </li>
-										<li> <a class="dropdown-item" href="index-saas-v2.html">SaaS v.2</a> </li>
-										<li> <a class="dropdown-item" href="index-saas-v3.html">SaaS v.3</a> </li>
-										<li> <a class="dropdown-item" href="index-saas-v4.html">SaaS v.4</a> </li>
-										<li> <a class="dropdown-item" href="index-saas-v5.html">SaaS v.5</a> </li>
-										<li> <a class="dropdown-item" href="index-finance-consulting.html">Finance consulting</a> </li>
-										<li> <a class="dropdown-item" href="index-shop.html">Index Shop</a> </li>
+										<li> <a class="dropdown-item" href="about-us.html">About Us</a> </li>
+										<li> <a class="dropdown-item" href="team.html">Team</a> </li>
+										<li> <a class="dropdown-item" href="partners.html">Partners</a></li>
+										<li> <a class="dropdown-item" href="career.html">Career</a> </li>
+										<li> <a class="dropdown-item" href="newsroom.html">Newsroom</a> </li>
 									</ul>
 								</div>
 
@@ -154,191 +145,34 @@
 
 					<!-- Nav item -->
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Pages</a>
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Solutions</a>
 						<ul class="dropdown-menu">
 							<!-- Dropdown submenu -->
 							<li class="dropdown dropend">
-								<a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">About</a>
+								<a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">By Industry</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="about-v1.html">About v.1</a></li>
-									<li> <a class="dropdown-item" href="about-v2.html">About v.2</a></li>
-									<li> <a class="dropdown-item" href="about-v3.html">About v.3</a></li>
-									<li> <a class="dropdown-item" href="team.html">Team</a></li>
-									<li> <a class="dropdown-item" href="services-v1.html">Services v.1</a></li>
-									<li> <a class="dropdown-item" href="services-v2.html">Services v.2</a></li>
-									<li> <a class="dropdown-item" href="service-single.html">Service Single</a></li>
-									<li> <a class="dropdown-item" href="customer-stories.html">Customer Stories</a></li>
-									<li> <a class="dropdown-item" href="customer-story-single.html">Customer Story Single</a></li>
-									<li> <a class="dropdown-item" href="career.html">Career <span class="badge text-bg-primary ms-2">2 Job</span></a></li>
-									<li> <a class="dropdown-item" href="career-single.html">Career Single</a></li>
-								</ul>
-							</li>
-							
-							<li> <a class="dropdown-item" href="contact-v1.html">Contact v.1</a></li>
-							<li> <a class="dropdown-item" href="contact-v2.html">Contact v.2</a></li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown dropend">
-								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">SaaS Pages</a>
-								<ul class="dropdown-menu">
-									<li> <a class="dropdown-item" href="features.html">Features</a></li>
-									<li> <a class="dropdown-item" href="feature-single.html">Feature Single</a></li>
-									<li> <a class="dropdown-item" href="integrations.html">Integrations</a></li>
-									<li> <a class="dropdown-item" href="integration-single.html">Integration Single</a></li>
+									<li> <a class="dropdown-item" href="banking.html">Banking</a></li>
+									<li> <a class="dropdown-item" href="telco.html">Telco</a></li>
+									<li> <a class="dropdown-item" href="insurance.html">Insurance</a></li>
+									<li> <a class="dropdown-item" href="public.html">Public</a></li>
 								</ul>
 							</li>
 
-							<!-- Dropdown submenu -->
 							<li class="dropdown dropend">
-								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Shop</a>
-								<ul class="dropdown-menu" >
-									<li> <a class="dropdown-item" href="shop-grid.html">Shop Grid</a></li>
-									<li> <a class="dropdown-item" href="shop-single.html">Shop Single</a></li>
-									<li> <a class="dropdown-item" href="shop-cart.html">Shop Cart</a></li>
-									<li> <a class="dropdown-item" href="shop-empty-cart.html">Shop Empty Cart</a></li>
-									<li> <a class="dropdown-item" href="shop-checkout.html">Shop Checkout</a></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown dropend">
-								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Blog</a>
-								<ul class="dropdown-menu" >
-									<li> <a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-									<li> <a class="dropdown-item" href="blog-list-sidebar.html">Blog List Sidebar</a></li>
-									<li> <a class="dropdown-item" href="blog-single-v1.html">Blog Single v.1</a></li>
-									<li> <a class="dropdown-item" href="blog-single-v2.html">Blog Single v.2</a></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown dropend">
-								<a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Specialty Pages</a>
+								<a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">By Category</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="help-center.html">Help Center</a></li>
-									<li> <a class="dropdown-item" href="help-center-detail.html">Help Center Detail</a></li>
-									<li> <a class="dropdown-item" href="pricing.html">Pricing</a></li>
-									<li> <a class="dropdown-item" href="faq.html">Faqs</a></li>
-									<li> <a class="dropdown-item" href="error-404.html">Error 404</a></li>
-									<li> <a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
-									<li> <a class="dropdown-item" href="terms-and-condition.html">Terms & Conditions</a></li>
+									<li> <a class="dropdown-item" href="ai.html">AI</a></li>
+									<li> <a class="dropdown-item" href="data-and-analytics.html">Data&Analytics</a></li>
+									<li> <a class="dropdown-item" href="cloud-and-migration.html">Cloud&Migration</a></li>
+									<li> <a class="dropdown-item" href="digital-transformation.html">Digital Transformation</a></li>
 								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown dropend">
-								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Authentication</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="sign-up.html">Sign Up</a></li>
-									<li> <a class="dropdown-item" href="sign-in.html">Sign In</a></li>
-									<li> <a class="dropdown-item" href="forgot-password.html">Forgot Password</a></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown dropend">
-								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Accounts</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="account-detail.html">Details</a></li>
-									<li> <a class="dropdown-item" href="account-security.html">Security</a></li>
-									<li> <a class="dropdown-item" href="account-notification.html">Notifications</a></li>
-									<li> <a class="dropdown-item" href="account-projects.html">My Projects</a></li>
-									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a></li>
-									<li> <a class="dropdown-item" href="account-order.html">Order History</a></li>
-									<li> <a class="dropdown-item" href="account-wishlist.html">Wishlist</a></li>
-									<li> <a class="dropdown-item" href="account-delete.html">Delete Profile</a></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown divider -->
-							<li> <hr class="dropdown-divider"></li>
-							
-							<!-- Dropdown Multilevel -->
-							<li class="dropdown dropend">
-								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#">Dropdown levels</a>
-								<ul class="dropdown-menu">
-
-									<!-- dropdown submenu open right -->
-										<li class="dropdown dropend">
-											<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#">Dropdown (end)</a>
-											<ul class="dropdown-menu">
-												<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-												<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-											</ul>
-										</li>
-									<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-
-									<!-- dropdown submenu open left -->
-									<li class="dropdown dropstart">
-										<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#">Dropdown (start)</a>
-										<ul class="dropdown-menu">
-											<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-											<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-										</ul>
-									</li>
-									<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-								</ul>
-							</li>
+							</li>							
+						
 						</ul>
 					</li>
 
 					<!-- Nav item -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portfolio</a>
-						<div class="dropdown-menu dropdown-menu-center dropdown-menu-size-xl p-3">
-							<div class="row g-xl-3">
-								<!-- Work -->
-								<div class="col-xl-8 d-none d-xl-block">
-									<div class="d-flex gap-4">
-										<!-- Card -->
-										<div class="card bg-transparent">
-											<!-- Image -->
-											<img src="assets/images/portfolio/list/01.jpg" class="card-img" alt="">
-											<!-- Card body -->
-											<div class="card-body px-0 text-start pb-0">
-												<h6><a href="#">Ceremony Worthy of Time</a></h6>
-												<p class="mb-2 small">We help our customers better manage their web presence.</p>
-												<a class="icon-link icon-link-hover stretched-link mb-0" href="portfolio-case-studies-v1.html">Learn more<i class="bi bi-arrow-right"></i> </a>
-											</div>
-										</div>
-
-										<!-- Card -->
-										<div class="card bg-transparent">
-											<!-- Image -->
-											<img src="assets/images/portfolio/list/02.jpg" class="card-img" alt="">
-											<!-- Card body -->
-											<div class="card-body px-0 text-start pb-0">
-												<h6><a href="#">Brushstrokes and Beyond</a></h6>
-												<p class="mb-2 small">We help our customers better manage their web presence.</p>
-												<a class="icon-link icon-link-hover stretched-link mb-0" href="portfolio-case-studies-v2.html">Learn more<i class="bi bi-arrow-right"></i> </a>
-											</div>
-										</div>
-
-										<!-- Divider line -->
-										<div class="vr ms-2"></div>
-									</div>
-								</div>
-
-								<!-- Index nav links -->
-								<div class="col-xl-4">
-									<ul class="list-unstyled">
-										<li class="dropdown-header h6">Portfolio Pages</li>
-										<li> <a class="dropdown-item" href="portfolio-masonry.html">Portfolio Masonry</a> </li>
-										<li> <a class="dropdown-item" href="portfolio-showcase.html">Portfolio Showcase</a> </li>
-										<li> <a class="dropdown-item" href="portfolio-list.html">Portfolio List</a> </li>
-										<li> <a class="dropdown-item" href="portfolio-case-studies-v1.html">Portfolio Case Study v.1</a> </li>
-										<li> <a class="dropdown-item" href="portfolio-case-studies-v2.html">Portfolio Case Study v.2</a> </li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</li>
-
-					<!-- Nav item -->
-					<li class="nav-item"> <a class="nav-link" href="contact-v1.html">Contact us</a> </li>
-
-					<!-- Nav item -->
-					<li class="nav-item"> <a class="nav-link" href="docs/index.html" target="_blank">Docs</a> </li>
+					<li class="nav-item"> <a class="nav-link" href="contact.html">Contact us</a> </li>
 				</ul>
 			</div>
 			<!-- Main navbar END -->
@@ -388,17 +222,9 @@
 				</li>
 				<!-- Dark mode option END -->
 
-				<!-- Sign up button -->
-				<li class="nav-item me-2">
-					<a href="sign-up.html" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Sign up</a>
-				</li>
-				<!-- Buy now button -->
-				<li class="nav-item d-none d-sm-block">
-					<button class="btn btn-sm btn-primary mb-0">Buy now!</button>
-				</li>
 				<!-- Responsive navbar toggler -->
 				<li class="nav-item">
-					<button class="navbar-toggler ms-sm-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+					<button class="navbar-toggler ms-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-animation">
 							<span></span>
 							<span></span>
@@ -427,75 +253,8 @@ Main hero START -->
 				<div class="d-flex flex-column h-100">
 					<!-- Title -->
 					<h1 class="mb-3">Get in touch for more information</h1>
-					<p class="mb-0">You can reach us anytime via <a href="#">example@gmail.com</a></p>
+					<p class="mb-0">You can reach us anytime via <a href="#">info@vertonext.com</a></p>
 
-					<!-- Social button -->
-					<div class="d-sm-flex gap-3 align-items-center my-5">
-						<h6 class="mb-3 mb-sm-0">Follow us on:</h6>
-						<ul class="list-inline flex-wrap mb-0">
-							<li class="list-inline-item">
-								<a href="#" class="btn btn-icon btn-light text-facebook rounded-circle"><i class="bi bi-facebook"></i></a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="btn btn-icon btn-light text-instagram rounded-circle"><i class="bi bi-instagram"></i></a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="btn btn-icon btn-light text-dribbble rounded-circle"><i class="bi bi-dribbble"></i></a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="btn btn-icon btn-light text-twitter rounded-circle"><i class="bi bi-twitter"></i></a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="btn btn-icon btn-light text-youtube rounded-circle"><i class="bi bi-youtube"></i></a>
-							</li>
-						</ul>
-					</div>
-
-					<!-- Client slider START -->
-					<div class="mt-md-auto">
-						<div class="swiper" data-swiper-options='{
-							"loop": false, 
-							"slidesPerView": 2, 
-							"spaceBetween": 40,
-							"breakpoints": { 
-								"576": {"slidesPerView": 3},
-								"768": {"slidesPerView": 4}
-							}}'>
-
-							<!-- Slider items -->
-							<div class="swiper-wrapper align-items-center">
-								<!-- Image -->
-								<div class="swiper-slide">
-									<img src="assets/images/client/05.svg" alt="client-img">
-								</div>
-								<!-- Image -->
-								<div class="swiper-slide">
-									<img src="assets/images/client/01.svg" alt="client-img">
-								</div>
-								<!-- Image -->
-								<div class="swiper-slide">
-									<img src="assets/images/client/02.svg" alt="client-img">
-								</div>
-								<!-- Image -->
-								<div class="swiper-slide">
-									<img src="assets/images/client/03.svg" alt="client-img">
-								</div>
-								<!-- Image -->
-								<div class="swiper-slide">
-									<img src="assets/images/client/04.svg" alt="client-img">
-								</div>
-								<!-- Image -->
-								<div class="swiper-slide">
-									<img src="assets/images/client/06.svg" alt="client-img">
-								</div>
-								<!-- Image -->
-								<div class="swiper-slide">
-									<img src="assets/images/client/07.svg" alt="client-img">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Client slider END -->
 				</div>	
 			</div>
 
@@ -558,80 +317,6 @@ Main hero START -->
 Main hero END -->
 
 <!-- =======================
-Our work START -->
-<Section class="pt-0">
-	<div class="container">
-		<!-- Title -->
-		<div class="inner-container-small text-center mb-4 mb-sm-6">
-			<h2 class="mb-2">Follow our work</h2>
-			<p class="mb-0">The combination of my passion for design, code & interaction positions me in a unique place in the web design world.</p>
-		</div>
-
-		<div class="row row-cols-1 row-cols-lg-3 g-4">
-			<!-- Address info -->
-			<div class="col">
-				<div class="card card-body bg-light border">
-					<div class="d-flex align-items-center">
-						<div class="d-flex">
-							<!-- Icon -->
-							<img src="assets/images/elements/webflow.svg" class="h-50px" alt="">
-							<!-- Content -->
-							<div class="mx-3">
-								<h6 class="mb-0">Webflow templates</h6>
-								<small>The combination of my passion for design</small>
-							</div>
-						</div>
-						<!-- Button -->
-						<a class="icon-link icon-link-hover text-primary-hover stretched-link" href="#"><i class="bi bi-arrow-right fs-5"></i> </a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Email info -->
-			<div class="col">
-				<div class="card card-body bg-light border">
-					<div class="d-flex align-items-center">
-						<div class="d-flex">
-							<!-- Icon -->
-							<img src="assets/images/elements/bootstrap.svg" class="h-50px" alt="">
-							<!-- Content -->
-							<div class="mx-3">
-								<h6 class="mb-0">Bootstrap templates</h6>
-								<small>It drew a hill from my the passion for design</small>
-							</div>
-						</div>
-						<!-- Button -->
-						<a class="icon-link icon-link-hover text-primary-hover stretched-link" href="#"><i class="bi bi-arrow-right fs-5"></i> </a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Contact info -->
-			<div class="col">
-				<div class="card card-body bg-light border">
-					<div class="d-flex align-items-center">
-						<div class="d-flex">
-							<!-- Icon -->
-							<img src="assets/images/elements/github.svg" class="h-50px" alt="">
-							<!-- Content -->
-							<div class="mx-3">
-								<h6 class="mb-0">Contribute on Github</h6>
-								<small>Supposing so be resolving breakfast am or perfectly.</small>
-							</div>
-						</div>
-						<!-- Button -->
-						<a class="icon-link icon-link-hover text-primary-hover stretched-link" href="#"><i class="bi bi-arrow-right fs-5"></i> </a>
-					</div>
-				</div>
-			</div>
-
-		</div> <!-- Row END -->
-	</div>
-</Section>
-<!-- =======================
-Our work END -->
-
-<!-- =======================
 Office location START -->
 <section class="bg-parallax position-relative" style="background:url(assets/images/bg/03.jpg) no-repeat; background-size:cover; background-position:center;">
 	<div class="container">
@@ -641,32 +326,17 @@ Office location START -->
 				<div class="card card-body p-4">
 					<!-- Avatar img -->
 					<div class="avatar mb-4">
-						<img class="avatar-img rounded-circle" src="assets/images/flags/us.svg" alt="avatar">
+						<img class="avatar-img rounded-circle" src="assets/images/flags/tr.svg" alt="avatar">
 					</div>
-					<h6 class="card-title mb-3"><a href="#">United States</a></h6>
+					<h6 class="card-title mb-3"><a href="#">Türkiye</a></h6>
 					<!-- List -->
 					<ul class="list-group list-group-borderless border-0">
-						<li class="d-flex mb-3"><i class="bi bi-geo-alt text-primary me-2"></i>55/123 Norman street, Banking road, Sydney NSW 5000</li>
-						<li class="d-flex mb-3"><i class="bi bi-headset text-primary me-2"></i>Call: 469-537-2410 (Toll-free)</li>
+						<li class="d-flex mb-3"><i class="bi bi-geo-alt text-primary me-2"></i>İstanbul, Türkiye</li>
+						<li class="d-flex mb-3"><i class="bi bi-headset text-primary me-2"></i>Call: +90 532-XXX-XXX</li>
 					</ul>
 				</div>
 			</div>
 
-			<!-- Location card -->
-			<div class="col-md-4">
-				<div class="card card-body p-4">
-					<!-- Avatar img -->
-					<div class="avatar mb-4">
-						<img class="avatar-img rounded-circle" src="assets/images/flags/in.svg" alt="avatar">
-					</div>
-					<h6 class="card-title mb-3"><a href="#">India</a></h6>
-					<!-- List -->
-					<ul class="list-group list-group-borderless border-0">
-						<li class="d-flex mb-3"><i class="bi bi-geo-alt text-primary me-2"></i>55/123 Norman street, Banking road, Sydney NSW 5000</li>
-						<li class="d-flex mb-3"><i class="bi bi-headset text-primary me-2"></i>Call: 469-537-2410 (Toll-free)</li>
-					</ul>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
@@ -791,8 +461,7 @@ Footer START -->
 				</a>
 				<ul class="dropdown-menu min-w-auto" aria-labelledby="languageSwitcher">
 					<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
-					<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German </a></li>
-					<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
+					<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/tr.svg" alt="">Turkish </a></li>
 				</ul>
 			</div>
 		</div>
