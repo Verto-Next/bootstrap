@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+ 
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
+				})
+
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
+
+			}
+		})
+		
+	</script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="assets/images/verto_fav_icon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Mizzle - Technology and Corporate Bootstrap Theme</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+    <link rel="stylesheet" href="../assets/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%205%20Brands.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%205%20Free.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%206%20Brands.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%206%20Free.css">
+    <link rel="stylesheet" href="../assets/css/FontAwesome.css">
+    <link rel="stylesheet" href="../assets/css/swiper-icons.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/css/style.css">
+    <link rel="stylesheet" href="../assets/css/css/style-1.css">
+</head>
+
+<body>
+    <header class="header-sticky header-absolute" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-xl px-lg-5">
+            <div class="container-fluid"><a class="navbar-brand me-5" href="../index.html"><img class="light-mode-item navbar-brand-item" src="../assets/img/logo_navbar.svg" alt="logo"><img class="dark-mode-item navbar-brand-item" src="../assets/img/trace.svg" alt="logo"></a>
+                <div class="collapse navbar-collapse" id="navbarCollapse-1">
+                    <ul class="navbar-nav navbar-nav-scroll mx-auto dropdown-hover">
+                        <li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Company</a>
+                            <div class="dropdown-menu dropdown-menu-size-lg p-3">
+                                <div class="row pt-2">
+                                    <div class="col-sm-6">
+                                        <ul class="list-unstyled">
+                                            <li><a class="dropdown-item" href="about-us.html">About Us</a></li>
+                                            <li><a class="dropdown-item" href="team.html">Team</a></li>
+                                            <li><a class="dropdown-item active" href="partners.html">Partners</a></li>
+                                            <li><a class="dropdown-item" href="career.html">Career</a></li>
+                                            <li><a class="dropdown-item" href="newsroom.html">Newsroom</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Solutions</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown dropend"><a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">by Industry</a>
+                                    <ul class="dropdown-menu" data-bs-popper="none">
+                                        <li><a class="dropdown-item" href="banking.html">Banking</a></li>
+                                        <li><a class="dropdown-item" href="telco.html">Telco</a></li>
+                                        <li><a class="dropdown-item" href="insurance.html">Insurance</a></li>
+                                        <li><a class="dropdown-item" href="public.html">Public</a></li>
+                                        <li><a class="dropdown-item" href="sector5.html">Sector 5</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">by Category</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="ai.html">Artificial Intelligence(AI)</a></li>
+                                        <li><a class="dropdown-item dropdown-toggle" href="#">Data&amp;Analytics</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="features.html">Artificial Intelligence(AI)</a></li>
+                                                <li><a class="dropdown-item" href="feature-single.html">Data&amp;Analytics</a></li>
+                                                <li><a class="dropdown-item" href="integrations.html">Cloud&amp;Migration</a></li>
+                                                <li><a class="dropdown-item" href="integration-single.html">Digital Transformation</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="dropdown-item" href="cloud-and-migration.html">Cloud&amp;Migration</a></li>
+                                        <li><a class="dropdown-item" href="digital-transformation.html">Digital Transformation</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" href="#">Products</a>
+                            <div class="dropdown-menu dropdown-menu-center dropdown-menu-size-lg p-3">
+                                <div class="row g-xl-3">
+                                    <div class="col-xl-7 d-none d-xl-block">
+                                        <div class="d-flex gap-4">
+                                            <div class="card bg-transparent"><img class="card-img-top w-100 d-block card-img" alt="" src="../assets/img/portfolio/list/02.jpg">
+                                                <div class="card-body text-start px-0 pb-0">
+                                                    <h6>Lyncfirm</h6>
+                                                    <p class="mb-2 small">Linking products with customers</p><a class="stretched-link icon-link icon-link-hover mb-0" href="portfolio-case-studies-v2.html">Learn more<i class="bi bi-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <ul class="navbar-nav align-items-center dropdown-hover ms-sm-2">
+                    <li class="nav-item dropdown dropdown-animation"><button class="btn btn-link lh-1 mb-0 px-2" id="bd-theme-1" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-circle-half theme-icon-active fill-mode fa-fw" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path><use href="#"></use></svg></button>
+                        <ul class="dropdown-menu min-w-auto dropdown-menu-end" aria-labelledby="bd-theme">
+                            <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><svg width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path><use href="#"></use></svg>Light </button></li>
+                            <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path><use href="#"></use></svg>Dark </button></li>
+                            <li><button class="active dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path><use href="#"></use></svg>Auto </button></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-none d-sm-block position-relative ms-2 ms-sm-3"></li>
+                    <li class="nav-item"><button data-bs-target="#navbarCollapse" data-bs-toggle="collapse" class="navbar-toggler ms-3 p-2" type="button" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-animation"><span></span><span></span><span></span></span></button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="pt-7 pt-md-8">
+            <div class="container pt-4 pt-md-0">
+                <div class="row justify-content-between">
+                    <div class="col-lg-6 mb-6 mb-lg-0">
+                        <div class="d-flex flex-column h-100">
+                            <h1 class="mb-3">Get in touch for more information</h1>
+                            <p class="mb-0">You can reach us anytime via <a href="#">info@vertonext.com</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="card shadow card-body border p-sm-5"><figure class="position-absolute top-100 start-0 translate-middle mt-n5">
+						<svg width="225.3px" height="168.1px" viewBox="0 0 225.3 168.1" style="enable-background:new 0 0 225.3 168.1;">
+							<path class="fill-primary opacity-5" d="M147,129.9c1.9-1,9.2-2.2,4.2,2.3c-1,0.9-3.4,0.9-4.7,1.2c-3,0.8-5.8,2-8.6,3.3c0.9,0.3,1.8,0.7,2.7,1 c-1.2-3.3-3.5-6.4-3.7-9.9c-0.1-1.3,0-5,1.2-5.8c3.2-2.1,5.9,3.8,4.8,4.6c0.9-0.3,1.9-0.5,2.8-0.8c-2.4-0.9-4.6-3.7-5-6.1 c-1.2,0.9-2.4,1.8-3.7,2.8c1,0.4,1.7,1,2.1,1.9c0.2,0.8,0.4,1.7,0.5,2.5c0.8-0.1,1.5-0.2,2.3-0.4c-1.3-0.4-2.5-1.7-3.3-2.7 c-1.3-1.5-4.3-0.3-4.4,1.7c-0.4,4.4,3.1,8.4,5.1,12c1.1,1.9,5-0.2,4.4-2.2c-0.6-2.2-1.8-4.7-1.9-7c-0.5,0.8-0.9,1.6-1.4,2.4 c-0.8,0.5,3,1.7,3.3,1.7c1.2,0.2,1.9,0.2,2.9-0.3c0.7-0.3,2.9-1.8,2.4-1.9c-0.8-0.3-5.4,1.1-6.6,1.1c-2.3,0-4.7,4-1.7,4 c3.5,0,7.5-0.4,10.6-2.2c2.1-1.2,4.4-4.4,2.5-6.7c-2-2.4-4.9,0-6.8,1c-2.1,1.1-3.1,0.1-5.4-0.3c-1.3-0.2-2-0.1-3.1,0.6 c-0.9,0.5-1.4,1.4-1.4,2.4c0.1,2.3,1.3,4.8,1.9,7c1.5-0.7,3-1.4,4.4-2.2c-1.5-2.6-5.1-6.9-4.8-10c-1.5,0.6-3,1.1-4.4,1.7 c2.2,2.6,6.1,6.1,8.8,2.1c2.5-3.6,0.2-8.3-3.4-9.9c-1.6-0.7-3.9,1.1-3.7,2.8c0.5,3.4,5.1,10.1,9.2,7.9c3.9-2.1,1.8-8.6-0.6-11 c-3.5-3.6-8.5-1.7-10.5,2.4c-1.3,2.6-2.2,5.7-2,8.6c0.2,3.7,2.5,6.7,3.8,10.2c0.4,1.1,1.6,1.5,2.7,1c4-1.9,8-2.9,12.1-4.2 c2.5-0.8,6-2.3,6.9-5.1c0.7-2.4-1.2-6.1-3.5-7c-3-1.1-6.5,1.3-9,2.6C142.3,128.2,144.3,131.3,147,129.9L147,129.9z"></path>
+							<path class="fill-mode" d="M3,0.9C3,1,3,1.2,3.1,1.4c0.1,0.1,0.2,0.2,0.4,0.3c2.8,4.7,5.4,9.5,7.9,14.4c9.2,18,16.3,36.9,21.4,56.4 c0.1,0.3,0.4,0.4,0.7,0.3c0,0.3,0.4,0.6,0.7,0.4c2.7-1.8,5.1-4.2,7.7-6.2c2.5-1.9,5-3.7,7.6-5.5c0.8-0.5,1.6-1.1,2.3-1.6 c0,0.1,0,0.2,0.1,0.3c1.5,2.3,4,4.3,6.1,6.1c1.1,0.9,2.2,1.9,3.3,2.7c1,0.8,2,1.7,3.2,2.2c0.3,0.1,0.5-0.2,0.4-0.5c0,0,0,0,0,0 c2.4-8.3,4.5-16.8,6-25.4c0.2,0,0.3-0.2,0.3-0.4c7.6-3.5,14.4-9,20.4-14.8c0.2-0.2,0.2-0.4,0.1-0.6c0.1-0.2,0.1-0.6-0.2-0.7 c-6.4-2.4-13-4.3-19.5-6.5C49.3,15,26.6,7.5,3.8,0.2c0,0,0,0-0.1,0c0,0-0.1,0-0.1-0.1C3.2-0.3,2.7,0.5,3,0.9z M70.6,44.2 c-4.6-3.4-9.5-6.4-14.3-9.5C39.8,23.8,23.2,12.9,6.7,2.1c5.3,1.8,10.7,3.6,16,5.3l34,11.1c5.8,1.9,11.5,3.8,17.3,5.7 c5.6,1.8,11.1,3.9,16.8,5.4c-3,2.9-6.3,5.7-9.7,8.2c-3.3,2.4-6.7,4.4-10.2,6.5C70.8,44.2,70.7,44.2,70.6,44.2z M64.8,67.5 c-0.3-5.7-0.5-11.4-1-17.1c0-0.4-0.4-0.6-0.7-0.5c-0.1-0.2-0.4-0.4-0.6-0.4c-0.1,0-0.2-0.1-0.3-0.1c-0.7-0.8-1.6-1.5-2.4-2.2 c-1.1-1-2.3-1.9-3.4-2.9c-2.1-1.8-4.3-3.5-6.4-5.3c-7.8-6.5-15.5-12.9-23.3-19.4c-3.9-3.2-7.8-6.5-11.6-9.7C13.1,8.3,11.2,6.7,9.3,5 l8.8,5.8c8.8,5.8,17.5,11.5,26.3,17.3c4.4,2.9,8.8,5.8,13.2,8.7c4.2,2.8,8.4,5.7,12.8,8.3C68.6,52.6,66.9,60,64.8,67.5z M52.3,59.6 c1.6-1.1,3.2-2.3,4.7-3.5c1.2-1,2.4-1.9,3.5-2.9c0.7-0.6,1.8-1.3,2.2-2.2c0,6.2,0.6,12.5,1.1,18.6c-0.7-0.6-1.6-1.1-2.3-1.7 c-1-0.8-2.1-1.7-3.1-2.6c-1-0.9-2-1.8-2.9-2.7c-1-1-1.9-2.1-3-3C52.5,59.7,52.4,59.6,52.3,59.6z M6.1,4c3.3,2.9,6.9,5.6,10.3,8.4 c7.7,6.4,15.4,12.8,23.1,19.2c3.8,3.2,7.6,6.3,11.4,9.5c2,1.6,4,3.3,5.9,4.9c1.7,1.4,3.4,3.3,5.5,4.2c0,0,0,0,0,0 c0.1,0.1,0.1,0.1,0.2,0.1c-1.1,0.3-2,1.6-2.9,2.3c-1.1,0.9-2.2,1.9-3.4,2.8c-2.6,2-5.3,3.9-8,5.7c-2.6,1.8-5.1,3.6-7.6,5.6 c-2.3,1.8-4.9,3.5-6.9,5.7c0,0,0,0,0-0.1c-1.4-5.6-3-11.1-4.7-16.5C23.2,37.8,15.5,20.4,6.1,4z"></path>
+							<path class="fill-mode" d="M67.3,70.8c2.2,6.3,5.5,12.1,9.9,17.3c2.2,2.6,4.7,5,7.4,7.2c1.8,1.5,3.8,2.9,6.1,3.7c0.3,1.1,0.9,2.2,1.4,3.2 c1.5,2.8,3.4,5.5,5.2,8.1c3.7,5.2,7.8,10,12.6,14.2c7.2,6.2,16.3,10.9,25.8,12.2c0.4,0.9,0.8,1.8,1.2,2.6 c5.7,10.5,18.1,16.3,29.6,11.9c5.3-2,10-6.1,12.2-11.4c0.3-0.7,0.5-1.4,0.7-2.2c0.8,0.3,1.5,0.5,2.3,0.7c6.6,2,13.7,1.9,20.3-0.2 c12.2-3.8,21.5-14.8,23.3-27.4c0.1-0.5-0.6-0.7-0.7-0.2c-2.1,11.7-10,22-21.2,26.2c-5.4,2-11.2,2.6-16.9,1.7 c-2.3-0.3-4.6-0.9-6.8-1.8c0.4-2.1,0.3-4.4-0.5-6.4c-0.8-2-2.8-3.7-4.8-2.1c-1.9,1.5-1.9,4.1-0.5,5.9c1.2,1.5,2.9,2.5,4.8,3.2 c-0.5,2-1.4,3.9-2.6,5.5c-2.8,4.1-7.2,6.9-11.9,8.2c-10,2.7-20.1-2.1-25.5-10.7c-0.7-1.1-1.3-2.3-1.9-3.5c2.6,0.3,5.2,0.3,7.9,0.1 c4.3-0.4,9.8-2.5,9.6-7.7c-0.1-1.8-0.9-3.6-2.5-4.4c-2-0.9-4-0.1-5.8,1c0.4-1.5,0-3.3-1.1-4.5c-1.8-2.1-5-2-7.2-0.5 c-4.9,3.2-4.2,9.8-2.3,15c-0.2,0-0.3,0-0.5-0.1c-10.4-1.7-19.8-7.3-27.3-14.6c-3.7-3.6-6.9-7.5-9.9-11.7c-1.5-2.1-2.9-4.2-4.2-6.4 c-0.7-1.2-1.5-2.6-2-4c0.5,0.1,1,0.2,1.5,0.2c2.2,0.1,4.2-0.7,5.5-2.6c1-1.4,1.4-3.4,0.5-5c-2.2-3.9-7.6-0.9-8.5,2.4 c-0.3,1.2-0.3,2.4,0,3.6c-2.1-0.8-4.2-2.3-5.7-3.4c-7.7-6.2-13.6-14.4-17-23.7C67.6,70.5,67.2,70.5,67.3,70.8z M178.7,136.3 C178.7,136.3,178.7,136.2,178.7,136.3c-2.6-1.1-6.6-3.5-4.6-6.7c1.3-2.1,3.3-0.9,4.1,0.9c0.6,1.4,0.7,2.9,0.6,4.4 C178.9,135.4,178.8,135.8,178.7,136.3z M136.3,135.8c-1.6-3.9-2.4-8.3-0.5-11.9c1.2-2.4,4.5-4.5,7.1-3.1c2.1,1.1,3.1,4.3,1.3,6 c-0.3,0.3,0.1,1,0.5,0.7c2.2-1.7,6.2-4.1,8.1-0.7c1.2,2.2,0.5,5-1.3,6.6c-2.1,1.9-5.1,2.4-7.9,2.6 C141.2,136.2,138.7,136.1,136.3,135.8z M91.2,98.1c-0.3-1.1-0.4-2.2-0.1-3.4c0.4-2.1,2.5-4.1,4.7-4.1c2.7,0,3.5,2.8,2.4,4.9 C96.6,98.7,93.9,98.9,91.2,98.1z"></path>
+						</svg>
+					</figure>
+                            <form class="row g-4 needs-validation" novalidate="">
+                                <div class="col-md-6"><label class="form-label heading-color">Your name *</label><input class="form-control form-control-lg form-control" type="text" placeholder="Full name" required="">
+                                    <div class="invalid-feedback"><span> Enter your name </span></div>
+                                    <div class="valid-feedback"><span> Looks good! </span></div>
+                                </div>
+                                <div class="col-md-6"><label class="form-label heading-color">Email address *</label><input class="form-control form-control-lg form-control" type="email" id="floatingInput" placeholder="name@example.com" required="">
+                                    <div class="invalid-feedback"><span> Enter valid email id </span></div>
+                                    <div class="valid-feedback"><span> Looks good! </span></div>
+                                </div>
+                                <div class="col-md-6"><label class="form-label heading-color">Phone number *</label><input class="form-control form-control-lg form-control" type="text" placeholder="(xxx) xx xxxx" required="">
+                                    <div class="invalid-feedback"><span> Enter your phone number </span></div>
+                                    <div class="valid-feedback"><span> Looks good! </span></div>
+                                </div>
+                                <div class="col-md-6"><label class="form-label heading-color">Company *</label><input class="form-control form-control-lg form-control" type="text" placeholder="Company name" required="">
+                                    <div class="invalid-feedback"><span> Enter your company name </span></div>
+                                    <div class="valid-feedback"><span> Looks good! </span></div>
+                                </div>
+                                <div class="col-12"><label class="form-label heading-color">Message *</label><textarea class="form-control form-control" id="floatingTextarea2" placeholder="Write your message here...." required="" style="height:150px;"></textarea>
+                                    <div class="invalid-feedback"><span> Write your message </span></div>
+                                </div><button class="btn btn-primary btn-lg mb-0">Send a message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-parallax position-relative" style="background: url(../assets/img/bg/03.jpg) no-repeat;background-size: cover;background-position: center;padding-top: 60px;padding-bottom: 60px;">
+            <div class="container">
+                <div class="row text-start justify-content-end g-4 g-md-6">
+                    <div class="col-md-4">
+                        <div class="card card-body p-4">
+                            <div class="avatar mb-4"><img class="rounded-circle avatar-img" src="../assets/img/flags/tr.svg" alt="avatar"></div>
+                            <h6 class="card-title mb-3">Headquarter</h6>
+                            <ul class="border-0 list-group list-group-borderless">
+                                <li class="d-flex mb-3"><i class="text-primary bi bi-geo-alt me-2"></i>İstanbul, Türkiye</li>
+                                <li class="d-flex mb-3"><i class="text-primary bi bi-headset me-2"></i>Call: +90 5XX XXX-XXXX</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-body p-4">
+                            <div class="avatar mb-4"><img class="rounded-circle avatar-img" src="../assets/img/flags/tr.svg" alt="avatar"></div>
+                            <h6 class="card-title mb-3">Teknopark</h6>
+                            <ul class="border-0 list-group list-group-borderless">
+                                <li class="d-flex mb-3"><i class="text-primary bi bi-geo-alt me-2"></i>İstanbul, Türkiye</li>
+                                <li class="d-flex mb-3"><i class="text-primary bi bi-headset me-2"></i>Call: +90 5XX XXX-XXXX</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-dark position-relative overflow-hidden pt-4" data-bs-theme="dark">
+        <div class="container position-relative mt-5">
+            <div class="row g-3 g-lg-3" style="text-align: center;">
+                <div class="col-xl-4 text-lg-center text-xl-start mb-4 mb-xl-0"><a href="../index.html"><img class="light-mode-item h-40px" src="../assets/img/logo.svg" alt="logo"><img class="dark-mode-item h-40px" src="../assets/img/logo_verto.png" alt="logo"></a>
+                    <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                        <div class="col" style="padding-left: 0px;padding-right: 0px;">
+                            <h1 style="font-size: 15px;text-align: left;"><br><span style="font-weight: normal !important; color: rgb(96, 98, 97);">Initiate the Transformation, Seize the Future.</span><br><br></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="mb-2 mb-md-4">Company</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link mb-1" href="about-us.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="team.html">Team</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="partners.html">Partners</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="career.html">Career</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="newsroom.html">Newsroom</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="mb-2 mb-md-4">Industries</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link mb-1" href="banking.html">Banking</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="telco.html">Telecommunications</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="insurance.html">Insurance</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="public.html">Public</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="mb-2 mb-md-4">Categories</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link mb-1" href="ai.html">Artificial Intelligence</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="data-and-analytics.html">Data&amp;Analytics</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="cloud-and-migration.html">Cloud&amp;Migration</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="digital-transformation.html">Digital Transformation</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="mb-2 mb-md-4">Contact details</h6>
+                    <ul class="list-group list-group-borderless">
+                        <li class="d-flex mb-3"><i class="text-primary me-2 bi bi-geo-alt"></i>Istanbul, Türkiye</li>
+                        <li class="d-flex mb-3"><i class="text-primary me-2 bi bi-headset"></i>+90 (532) XXX-XXXX</li>
+                        <li class="d-flex mb-3"><i class="text-primary me-2 bi bi-envelope"></i> info@vertonext.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="opacity-1 my-5 my-sm-5">
+            <div class="text-center text-lg-start d-md-flex justify-content-between align-items-center py-3">
+                <div class="text-body mb-3 mb-md-0"><span> Copyrights ©2025 Verto Next</span></div>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-linkedin-in lh-base fa-fw"></i></a></li>
+                    <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-youtube lh-base fa-fw"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="back-top"></div>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bs-init.js"></script>
+    <script src="../assets/js/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+    <script src="../assets/js/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/js/vendor/jarallax/jarallax.min.js"></script>
+    <script src="../assets/js/vendor/jarallax/jarallax-video.min.js"></script>
+    <script src="../assets/js/js/functions.js"></script>
+</body>
+
+</html>
