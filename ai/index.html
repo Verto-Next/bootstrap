@@ -64,9 +64,74 @@
 	</script>
 
 	<!-- Favicon -->
+	<link rel="shortcut icon" href="assets/images/verto_fav_icon.ico"><!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+ 
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
+				})
+
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
+
+			}
+		})
+		
+	</script>
+
+	<!-- Favicon -->
 	<link rel="shortcut icon" href="assets/images/verto_fav_icon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Mizzle - Technology and Corporate Bootstrap Theme</title>
+    <title>Verto Next - Initiate the Transformation, Seize the Future</title>
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
     <link rel="stylesheet" href="../assets/css/bootstrap-icons.css">
@@ -77,7 +142,6 @@
     <link rel="stylesheet" href="../assets/css/FontAwesome.css">
     <link rel="stylesheet" href="../assets/css/swiper-icons.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/aos.min.css">
     <link rel="stylesheet" href="../assets/css/vendor/font-awesome/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/vendor/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/vendor/swiper/swiper-bundle.min.css">
@@ -86,190 +150,69 @@
 </head>
 
 <body>
-    <header class="header-sticky header-absolute" data-bs-theme="dark">
-        <nav class="navbar navbar-expand-xl">
-            <div class="container"><a class="navbar-brand me-0" href="../index.html"><img class="light-mode-item navbar-brand-item" src="../assets/img/logo.svg" alt="logo"><img class="dark-mode-item navbar-brand-item" src="../assets/img/logo-light.svg" alt="logo"></a>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+    <header class="header-sticky header-absolute">
+        <nav class="navbar navbar-expand-xl px-lg-5">
+            <div class="container-fluid"><a class="navbar-brand me-5" href="https://vertonext.com"><img class="light-mode-item navbar-brand-item" src="../assets/img/logo_vertonext.svg" alt="logo"><img class="dark-mode-item navbar-brand-item" src="../assets/img/logo_vertonext.svg" alt="logo"></a>
+                <div class="collapse navbar-collapse" id="navbarCollapse-1">
                     <ul class="navbar-nav navbar-nav-scroll mx-auto dropdown-hover">
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Demos</a>
-                            <div class="dropdown-menu dropdown-menu-size-lg p-3">
-                                <div class="row pt-2">
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled">
-                                            <li><a class="dropdown-item" href="../index.html">Classic Default</a></li>
-                                            <li><a class="dropdown-item" href="index-creative-agency.html">Creative Agency</a></li>
-                                            <li><a class="dropdown-item" href="index-digital-agency.html">Digital Agency</a></li>
-                                            <li><a class="dropdown-item" href="index-design-agency.html">Design Agency</a></li>
-                                            <li><a class="dropdown-item" href="index-seo-agency.html">SEO Agency</a></li>
-                                            <li><a class="dropdown-item" href="index-landing-product.html">Product Landing</a></li>
-                                            <li><a class="dropdown-item" href="index-mobile-app-showcase.html">Mobile App Showcase</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled">
-                                            <li><a class="dropdown-item" href="index-saas.html">SaaS v.1</a></li>
-                                            <li><a class="dropdown-item" href="../index-saas-v2.html">SaaS v.2</a></li>
-                                            <li><a class="dropdown-item" href="index-saas-v3.html">SaaS v.3</a></li>
-                                            <li><a class="dropdown-item" href="index-saas-v4.html">SaaS v.4</a></li>
-                                            <li><a class="dropdown-item" href="index-saas-v5.html">SaaS v.5</a></li>
-                                            <li><a class="dropdown-item" href="index-finance-consulting.html">Finance consulting</a></li>
-                                            <li><a class="dropdown-item" href="index-shop.html">Index Shop</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-12">
-                                        <hr class="mt-2">
-                                        <div class="d-sm-flex justify-content-between align-items-center px-2">
-                                            <div class="me-3 mb-2 mb-sm-0">
-                                                <h6 class="mb-2 mb-sm-0">Ready to get started?</h6><small class="mb-0">Take your documents to the next level with Mizzle</small>
-                                            </div><a class="btn btn-primary btn-sm" role="button" href="#">Get in touch</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Pages</a>
+                        <li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Company</a>
                             <ul class="dropdown-menu">
-                                <li class="dropdown dropend"><a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">About</a>
+                                <li><a class="dropdown-item" href="https://vertonext.com/about-us">About Us</a></li>
+                                <li><a class="dropdown-item" href="https://vertonext.com/team">Team</a></li>
+                                <li><a class="dropdown-item" href="https://vertonext.com/partners">Partners</a></li>
+                                <li><a class="dropdown-item" href="https://vertonext.com/career">Career</a></li>
+                                <li><a class="dropdown-item" href="https://vertonext.com/newsroom">Newsroom</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item text-primary dropdown"><a class="nav-link active dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Solutions</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown dropend"><a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">by Industry</a>
                                     <ul class="dropdown-menu" data-bs-popper="none">
-                                        <li><a class="dropdown-item" href="about-v1.html">About v.1</a></li>
-                                        <li><a class="dropdown-item" href="about-v2.html">About v.2</a></li>
-                                        <li><a class="dropdown-item" href="about-v3.html">About v.3</a></li>
-                                        <li><a class="dropdown-item" href="team.html">Team</a></li>
-                                        <li><a class="dropdown-item" href="services-v1.html">Services v.1</a></li>
-                                        <li><a class="dropdown-item" href="services-v2.html">Services v.2</a></li>
-                                        <li><a class="dropdown-item" href="../data-and-analytics/index.html">Service Single</a></li>
-                                        <li><a class="dropdown-item" href="customer-stories.html">Customer Stories</a></li>
-                                        <li><a class="dropdown-item" href="customer-story-single.html">Customer Story Single</a></li>
-                                        <li><a class="dropdown-item" href="career.html">Career <span class="badge text-bg-primary ms-2">2 Job</span></a></li>
-                                        <li><a class="dropdown-item" href="career-single.html">Career Single</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/banking">Banking</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/telco">Telco</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/insurance">Insurance</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/public">Public</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/sector5">Sector 5</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="dropdown-item" href="contact-v1.html">Contact v.1</a></li>
-                                <li><a class="dropdown-item" href="contact-v2.html">Contact v.2</a></li>
-                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">SaaS Pages</a>
+                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">by Category</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="features.html">Features</a></li>
-                                        <li><a class="dropdown-item" href="feature-single.html">Feature Single</a></li>
-                                        <li><a class="dropdown-item" href="integrations.html">Integrations</a></li>
-                                        <li><a class="dropdown-item" href="integration-single.html">Integration Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Shop</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="shop-grid.html">Shop Grid</a></li>
-                                        <li><a class="dropdown-item" href="shop-single.html">Shop Single</a></li>
-                                        <li><a class="dropdown-item" href="shop-cart.html">Shop Cart</a></li>
-                                        <li><a class="dropdown-item" href="shop-empty-cart.html">Shop Empty Cart</a></li>
-                                        <li><a class="dropdown-item" href="shop-checkout.html">Shop Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-                                        <li><a class="dropdown-item" href="blog-list-sidebar.html">Blog List Sidebar</a></li>
-                                        <li><a class="dropdown-item" href="blog-single-v1.html">Blog Single v.1</a></li>
-                                        <li><a class="dropdown-item" href="blog-single-v2.html">Blog Single v.2</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown dropend"><a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Specialty Pages</a>
-                                    <ul class="dropdown-menu" data-bs-popper="none">
-                                        <li><a class="dropdown-item" href="help-center.html">Help Center</a></li>
-                                        <li><a class="dropdown-item" href="help-center-detail.html">Help Center Detail</a></li>
-                                        <li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-                                        <li><a class="dropdown-item" href="faq.html">Faqs</a></li>
-                                        <li><a class="dropdown-item" href="error-404.html">Error 404</a></li>
-                                        <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
-                                        <li><a class="dropdown-item" href="terms-and-condition.html">Terms &amp; Conditions</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Authentication</a>
-                                    <ul class="dropdown-menu" data-bs-popper="none">
-                                        <li><a class="dropdown-item" href="sign-up.html">Sign Up</a></li>
-                                        <li><a class="dropdown-item" href="sign-in.html">Sign In</a></li>
-                                        <li><a class="dropdown-item" href="forgot-password.html">Forgot Password</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Accounts</a>
-                                    <ul class="dropdown-menu" data-bs-popper="none">
-                                        <li><a class="dropdown-item" href="account-detail.html">Details</a></li>
-                                        <li><a class="dropdown-item" href="account-security.html">Security</a></li>
-                                        <li><a class="dropdown-item" href="account-notification.html">Notifications</a></li>
-                                        <li><a class="dropdown-item" href="account-projects.html">My Projects</a></li>
-                                        <li><a class="dropdown-item" href="account-payment-details.html">Payment Details</a></li>
-                                        <li><a class="dropdown-item" href="account-order.html">Order History</a></li>
-                                        <li><a class="dropdown-item" href="account-wishlist.html">Wishlist</a></li>
-                                        <li><a class="dropdown-item" href="account-delete.html">Delete Profile</a></li>
-                                    </ul>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Dropdown levels</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown dropend"><a class="dropdown-item dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Dropdown (end)</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Dropdown item</a></li>
-                                                <li><a class="dropdown-item" href="#">Dropdown item</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Dropdown item</a></li>
-                                        <li class="dropdown dropstart"><a class="dropdown-item dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Dropdown (start)</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Dropdown item</a></li>
-                                                <li><a class="dropdown-item" href="#">Dropdown item</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Dropdown item</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/ai">Artificial Intelligence(AI)</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/data-and-analytics">Data &amp; Analytics</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/cloud-and-migration">Cloud &amp; Migration</a></li>
+                                        <li><a class="dropdown-item" href="https://vertonext.com/digital-transformation">Digital Transformation</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" href="#">Portfolio</a>
-                            <div class="dropdown-menu dropdown-menu-center dropdown-menu-size-xl p-3">
+                        <li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" href="#">Products</a>
+                            <div class="dropdown-menu dropdown-menu-center dropdown-menu-size-lg p-3">
                                 <div class="row g-xl-3">
-                                    <div class="col-xl-8 d-none d-xl-block">
+                                    <div class="col-xl-7 d-none d-xl-block">
                                         <div class="d-flex gap-4">
-                                            <div class="card bg-transparent"><img class="card-img-top w-100 d-block card-img" alt="" src="../assets/img/portfolio/list/01.jpg">
-                                                <div class="card-body text-start px-0 pb-0">
-                                                    <h6><a href="#">Ceremony Worthy of Time</a></h6>
-                                                    <p class="mb-2 small">We help our customers better manage their web presence.</p><a class="stretched-link icon-link icon-link-hover mb-0" href="portfolio-case-studies-v1.html">Learn more<i class="bi bi-arrow-right"></i></a>
-                                                </div>
-                                            </div>
                                             <div class="card bg-transparent"><img class="card-img-top w-100 d-block card-img" alt="" src="../assets/img/portfolio/list/02.jpg">
                                                 <div class="card-body text-start px-0 pb-0">
-                                                    <h6><a href="#">Brushstrokes and Beyond</a></h6>
-                                                    <p class="mb-2 small">We help our customers better manage their web presence.</p><a class="stretched-link icon-link icon-link-hover mb-0" href="portfolio-case-studies-v2.html">Learn more<i class="bi bi-arrow-right"></i></a>
+                                                    <h6>Lyncfirm</h6>
+                                                    <p class="mb-2 small">Linking products with customers</p><a class="stretched-link icon-link icon-link-hover mb-0" href="https://vertonext.com/products/lyncfirm">Learn more<i class="bi bi-arrow-right"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="vr ms-2"></div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4">
-                                        <ul class="list-unstyled">
-                                            <li class="dropdown-header h6">Portfolio Pages</li>
-                                            <li><a class="dropdown-item" href="portfolio-masonry.html">Portfolio Masonry</a></li>
-                                            <li><a class="dropdown-item" href="portfolio-showcase.html">Portfolio Showcase</a></li>
-                                            <li><a class="dropdown-item" href="portfolio-list.html">Portfolio List</a></li>
-                                            <li><a class="dropdown-item" href="portfolio-case-studies-v1.html">Portfolio Case Study v.1</a></li>
-                                            <li><a class="dropdown-item" href="portfolio-case-studies-v2.html">Portfolio Case Study v.2</a></li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="contact-v1.html">Contact us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="docs/index.html" target="_blank">Docs</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="https://vertonext.com/contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <ul class="navbar-nav align-items-center dropdown-hover ms-sm-2">
-                    <li class="nav-item dropdown dropdown-animation"><button class="btn btn-link lh-1 mb-0 px-2" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-circle-half theme-icon-active fill-mode fa-fw" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path><use href="#"></use></svg></button>
+                    <li class="nav-item dropdown dropdown-animation"><button class="btn btn-link lh-1 mb-0 px-2" id="bd-theme-1" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-circle-half theme-icon-active fill-mode fa-fw" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path><use href="#"></use></svg></button>
                         <ul class="dropdown-menu min-w-auto dropdown-menu-end" aria-labelledby="bd-theme">
                             <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><svg width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path><use href="#"></use></svg>Light </button></li>
                             <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path><use href="#"></use></svg>Dark </button></li>
                             <li><button class="active dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path><use href="#"></use></svg>Auto </button></li>
                         </ul>
                     </li>
-                    <li class="nav-item me-2"><a class="btn btn-light btn-sm mb-0" role="button" href="sign-up.html"><i class="bi bi-person-circle me-1"></i>Sign up</a></li>
-                    <li class="nav-item d-none d-sm-block"><button class="btn btn-primary btn-sm mb-0">Buy now!</button></li>
-                    <li class="nav-item"><button data-bs-target="#navbarCollapse" data-bs-toggle="collapse" class="navbar-toggler ms-sm-3 p-2" type="button" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-animation"><span></span><span></span><span></span></span></button></li>
+                    <li class="nav-item"><button data-bs-target="#navbarCollapse" data-bs-toggle="collapse" class="navbar-toggler ms-3 p-2" type="button" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-animation"><span></span><span></span><span></span></span></button></li>
                 </ul>
             </div>
         </nav>
@@ -279,8 +222,8 @@
             <div class="container position-relative pt-4 pt-lg-0">
                 <div class="row align-items-center">
                     <div class="col-md-7 col-xl-6">
-                        <h1 class="mb-4">Data &amp; Analytics</h1>
-                        <p class="mb-4">Data and analytics solutions transform raw data into valuable insights, enabling smarter decisions, optimizing operations, and driving business growth with advanced analytics, BI, and predictive modeling.</p>
+                        <h1 class="mb-4">Artificial Intelligence</h1>
+                        <p class="mb-4">Enhancing decision-making, automating processes, and driving innovation with machine learning, deep learning, and data-driven insights for smarter, more efficient business solutions.</p>
                     </div>
                 </div>
             </div>
@@ -289,9 +232,9 @@
             <div class="container">
                 <div class="row g-4 g-lg-7">
                     <div class="col-md-6">
-                        <h4 class="mb-4" style="margin-top: 15px;">Our Approach</h4>
-                        <p>&nbsp; &nbsp;Leverages data-driven strategies, AI, and advanced analytics to transform raw data into actionable insights, optimizing operations, enhancing decision-making, and driving business growth.</p>
-                        <p>&nbsp; &nbsp; A data and analytics approach enables businesses to transform raw data into actionable insights, driving smarter decisions, optimized operations, and growth through business intelligence, predictive analytics, and AI-driven automation. By leveraging data warehouses, data lakes, and cloud solutions, organizations can build a scalable, secure, and unified data ecosystem that supports real-time analytics, forecasting, and anomaly detection. Seamless integration with enterprise systems enhances efficiency, reduces risks, and uncovers new opportunities. With strong data governance and compliance, businesses can ensure data accuracy and reliability, fostering a data-driven culture that enhances strategy, innovation, and competitive advantage in the digital era.</p>
+                        <p>&nbsp; &nbsp;<br>&nbsp; &nbsp;Artificial Intelligence (AI) is transforming the way businesses operate, making processes more efficient, insightful, and automated.</p>
+                        <p>&nbsp; &nbsp;At Verto Next, we provide cutting-edge AI solutions tailored to various industries, enabling companies to harness the power of intelligent algorithms for improved decision-making, automation, and predictive analytics.</p>
+                        <p>&nbsp; &nbsp;AI plays a crucial role in enhancing business performance by<br> analyzing vast amounts of data, identifying patterns, and making data-driven<br> recommendations. Whether it’s customer service, fraud detection, predictive<br> maintenance, or personalized recommendations, AI is reshaping industries by<br> optimizing efficiency and unlocking new opportunities.</p>
                     </div>
                     <div class="col-md-6">
                         <div class="card bg-light card-body border p-md-5">
@@ -309,336 +252,76 @@
                 </div>
             </div>
         </section>
-        <section class="bg-dark position-relative overflow-hidden" data-bs-theme="dark" style="padding-top: 60px;padding-bottom: 60px;"><figure class="position-absolute top-0 start-0 mt-n6 ms-n8">
-		<svg class="opacity-3" width="371" height="354" viewBox="0 0 371 354" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<ellipse cx="172.5" cy="176.5" rx="131.5" ry="125.5" fill="url(#paint0_linear_195_2)"></ellipse>
-			<ellipse cx="185.5" cy="177" rx="185.5" ry="177" fill="url(#paint1_linear_195_2)"></ellipse>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		</svg>
-	</figure><figure class="position-absolute top-0 end-0 me-n9 mt-n7 d-none d-md-block">
-		<svg class="fill-white" width="768.8px" height="1386px" viewBox="0 0 768.8 1386" style="enable-background:new 0 0 768.8 1386;opacity:0.07;">
-			<path d="M647.6,748.4c1.9,6,3.3,12.2,3.8,18.4c2.2,18.9-0.7,38.9-9.1,61.5c-15.6,41.9-47.8,85.3-81.6,131.5 c-46.1,63.1-94.5,128.4-108.1,199.1c-15.7,80.6,17.2,154.5,101.1,226.1l-0.4,0.4c-188.1-160.7-84.4-301.8,7.3-426.2 c33.9-46,65.8-89.6,81.4-131.2c17.5-46.8,11.8-84.9-18-119.6c-39.6-46.6-86.5-86.9-135.7-129.3C339.1,450.3,184.9,317.3,240.6,4.6 l0.6,0.1C185.7,317,339.7,450.1,488.7,578.7c49.3,42.7,95.8,82.8,135.8,129.6C635.5,721,643.1,734.2,647.6,748.4z"></path>
-			<path d="M636.2,722.3c23.4,73.7-25.2,149.2-76.5,228.7c-40.8,63.5-83,129.1-91.9,198.3c-9.9,78.2,25.9,150,109.6,219 l-0.4,0.7c-45-37.1-75.4-74-93.5-112.7c-15.9-34.5-21.2-69.5-16.5-106.8c8.9-69.5,51-135.1,91.9-198.6 C616.4,861.3,671,776.5,622,694.1c-39.6-66.6-102.4-118.8-169-174.2c-68.7-57.3-140-116.4-188.1-195.3 c-25.9-42.6-42.9-86.9-51.5-135.2c-9.8-54.6-9.2-112.9,2-177.9l0.6,0.1c-46.5,271.4,97.9,391.7,237.5,507.9 c66.7,55.4,129.4,107.7,169.1,174.5C628.8,702.7,633.1,712.6,636.2,722.3z"></path>
-			<path d="M624.6,687.5c11.7,37,10.5,76.9-3.8,121.9c-13.7,43.3-38.1,87.4-61.8,130.2c-35.7,64.2-72.5,130.4-76.3,198.6 c-4.4,76.5,34.5,146.1,118.7,213.3l-0.6,0.8c-188.5-150.2-114.3-284-42.6-413.2c49.3-88.7,95.7-172.7,62.4-260.6 c-31.5-83-108.5-141.7-189.7-204C363,422.5,293.2,369,244.9,298c-26.1-38.5-43.3-78.4-53-121.8C181.2,127,180.6,75,190.2,16.8l0.9,0 C151,259.3,293.5,368.3,431.2,473.7c81.5,62.2,158.3,121.3,190.1,204.2C622.6,681.2,623.6,684.4,624.6,687.5z"></path>
-			<path d="M614.6,642.5c2.2,6.8,4.1,13.7,5.4,20.8c18.1,91.8-22.3,177.4-61.1,260.2c-32.2,68.8-62.8,133.6-62.1,201.3 c0.8,76.3,41.6,143,128.7,209.2l-0.6,0.8c-46.1-35.1-78.8-70-100.3-106.8c-19.1-32.9-28.6-66.6-28.9-103.1 c-0.6-67.6,29.8-132.7,62.3-201.6c38.8-82.7,79-168.2,60.9-259.8c-19.1-96.7-109.2-158.6-204.5-224.2 c-68.3-47.1-139.2-95.6-188.9-160.4c-56.1-73.2-75.8-157-60.3-255.8l0.9,0c-34.9,220.7,109.1,319.7,248.6,415.2 C503.4,499.3,587.6,557.2,614.6,642.5z"></path>
-			<path d="M610.8,603.9c4.4,13.9,7.1,28.7,7.8,44.6c3.6,91.5-28.4,172.7-59.3,251.2c-28.5,72.3-55.1,140.5-50.2,208.8 c5.2,76.6,49.9,143,140.1,208.8l-0.4,0.7c-90.5-66-135.2-132.4-140.8-209.2c-5-68.6,21.9-136.9,50.3-209.4 c30.9-78.5,62.6-159.6,59.1-250.9c-4.2-109-107.3-171.8-216.8-238.5c-70.1-42.7-142.8-87-194.2-146.1 c-58.1-66.8-79.9-143.6-66-234.6l1,0.3c-30.7,202.9,117.1,292.9,259.8,379.6C494.9,466.2,584.1,520.8,610.8,603.9z"></path>
-			<path d="M610.7,570.7c6.1,19.2,8.4,40.1,6,62.8c-8.3,84.1-33.8,160.3-55.9,227.3c-27.6,83.2-51.4,154.9-42.7,226 c9.5,78.4,58.7,146,155,213l-0.6,0.8c-96.5-66.7-145.8-134.6-155.4-213.2c-8.8-71.4,15.2-143.4,42.8-226.7 c22.3-67.1,47.6-143.3,55.9-227.3c12-120.7-104.2-182.9-227.6-248.9c-72.3-38.6-147.1-78.7-200.6-132.7 c-60.6-61-84.2-131.8-72-216.2l1.2,0.2C89.9,223.5,242,305,389.1,383.7C488.9,437.2,584.6,488.6,610.7,570.7z"></path>
-			<path d="M613,540.8c7.3,23.1,8.5,48.7,1.9,77.9c-14,63.3-31.8,122.1-47.4,173.8c-30,99.3-56,185.2-45,263.4 c11.7,84.3,67.2,156.6,174.2,227.2l-0.5,1c-56.6-37.2-98.1-74.3-126.8-113.1c-26.6-35.7-42.3-73.2-47.9-114.7 c-11.1-78.8,14.9-164.4,45.1-264c15.7-51.7,33.4-110.5,47.5-173.6C643.5,486.7,513.4,426,375.8,361.9 c-74.9-34.9-152.2-71-207.6-120.1c-63-55.7-88.3-121-78-199.6l1.1-0.1c-10.5,78.1,14.8,143.1,77.7,198.6 c55.4,49.1,132.7,85.3,207.5,119.9C484,410.7,587.1,458.9,613,540.8z"></path>
-			<path d="M617.2,512.9c8.3,26.2,8,56.1-3.5,90.9c-5.6,17.1-11.2,33.9-16.5,50c-47.8,143.4-85.7,256.4-76.5,351.9 c9.7,99.7,71.5,180,200.4,260.4l-0.5,1c-67.3-41.9-115.6-83.2-148.1-126.6c-30.9-41-48.1-85.2-52.8-134.8 c-9.3-95.8,28.8-208.9,76.6-352.3c5.6-16.2,10.9-32.9,16.5-50c47.5-143.5-96.3-201.6-248.6-263.1c-77.7-31.1-157.6-63.5-215.4-108.2 C83.3,181.7,56.1,121.4,65.2,48l1.2,0.2c-9,72.7,18.1,132.8,83.1,183c57.8,44.6,137.6,76.8,214.8,108.1 C480.2,386,591.2,431,617.2,512.9z"></path>
-			<path d="M622.4,486.7c9.6,30.2,6.1,63.9-10.3,102.3C465,933,463,1084.4,745.1,1249l-0.8,1.1 c-143.5-83.6-211.5-162.5-227.9-263.5c-17.4-106.8,25.3-236.4,94.5-398.1c18.6-43.4,20.4-80.4,6-113.1 C583.7,401.1,471.1,362,351.5,320.8C189.7,265,22.7,207.3,40,54.3l1.2,0.2C23.8,206.4,190.5,263.8,351.7,319.6 C471.4,361,584.6,400,617.6,475C619.7,478.9,621.2,482.8,622.4,486.7z"></path>
-			<path d="M628.6,461.4c10.3,32.5,4.4,69.6-18,112.8c-93.9,182.2-122.9,308.3-94.5,408.8c26.1,92.5,101.7,167,252.8,249 l-0.8,1.1c-151.5-82.5-227.2-157.2-253.6-249.9c-28.5-100.7,0.5-227.1,94.5-409.9c24.3-47.3,29-87.1,14.3-121.5 c-32.7-76-155.1-112-284.6-149.7C172.6,253.7,0.1,203.5,15.1,60.4l1.2,0.2c-14.6,141.8,157,191.9,323.2,240.6 c129.9,37.9,252.4,73.9,285.3,150.4C626.2,454.9,627.5,458,628.6,461.4z"></path>
-		</svg>
-	</figure>
-            <div class="container pb-6 position-relative">
+        <section class="pt-0" style="padding-bottom: 60px;">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-xl-9 col-xxl-6 mx-auto mb-6 mb-xl-7" style="padding-right: 5px;padding-left: 5px;">
-                        <div class="bg-light rounded-pill p-2">
-                            <ul class="nav nav-pills justify-content-between nav-pills-primary nav-responsive">
-                                <li class="nav-item" role="presentation"><button class="active nav-link rounded-pill" id="pills-analytics-tab" data-bs-toggle="pill" data-bs-target="#pills-businessintelligence" type="button" role="tab" aria-controls="pills-analytics" aria-selected="true"><i class="bi bi-funnel me-2"></i>Business Intelligence</button></li>
-                                <li class="nav-item" role="presentation"><button id="pills-datawarehouse-tab" class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#pills-datawarehouse" type="button" role="tab" aria-controls="pills-collaboration" aria-selected="false"><i class="bi bi-basket me-2"></i>Datawarehouse</button></li>
-                                <li class="nav-item position-relative" role="presentation"><button id="pills-bigdata-tab" class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#pills-bigdata" type="button" role="tab" aria-controls="pills-bigdata" aria-selected="false"><i class="bi bi-gear me-2"></i>Big Data</button></li>
-                                <li class="nav-item" role="presentation"><button id="pills-datalake-tab" class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#pills-datalake" type="button" role="tab" aria-controls="pills-datalake" aria-selected="false"><i class="bi bi-pie-chart me-2"></i>Data Lake</button></li>
-                            </ul>
-                        </div>
+                    <div class="col-md-5">
+                        <h2 class="mb-5"><strong>Our AI Capabilities</strong></h2><span>We specialize in developing AI-driven solutions across<br> multiple domains. Our expertise includes:</span>
                     </div>
-                    <div class="col-11 mx-auto">
-                        <div class="tab-content" id="pills-tabContent">
-                            <div id="pills-businessintelligence" class="tab-pane fade show active" role="tabpanel" aria-labelledby="pills-businessintelligence-tab" tabindex="0">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 mb-6 mb-lg-0"><span class="text-uppercase text-primary bg-primary bg-opacity-10 rounded small px-3 py-2">Business Intellıgence</span>
-                                        <h3 class="my-4">Comprehensive data analytics and reporting</h3>
-                                        <p>Gain valuable insights into your digital campaigns with our comprehensive data analytics and reporting feature.</p>
-                                        <ul class="list-group list-group-borderless mb-4">
-                                            <li class="list-group-item heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Actionable recommendations</span></li>
-                                            <li class="list-group-item heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Cross-channel analysis</span></li>
-                                            <li class="list-group-item heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>User-friendly interface</span></li>
-                                        </ul><a class="btn btn-white icon-link icon-link-hover" role="button" href="#">Explore analytics<i class="bi bi-arrow-right"></i></a>
-                                    </div>
-                                    <div class="col-lg-4 ms-auto position-relative"><figure class="position-absolute top-0 start-0 ms-n5 mt-n5">
-									<svg class="opacity-2" width="148" height="140" viewBox="0 0 148 140" xmlns="http://www.w3.org/2000/svg">
-										<path class="fill-primary" d="m9.95 131.41c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<circle class="fill-primary" cx="25.86" cy="131.41" r="2.95"></circle>
-										<circle class="fill-primary" cx="44.71" cy="131.41" r="2.95"></circle>
-										<circle class="fill-primary" cx="63.57" cy="131.41" r="2.95"></circle>
-										<circle class="fill-primary" cx="82.43" cy="131.41" r="2.95"></circle>
-										<circle class="fill-primary" cx="101.29" cy="131.41" r="2.95"></circle>
-										<circle class="fill-primary" cx="120.14" cy="131.41" r="2.95"></circle>
-										<path class="fill-primary" d="m141.95 131.41c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m9.95 113.61c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<circle class="fill-primary" cx="25.86" cy="113.61" r="2.95"></circle>
-										<circle class="fill-primary" cx="44.71" cy="113.61" r="2.95"></circle>
-										<circle class="fill-primary" cx="63.57" cy="113.61" r="2.95"></circle>
-										<circle class="fill-primary" cx="82.43" cy="113.61" r="2.95"></circle>
-										<circle class="fill-primary" cx="101.29" cy="113.61" r="2.95"></circle>
-										<circle class="fill-primary" cx="120.14" cy="113.61" r="2.95"></circle>
-										<path class="fill-primary" d="m141.95 113.61c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m9.95 95.81c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<circle class="fill-primary" cx="25.86" cy="95.81" r="2.95"></circle>
-										<circle class="fill-primary" cx="44.71" cy="95.81" r="2.95"></circle>
-										<circle class="fill-primary" cx="63.57" cy="95.81" r="2.95"></circle>
-										<circle class="fill-primary" cx="82.43" cy="95.81" r="2.95"></circle>
-										<circle class="fill-primary" cx="101.29" cy="95.81" r="2.95"></circle>
-										<circle class="fill-primary" cx="120.14" cy="95.81" r="2.95"></circle>
-										<path class="fill-primary" d="m141.95 95.81c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m9.95 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m28.8 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m47.66 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m66.52 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m85.37 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.64 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m104.23 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m123.09 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m141.95 78.01c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-										<path class="fill-primary" d="m9.95 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m28.8 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m47.66 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m66.52 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m85.37 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.64 0 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m104.23 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m123.09 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m141.95 60.22c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m9.95 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m28.8 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m47.66 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m66.52 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m85.37 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.64 0 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m104.23 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m123.09 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m141.95 42.42c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m9.95 24.62c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<circle class="fill-primary" cx="25.86" cy="24.62" r="2.95"></circle>
-										<circle class="fill-primary" cx="44.71" cy="24.62" r="2.95"></circle>
-										<circle class="fill-primary" cx="63.57" cy="24.62" r="2.95"></circle>
-										<circle class="fill-primary" cx="82.43" cy="24.62" r="2.95"></circle>
-										<circle class="fill-primary" cx="101.29" cy="24.62" r="2.95"></circle>
-										<circle class="fill-primary" cx="120.14" cy="24.62" r="2.95"></circle>
-										<path class="fill-primary" d="m141.95 24.62c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95z"></path>
-										<path class="fill-primary" d="m9.95 6.82c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95c0-1.62 1.32-2.94 2.95-2.94s2.95 1.32 2.95 2.94z"></path>
-										<circle class="fill-primary" cx="25.86" cy="6.82" r="2.95"></circle>
-										<circle class="fill-primary" cx="44.71" cy="6.82" r="2.95"></circle>
-										<circle class="fill-primary" cx="63.57" cy="6.82" r="2.95"></circle>
-										<circle class="fill-primary" cx="82.43" cy="6.82" r="2.95"></circle>
-										<circle class="fill-primary" cx="101.29" cy="6.82" r="2.95"></circle>
-										<circle class="fill-primary" cx="120.14" cy="6.82" r="2.95"></circle>
-										<path class="fill-primary" d="m141.95 6.82c0 1.63-1.32 2.95-2.95 2.95s-2.95-1.32-2.95-2.95 1.32-2.95 2.95-2.95c1.63 0.01 2.95 1.33 2.95 2.95z"></path>
-									</svg>
-								</figure><figure class="position-absolute bottom-0 end-0 z-index-1 mb-n6 me-n6 d-none d-lg-block">
-									<svg width="167" height="107" viewBox="0 0 167 107" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path class="fill-white" d="M87.1132 1.04286L87.1128 1.04337C86.6896 1.55271 86.2787 2.04727 85.826 2.5C84.8049 3.40765 83.7918 4.32334 82.78 5.23795L82.7799 5.23803L82.7798 5.23811L82.7796 5.23823C80.2242 7.54807 77.6764 9.85101 75.026 12C61.626 22.5 48.226 33 34.926 43.5L9.12598 63.9L9.12586 63.9001C8.7259 64.2001 8.32595 64.5 8.02598 64.8C7.32598 65.4 6.52598 65.8 5.62598 65C4.82598 64.3 5.02598 63.3 5.52598 62.6C6.12598 61.6 6.92598 60.6 7.72598 59.8C8.20935 59.3606 8.69271 58.919 9.17671 58.4769L9.17678 58.4768L9.17686 58.4767L9.17698 58.4766C11.9972 55.9003 14.8387 53.3044 17.826 51C39.426 34.4 61.126 17.9 83.626 2.5C84.826 1.6 86.126 0.8 87.426 0C87.426 0 87.526 0.1 87.826 0.2C87.5789 0.482421 87.3442 0.764841 87.1132 1.04286ZM166.026 21.9C165.676 22.1 165.326 22.325 164.976 22.55C164.626 22.775 164.276 23 163.926 23.2C149.326 31.8 134.926 40.7 120.826 50.2C99.226 64.6 77.826 79.4 57.426 95.4C53.626 98.4 49.926 101.4 46.226 104.4C45.626 104.9 45.126 105.3 44.526 105.7C43.726 106.3 42.926 106.6 42.126 105.9C41.326 105.2 41.526 104.2 42.026 103.5C42.626 102.5 43.326 101.5 44.226 100.7L44.3458 100.59C46.8091 98.3235 49.3691 95.9681 52.026 94C82.426 71 113.626 49.5 146.926 31C150.726 28.8667 154.615 26.9111 158.504 24.9556C160.448 23.9778 162.393 23 164.326 22C164.826 21.8 165.326 21.6 165.726 21.4C165.826 21.5 165.926 21.7 166.026 21.9ZM99.926 8.5C100.626 8 101.226 7.4 101.826 6.8C101.726 6.7 101.626 6.6 101.326 6.5C100.626 7 99.926 7.525 99.226 8.05C98.526 8.575 97.826 9.1 97.126 9.6C93.0918 12.5088 89.0545 15.4176 85.0158 18.3275L85.0151 18.328C65.7284 32.224 46.4088 46.1436 27.226 60.2C21.8311 64.1042 16.7385 68.3108 11.6263 72.5336L11.6262 72.5336C9.53676 74.2595 7.44401 75.9882 5.32601 77.7C3.82601 78.9 2.52601 80.3 1.22601 81.7C0.726013 82.2 0.226013 82.8 0.026013 83.5C-0.073987 84 0.126013 84.7 0.426013 85C0.726013 85.3 1.52601 85.4 1.92601 85.2C2.72601 84.8 3.42601 84.3 4.12601 83.7C6.54336 81.7156 8.93467 79.7052 11.3234 77.6969C15.5554 74.139 19.7794 70.5878 24.126 67.2C34.7347 58.9552 45.3766 50.8101 56.0135 42.669L56.0143 42.6684L56.015 42.6678C63.8265 36.6891 71.6352 30.7125 79.426 24.7C86.3253 19.3005 93.1247 13.9011 99.924 8.50163L99.926 8.5ZM100.426 22C99.326 23 98.226 24 97.026 24.9C93.6956 27.4851 90.3598 30.0703 87.0224 32.6567L87.015 32.6624C76.0246 41.1795 65.0165 49.7104 54.126 58.3C47.6804 63.3921 41.3179 68.5672 34.9849 73.7183C31.4926 76.5588 28.0093 79.3921 24.526 82.2L24.526 82.2001C23.726 82.9 22.926 83.6 22.026 84.1C21.526 84.4 20.426 84.4 20.126 84.1C19.726 83.7 19.626 82.7 19.926 82.2C20.326 81.4 20.926 80.6 21.626 79.9C22.3148 79.2686 22.9953 78.629 23.6771 77.9883L23.6772 77.9882C25.3709 76.3963 27.0722 74.7973 28.926 73.3C48.926 57.5 69.126 42 90.226 27.7C92.5211 26.1427 94.9505 24.5853 97.2941 23.083L97.2943 23.0828C97.8098 22.7524 98.3212 22.4246 98.826 22.1C99.226 21.9 99.626 21.7 100.026 21.4C100.102 21.5146 100.164 21.6 100.217 21.6729L100.217 21.673C100.302 21.791 100.364 21.8764 100.426 22ZM107.355 35.4442C107.542 35.2315 107.732 35.0157 107.926 34.8C107.626 34.6 107.526 34.5 107.526 34.5L107.526 34.5001C106.026 35.6001 104.526 36.7 103.026 37.7C86.326 48.8 70.226 60.7 54.326 72.8C49.6261 76.2999 45.0262 79.8999 40.4262 83.4998L40.426 83.5C39.526 84.2 38.726 85 38.026 85.8C37.426 86.5 37.126 87.4 37.826 88.2C38.526 89.1 39.426 89 40.226 88.5C41.326 87.9 42.426 87.2 43.426 86.4C45.176 85 46.901 83.575 48.626 82.15C50.351 80.725 52.076 79.3 53.826 77.9C65.926 68.4 78.126 58.9 90.326 49.5L105.326 37.5C106.032 36.951 106.676 36.2175 107.355 35.4442Z"></path>
-									</svg>
-								</figure><img class="rounded position-relative zindex-2" src="../assets/img/about/14.jpg" alt="feature-img">
-                                        <div class="bg-white d-flex align-items-center rounded position-absolute top-0 end-0 mt-n5 px-3 py-2">
-                                            <p class="fw-bold text-dark mb-0">Meeting with</p>
-                                            <ul class="align-items-center mb-0">
-                                                <li class="avatar avatar-xs"><img class="rounded-circle avatar-img" src="../assets/img/avatar/06.jpg" alt="avatar"></li>
-                                                <li class="avatar avatar-xs"><img class="rounded-circle avatar-img" src="../assets/img/avatar/05.jpg" alt="avatar"></li>
-                                            </ul>
-                                        </div>
-                                        <div class="card card-body position-absolute bottom-0 start-0 ms-lg-n8 mb-n5">
-                                            <p>Our lovely customers</p>
-                                            <div class="d-flex align-items-center">
-                                                <ul class="align-items-center avatar-group mb-0">
-                                                    <li class="avatar avatar-xs"><img class="rounded-circle avatar-img" src="../assets/img/avatar/06.jpg" alt="avatar"></li>
-                                                    <li class="avatar avatar-xs"><img class="rounded-circle avatar-img" src="../assets/img/avatar/05.jpg" alt="avatar"></li>
-                                                    <li class="avatar avatar-xs"><img class="rounded-circle avatar-img" src="../assets/img/avatar/02.jpg" alt="avatar"></li>
-                                                    <li class="avatar avatar-xs"><img class="rounded-circle avatar-img" src="../assets/img/avatar/03.jpg" alt="avatar"></li>
-                                                    <li class="avatar avatar-xs"><img class="rounded-circle avatar-img" src="../assets/img/avatar/04.jpg" alt="avatar"></li>
-                                                </ul>
-                                                <h6 class="text-white mb-0 ms-2">5K+</h6>
-                                            </div>
-                                            <hr>
-                                            <div class="overflow-hidden">
-                                                <div class="d-flex justify-content-between mb-2"><small>Satisfaction Rate</small><small>80%</small></div>
-                                                <div class="bg-primary bg-opacity-10 progress progress-sm">
-                                                    <div class="bg-primary progress-bar aos" data-aos="slide-right" data-aos-duration="1000" data-aos-delay="200" role="progressbar" data-aos-easing="ease-in-out" style="width:80%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div class="col-md-7">
+                        <div class="accordion accordion-icon accordion-bg-light" id="accordionFaq">
+                            <div class="accordion-item mb-3">
+                                <div class="accordion-header font-base" id="heading-1"><button class="accordion-button fw-semibold rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1"><strong>Machine Learning (ML)</strong></button></div>
+                                <div id="collapse-1" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body mt-3 pb-0"><span> Machine Learning enables computers to learn from data and improve over time without being explicitly programmed. Our ML solutions help businesses: <br><br></span>
+                                        <ul class="list-group list-group-borderless">
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Identify trends and anomalies in large datasets.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Develop predictive models for sales, marketing, and operations.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Automate decision-making processes to reduce human intervention.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Enhance recommendation systems to improve user experience.</span></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div id="pills-datawarehouse" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-datawarehouse-tab" tabindex="0">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 mb-6 mb-lg-0"><span class="text-uppercase text-primary bg-primary bg-opacity-10 rounded small px-3 py-2">DATAWAREHOUSE</span>
-                                        <h3 class="my-4">Streamlined teamwork and client engagement</h3>
-                                        <p class="mb-5">Our collaboration feature empowers your agency with seamless teamwork and enhanced client engagement.</p>
-                                        <div class="row g-4 mb-5">
-                                            <div class="col-sm-6">
-                                                <p class="heading-color mb-3"><i class="text-primary bi bi-diagram-3 fa-xl me-3"></i>Organized your data</p>
-                                                <p class="heading-color mb-0"><i class="text-primary bi bi-boxes fa-xl me-3"></i>Embedded Analytics</p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p class="heading-color mb-3"><i class="text-primary bi bi-people fa-xl me-3"></i>Work with any team</p>
-                                                <p class="heading-color mb-0"><i class="text-primary bi bi-shield-check fa-xl me-3"></i>Collaborate securely</p>
-                                            </div>
-                                        </div><a class="btn btn-white icon-link icon-link-hover" role="button" href="#">Explore collaboration benefits<i class="bi bi-arrow-right"></i></a>
-                                    </div>
-                                    <div class="col-lg-4 ms-auto position-relative">
-                                        <div class="d-none d-lg-block col-md-8 position-absolute top-50 start-0 translate-middle mt-xl-n9">
-                                            <div class="bg-body rounded p-3">
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2 mb-3">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Than continues its and because can use.</p>
-                                                </div>
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2 mb-3">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Entire first decided the so must.</p>
-                                                </div>
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Separated sort.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="bg-white shadow d-inline-block d-sm-block rounded-4 position-absolute end-0 bottom-0 p-3 mb-n5 me-lg-n6 d-none"><img src="../assets/img/elements/trustpilot.svg" class="h-20px mb-2" alt="Client-img">
-                                            <div class="d-flex align-items-center"><img src="../assets/img/elements/trustpilot-star.svg" class="h-30px" alt="rating-img">
-                                                <h6 class="fw-bold font-base heading-color ms-1 mb-0">4.8/5.0</h6>
-                                            </div>
-                                            <p class="text-dark small mb-0 mt-2">Review by 365 users</p>
-                                        </div><figure class="position-absolute top-0 end-0 mt-n7 me-lg-n5">
-									<svg width="120.4px" height="124.5px" viewBox="0 0 120.4 124.5" style="enable-background:new 0 0 120.4 124.5;">
-										<path class="fill-mode" d="M92.9,58.4c-0.2-4.7-1.8-9-5-12.6c-3-3.3-6.4-6.2-10.4-8.4c-3.4-1.9-7-2.9-10.8-3.3c-3.1-0.4-6,0.2-8.6,1.8 c-6.5,3.8-11.5,9.1-14.6,16.1c-1.1,2.5-1.5,5.1-1.3,7.7c0.3,3.2,0.9,6.4,2.1,9.4c2.1,5.4,5.7,9.4,11.5,11c1.8,0.5,3.5,1,5.3,1.6 c2.1,0.7,4.3,0.8,6.5,0.5c2.4-0.3,4.8-0.8,7.1-1.4c1.8-0.5,3.4-1.5,4.6-2.9c2-2.2,3.9-4.6,5.2-7.3c0.7-1.4,1.3-3,1.6-4.5 c1.1-6.4-0.7-12.1-4.5-17.2c-1.8-2.5-4.3-4.2-7.2-5c-3-0.8-6.1-1.1-9.2-0.8c-4.5,0.4-8.4,2.2-11.4,5.7c-2.1,2.4-3.6,5-4.3,8.1 c-0.6,2.4-0.5,4.8-0.6,7.2c-0.2,5.8,6.2,12.5,12.3,12c2.7-0.2,5.5-0.5,8.2-0.7c5.4-0.5,9.3-4.9,9.8-9.6c0.2-1.9,0.2-3.9,0.1-5.8 c-0.1-2.5-1.3-4.6-3.1-6.3c-3.1-2.9-6.8-4.1-11.1-3.7c-2.4,0.2-4.4,1.2-5.8,3.2c-1.8,2.5-2.8,5.3-3.1,8.3c-0.2,1.9,0.3,3.7,1.9,5 c2.7,2.2,5.8,3.3,9.2,3c1.6-0.1,2.8-0.9,3.8-2.2c1.6-2.1,1.6-4.5,1.1-6.9c-1-4.3-4.6-5.5-8.2-2.9c-0.3,0.2-0.4,0.7-0.6,1.1 c0.1,0.1,0.3,0.3,0.4,0.4c0.9-0.4,1.8-0.9,2.8-1.2c1-0.3,2-0.1,2.8,0.7c1.6,1.8,1.9,5.4,0.5,7.4c-0.9,1.2-2.1,1.9-3.5,1.8 c-2.3-0.1-4.5-0.9-6.4-2.3c-1.3-1-1.8-2.3-1.7-3.9c0.2-1.7,0.7-3.4,1.4-4.9c1.8-3.6,4-4.9,8.1-4.4c0.9,0.1,1.8,0.3,2.7,0.6 c4.5,1.7,6.8,5,6.6,9.8c0,1.4-0.2,2.8-0.5,4.1c-0.9,3.2-2.9,5.5-6.3,6.1c-2.9,0.5-5.9,0.7-8.9,0.9c-5.6,0.4-10.5-5.4-10.3-9.9 c0.1-2.1,0.2-4.1,0.6-6.1c1.5-6.9,7.2-11.6,14.2-11.9c1.7-0.1,3.5,0,5.2,0.2c3.5,0.4,6.4,1.9,8.5,4.7c3.1,4.2,4.6,8.9,4.2,14.2 c-0.3,3.5-2.1,6.2-4,9c-2.1,3-4.7,5-8.4,5.4c-1.1,0.1-2.3,0.4-3.4,0.7c-2,0.5-3.9,0.4-5.8-0.1c-2.3-0.6-4.6-1.3-6.9-2 c-3.1-1-5.4-3-7.1-5.7c-2.7-4.3-3.8-9.1-3.8-14.1c0-2,0.6-3.8,1.5-5.6c2.9-6,7.3-10.5,12.9-14c2.2-1.4,4.7-1.9,7.3-1.6 c4.2,0.4,8.1,1.6,11.6,3.9c3.1,2,5.8,4.5,8.3,7.2c1.7,1.9,2.9,4.1,3.6,6.6c1.5,5,1.1,10.1-0.2,15c-2.2,8-9.4,14.2-17.5,15.9 c-1.7,0.4-3.3,0.9-4.9,1.5c-1.1,0.4-1.6,1.4-1.2,2.1c0.5,0.8,1.4,0.7,2.1,0.5c2.5-0.7,5.1-1.3,7.6-2.2c1.4-0.5,2.8-1.1,4-1.9 c2.9-1.7,5.4-3.9,7.6-6.4c2.6-3,4.5-6.5,5.2-10.4C92.8,65.1,93,61.7,92.9,58.4z"></path>
-										<path class="fill-primary" d="M98.2,97.6c-1.9-3-3.8-6-5.7-9c-0.7-1-1.2-2.2-3-3c0,0.8-0.1,1.3,0,1.7c0.4,0.9,1,1.8,1.5,2.7 c2.8,5,5.7,9.9,9.2,14.5c1,1.2,2.2,2.3,3.4,3.4c0.3,0.3,0.8,0.4,1.2-0.3c-0.5-0.8-1.1-1.8-1.8-2.7C101.4,102.3,99.7,100,98.2,97.6z "></path>
-										<path class="fill-primary" d="M75.3,98c-0.5-1.5-1.2-3-1.9-4.4c-0.1-0.3-0.6-0.4-0.9-0.6c-0.2,0.2-0.3,0.3-0.5,0.5c0.1,0.5,0.2,1.1,0.4,1.6 c1.6,5.3,3.1,10.5,4.8,15.8c0.5,1.6,1.1,3.3,1.7,4.9c0.5,1.3,1.4,1.8,1.9,1.4c0.8-0.6,0.5-1.4,0.2-2.2C79,109.3,77.2,103.6,75.3,98 z"></path>
-										<path class="fill-primary" d="M26.5,69.5c-5.5,1.6-11,3.2-16.5,4.8c-2.1,0.6-4.1,1.4-6.1,2.2c-0.6,0.2-1.1,0.7-1.9,1.2 c5.9-0.4,24.8-6,28.2-8.3C28.8,68.8,27.6,69.2,26.5,69.5z"></path>
-										<path class="fill-primary" d="M55,96.3c-2.2,7.9-4.5,15.8-6.7,23.8c-0.3,1.2-0.4,2.5-0.7,4.4c0.6-0.9,0.8-1.2,0.9-1.5 c2.6-7.8,5.1-15.7,7.6-23.5c0.3-1.1,0.5-2.2,0.6-3.4c0-0.4-0.4-0.9-0.8-1.7C55.5,95.3,55.2,95.8,55,96.3z"></path>
-										<path class="fill-primary" d="M25.2,48.7c0.6,0.3,1.3,0.5,2,0.6c0.5,0.1,1.1-0.1,1.6-0.2c0-0.2,0-0.3,0-0.5c-3-1.4-6-3-9-4.2 c-3.2-1.3-6.4-2.4-9.7-3.5c-3.1-1-6.1-2.3-10-2.8c0.8,0.7,1.1,1.1,1.5,1.3c1.5,0.7,2.9,1.3,4.4,1.9C12.4,43.6,18.9,45.7,25.2,48.7z "></path>
-										<path class="fill-primary" d="M38.2,86.5c-0.7,0.3-1.4,0.8-2,1.3c-5.1,4.5-10.1,9-14.5,14.2c-0.9,1-1.6,2.2-2.5,3.3c0.1,0.1,0.2,0.3,0.4,0.4 c6.7-6.2,13.4-12.3,20.1-18.5c0.1-0.1,0-0.4,0-0.9C39.2,86.4,38.6,86.3,38.2,86.5z"></path>
-										<path class="fill-primary" d="M106.5,77.4c-1.1-1.1-2.4-2.2-3.6-3.1c-0.7-0.5-1.6-0.8-2.5-1c-0.5-0.1-1.2,0-1,1.1c2.1,0.8,3.6,2.5,5.2,4.1 c1.3,1.3,2.4,2.7,3.8,3.9c1.8,1.5,3.8,3,5.7,4.3c1,0.7,2.2,1.3,4.1,0.7c-0.7-0.7-1.1-1.1-1.5-1.4C112.9,83.6,109.6,80.5,106.5,77.4 z"></path>
-										<path class="fill-primary" d="M33.5,27.3c0.7,0.7,1.6,1.3,2.5,1.8c0.5,0.3,1.3,0.4,1.9,0.5c-2.3-2.2-4-4.6-6-6.8c-3.5-3.8-7-7.6-10.5-11.3 c-0.4-0.4-0.7-0.9-1.4-0.6c-0.5,0.6-0.1,1.1,0.3,1.5C24.6,17.4,29.1,22.4,33.5,27.3z"></path>
-										<path class="fill-primary" d="M53.3,20c0.1,1.1,0.3,2.3,0.6,3.4c0.1,0.4,0.7,0.6,1.3,1c-0.1-3.1-0.1-5.8-0.3-8.5c-0.1-2.6-0.4-5.2-0.6-7.9 c-0.4-5-0.6-5.7-2-8c0,0.9-0.1,1.6-0.1,2.2C52.6,8.2,52.9,14.1,53.3,20z"></path>
-										<path class="fill-primary" d="M101.1,56.2c0.2,0.4,0.3,0.7,0.5,0.7c4.9,1.1,9.8,2.2,14.7,3.1c1.3,0.3,2.7,0.4,4.1-0.5 c-0.8-0.3-1.7-0.6-2.5-0.8c-5.2-0.9-10.3-1.9-15.5-2.7C102,56,101.6,56.1,101.1,56.2z"></path>
-										<path class="fill-primary" d="M97.8,36.8c4.7-1.9,8.9-4.8,12.6-8.3c0.3-0.3,0.7-0.6,0.1-1.3c-2.5,1.7-5.1,3.5-7.7,5.1 c-2.6,1.6-5.3,3-8.1,4.6C95.9,37.7,96.8,37.2,97.8,36.8z"></path>
-										<path class="fill-primary" d="M81.6,11.5c0.5-1.6,0.8-3.2,1.2-4.8c-0.3,0.2-0.6,0.3-0.7,0.5c-1.6,4.3-3.2,8.5-4.7,12.8 c-0.2,0.6-0.1,1.3-0.2,1.9C79.1,18.6,80.5,15.1,81.6,11.5z"></path>
-										<path class="fill-primary" d="M82.8,6.5c0,0,0,0.1,0,0.1C82.8,6.6,82.8,6.6,82.8,6.5C82.9,6.6,82.8,6.5,82.8,6.5z"></path>
-									</svg>
-								</figure><img class="rounded" src="../assets/img/about/17.jpg" alt="feature-img">
+                            <div class="accordion-item mb-3">
+                                <div class="accordion-header font-base" id="heading-2"><button class="accordion-button fw-semibold rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2"><strong>Natural Language Processing (NLP)</strong></button></div>
+                                <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="heading-2" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body mt-3 pb-0"><span>NLP is revolutionizing the way machines interact with human language. Our NLP solutions provide:<br><br></span>
+                                        <ul class="list-group list-group-borderless">
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Chatbots and virtual assistants for improved customer support.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Sentiment analysis to understand customer emotions and feedback.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Text summarization and keyword extraction for efficient data processing.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Voice recognition for hands-free control and accessibility enhancements.</span></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div id="pills-bigdata" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-bigdata-tab" tabindex="0">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 mb-6 mb-lg-0"><span class="text-uppercase text-primary bg-primary bg-opacity-10 rounded small px-3 py-2">Big Data</span>
-                                        <h3 class="my-4">Streamlined teamwork and client engagement</h3>
-                                        <p class="mb-5">Our collaboration feature empowers your agency with seamless teamwork and enhanced client engagement.</p>
-                                        <div class="row g-4 mb-5">
-                                            <div class="col-sm-6">
-                                                <p class="heading-color mb-3"><i class="text-primary bi bi-diagram-3 fa-xl me-3"></i>Organized your data</p>
-                                                <p class="heading-color mb-0"><i class="text-primary bi bi-boxes fa-xl me-3"></i>Embedded Analytics</p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p class="heading-color mb-3"><i class="text-primary bi bi-people fa-xl me-3"></i>Work with any team</p>
-                                                <p class="heading-color mb-0"><i class="text-primary bi bi-shield-check fa-xl me-3"></i>Collaborate securely</p>
-                                            </div>
-                                        </div><a class="btn btn-white icon-link icon-link-hover" role="button" href="#">Explore collaboration benefits<i class="bi bi-arrow-right"></i></a>
-                                    </div>
-                                    <div class="col-lg-4 ms-auto position-relative">
-                                        <div class="d-none d-lg-block col-md-8 position-absolute top-50 start-0 translate-middle mt-xl-n9">
-                                            <div class="bg-body rounded p-3">
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2 mb-3">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Than continues its and because can use.</p>
-                                                </div>
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2 mb-3">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Entire first decided the so must.</p>
-                                                </div>
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Separated sort.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="bg-white shadow d-inline-block d-sm-block rounded-4 position-absolute end-0 bottom-0 p-3 mb-n5 me-lg-n6 d-none"><img src="../assets/img/elements/trustpilot.svg" class="h-20px mb-2" alt="Client-img">
-                                            <div class="d-flex align-items-center"><img src="../assets/img/elements/trustpilot-star.svg" class="h-30px" alt="rating-img">
-                                                <h6 class="fw-bold font-base heading-color ms-1 mb-0">4.8/5.0</h6>
-                                            </div>
-                                            <p class="text-dark small mb-0 mt-2">Review by 365 users</p>
-                                        </div><figure class="position-absolute top-0 end-0 mt-n7 me-lg-n5">
-									<svg width="120.4px" height="124.5px" viewBox="0 0 120.4 124.5" style="enable-background:new 0 0 120.4 124.5;">
-										<path class="fill-mode" d="M92.9,58.4c-0.2-4.7-1.8-9-5-12.6c-3-3.3-6.4-6.2-10.4-8.4c-3.4-1.9-7-2.9-10.8-3.3c-3.1-0.4-6,0.2-8.6,1.8 c-6.5,3.8-11.5,9.1-14.6,16.1c-1.1,2.5-1.5,5.1-1.3,7.7c0.3,3.2,0.9,6.4,2.1,9.4c2.1,5.4,5.7,9.4,11.5,11c1.8,0.5,3.5,1,5.3,1.6 c2.1,0.7,4.3,0.8,6.5,0.5c2.4-0.3,4.8-0.8,7.1-1.4c1.8-0.5,3.4-1.5,4.6-2.9c2-2.2,3.9-4.6,5.2-7.3c0.7-1.4,1.3-3,1.6-4.5 c1.1-6.4-0.7-12.1-4.5-17.2c-1.8-2.5-4.3-4.2-7.2-5c-3-0.8-6.1-1.1-9.2-0.8c-4.5,0.4-8.4,2.2-11.4,5.7c-2.1,2.4-3.6,5-4.3,8.1 c-0.6,2.4-0.5,4.8-0.6,7.2c-0.2,5.8,6.2,12.5,12.3,12c2.7-0.2,5.5-0.5,8.2-0.7c5.4-0.5,9.3-4.9,9.8-9.6c0.2-1.9,0.2-3.9,0.1-5.8 c-0.1-2.5-1.3-4.6-3.1-6.3c-3.1-2.9-6.8-4.1-11.1-3.7c-2.4,0.2-4.4,1.2-5.8,3.2c-1.8,2.5-2.8,5.3-3.1,8.3c-0.2,1.9,0.3,3.7,1.9,5 c2.7,2.2,5.8,3.3,9.2,3c1.6-0.1,2.8-0.9,3.8-2.2c1.6-2.1,1.6-4.5,1.1-6.9c-1-4.3-4.6-5.5-8.2-2.9c-0.3,0.2-0.4,0.7-0.6,1.1 c0.1,0.1,0.3,0.3,0.4,0.4c0.9-0.4,1.8-0.9,2.8-1.2c1-0.3,2-0.1,2.8,0.7c1.6,1.8,1.9,5.4,0.5,7.4c-0.9,1.2-2.1,1.9-3.5,1.8 c-2.3-0.1-4.5-0.9-6.4-2.3c-1.3-1-1.8-2.3-1.7-3.9c0.2-1.7,0.7-3.4,1.4-4.9c1.8-3.6,4-4.9,8.1-4.4c0.9,0.1,1.8,0.3,2.7,0.6 c4.5,1.7,6.8,5,6.6,9.8c0,1.4-0.2,2.8-0.5,4.1c-0.9,3.2-2.9,5.5-6.3,6.1c-2.9,0.5-5.9,0.7-8.9,0.9c-5.6,0.4-10.5-5.4-10.3-9.9 c0.1-2.1,0.2-4.1,0.6-6.1c1.5-6.9,7.2-11.6,14.2-11.9c1.7-0.1,3.5,0,5.2,0.2c3.5,0.4,6.4,1.9,8.5,4.7c3.1,4.2,4.6,8.9,4.2,14.2 c-0.3,3.5-2.1,6.2-4,9c-2.1,3-4.7,5-8.4,5.4c-1.1,0.1-2.3,0.4-3.4,0.7c-2,0.5-3.9,0.4-5.8-0.1c-2.3-0.6-4.6-1.3-6.9-2 c-3.1-1-5.4-3-7.1-5.7c-2.7-4.3-3.8-9.1-3.8-14.1c0-2,0.6-3.8,1.5-5.6c2.9-6,7.3-10.5,12.9-14c2.2-1.4,4.7-1.9,7.3-1.6 c4.2,0.4,8.1,1.6,11.6,3.9c3.1,2,5.8,4.5,8.3,7.2c1.7,1.9,2.9,4.1,3.6,6.6c1.5,5,1.1,10.1-0.2,15c-2.2,8-9.4,14.2-17.5,15.9 c-1.7,0.4-3.3,0.9-4.9,1.5c-1.1,0.4-1.6,1.4-1.2,2.1c0.5,0.8,1.4,0.7,2.1,0.5c2.5-0.7,5.1-1.3,7.6-2.2c1.4-0.5,2.8-1.1,4-1.9 c2.9-1.7,5.4-3.9,7.6-6.4c2.6-3,4.5-6.5,5.2-10.4C92.8,65.1,93,61.7,92.9,58.4z"></path>
-										<path class="fill-primary" d="M98.2,97.6c-1.9-3-3.8-6-5.7-9c-0.7-1-1.2-2.2-3-3c0,0.8-0.1,1.3,0,1.7c0.4,0.9,1,1.8,1.5,2.7 c2.8,5,5.7,9.9,9.2,14.5c1,1.2,2.2,2.3,3.4,3.4c0.3,0.3,0.8,0.4,1.2-0.3c-0.5-0.8-1.1-1.8-1.8-2.7C101.4,102.3,99.7,100,98.2,97.6z "></path>
-										<path class="fill-primary" d="M75.3,98c-0.5-1.5-1.2-3-1.9-4.4c-0.1-0.3-0.6-0.4-0.9-0.6c-0.2,0.2-0.3,0.3-0.5,0.5c0.1,0.5,0.2,1.1,0.4,1.6 c1.6,5.3,3.1,10.5,4.8,15.8c0.5,1.6,1.1,3.3,1.7,4.9c0.5,1.3,1.4,1.8,1.9,1.4c0.8-0.6,0.5-1.4,0.2-2.2C79,109.3,77.2,103.6,75.3,98 z"></path>
-										<path class="fill-primary" d="M26.5,69.5c-5.5,1.6-11,3.2-16.5,4.8c-2.1,0.6-4.1,1.4-6.1,2.2c-0.6,0.2-1.1,0.7-1.9,1.2 c5.9-0.4,24.8-6,28.2-8.3C28.8,68.8,27.6,69.2,26.5,69.5z"></path>
-										<path class="fill-primary" d="M55,96.3c-2.2,7.9-4.5,15.8-6.7,23.8c-0.3,1.2-0.4,2.5-0.7,4.4c0.6-0.9,0.8-1.2,0.9-1.5 c2.6-7.8,5.1-15.7,7.6-23.5c0.3-1.1,0.5-2.2,0.6-3.4c0-0.4-0.4-0.9-0.8-1.7C55.5,95.3,55.2,95.8,55,96.3z"></path>
-										<path class="fill-primary" d="M25.2,48.7c0.6,0.3,1.3,0.5,2,0.6c0.5,0.1,1.1-0.1,1.6-0.2c0-0.2,0-0.3,0-0.5c-3-1.4-6-3-9-4.2 c-3.2-1.3-6.4-2.4-9.7-3.5c-3.1-1-6.1-2.3-10-2.8c0.8,0.7,1.1,1.1,1.5,1.3c1.5,0.7,2.9,1.3,4.4,1.9C12.4,43.6,18.9,45.7,25.2,48.7z "></path>
-										<path class="fill-primary" d="M38.2,86.5c-0.7,0.3-1.4,0.8-2,1.3c-5.1,4.5-10.1,9-14.5,14.2c-0.9,1-1.6,2.2-2.5,3.3c0.1,0.1,0.2,0.3,0.4,0.4 c6.7-6.2,13.4-12.3,20.1-18.5c0.1-0.1,0-0.4,0-0.9C39.2,86.4,38.6,86.3,38.2,86.5z"></path>
-										<path class="fill-primary" d="M106.5,77.4c-1.1-1.1-2.4-2.2-3.6-3.1c-0.7-0.5-1.6-0.8-2.5-1c-0.5-0.1-1.2,0-1,1.1c2.1,0.8,3.6,2.5,5.2,4.1 c1.3,1.3,2.4,2.7,3.8,3.9c1.8,1.5,3.8,3,5.7,4.3c1,0.7,2.2,1.3,4.1,0.7c-0.7-0.7-1.1-1.1-1.5-1.4C112.9,83.6,109.6,80.5,106.5,77.4 z"></path>
-										<path class="fill-primary" d="M33.5,27.3c0.7,0.7,1.6,1.3,2.5,1.8c0.5,0.3,1.3,0.4,1.9,0.5c-2.3-2.2-4-4.6-6-6.8c-3.5-3.8-7-7.6-10.5-11.3 c-0.4-0.4-0.7-0.9-1.4-0.6c-0.5,0.6-0.1,1.1,0.3,1.5C24.6,17.4,29.1,22.4,33.5,27.3z"></path>
-										<path class="fill-primary" d="M53.3,20c0.1,1.1,0.3,2.3,0.6,3.4c0.1,0.4,0.7,0.6,1.3,1c-0.1-3.1-0.1-5.8-0.3-8.5c-0.1-2.6-0.4-5.2-0.6-7.9 c-0.4-5-0.6-5.7-2-8c0,0.9-0.1,1.6-0.1,2.2C52.6,8.2,52.9,14.1,53.3,20z"></path>
-										<path class="fill-primary" d="M101.1,56.2c0.2,0.4,0.3,0.7,0.5,0.7c4.9,1.1,9.8,2.2,14.7,3.1c1.3,0.3,2.7,0.4,4.1-0.5 c-0.8-0.3-1.7-0.6-2.5-0.8c-5.2-0.9-10.3-1.9-15.5-2.7C102,56,101.6,56.1,101.1,56.2z"></path>
-										<path class="fill-primary" d="M97.8,36.8c4.7-1.9,8.9-4.8,12.6-8.3c0.3-0.3,0.7-0.6,0.1-1.3c-2.5,1.7-5.1,3.5-7.7,5.1 c-2.6,1.6-5.3,3-8.1,4.6C95.9,37.7,96.8,37.2,97.8,36.8z"></path>
-										<path class="fill-primary" d="M81.6,11.5c0.5-1.6,0.8-3.2,1.2-4.8c-0.3,0.2-0.6,0.3-0.7,0.5c-1.6,4.3-3.2,8.5-4.7,12.8 c-0.2,0.6-0.1,1.3-0.2,1.9C79.1,18.6,80.5,15.1,81.6,11.5z"></path>
-										<path class="fill-primary" d="M82.8,6.5c0,0,0,0.1,0,0.1C82.8,6.6,82.8,6.6,82.8,6.5C82.9,6.6,82.8,6.5,82.8,6.5z"></path>
-									</svg>
-								</figure><img class="rounded" src="../assets/img/about/17.jpg" alt="feature-img">
+                            <div class="accordion-item mb-3">
+                                <div class="accordion-header font-base" id="heading-3"><button class="accordion-button fw-semibold collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3"><strong>Predictive Analytics</strong></button></div>
+                                <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="heading-3" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body mt-3 pb-0"><span> Predictive analytics leverages AI to forecast future trends based on historical data. Our solutions help businesses: <br><br></span>
+                                        <ul class="list-group list-group-borderless">
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Optimize supply chain management by predicting demand fluctuations.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Detect fraud and security threats through anomaly detection models.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Improve marketing campaigns by targeting the right audience segments.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Enhance financial forecasting for better budget planning and risk management.</span></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div id="pills-datalake" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-datalake-tab" tabindex="0">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 mb-6 mb-lg-0"><span class="text-uppercase text-primary bg-primary bg-opacity-10 rounded small px-3 py-2">Data Lake</span>
-                                        <h3 class="my-4">Streamlined teamwork and client engagement</h3>
-                                        <p class="mb-5">Our collaboration feature empowers your agency with seamless teamwork and enhanced client engagement.</p>
-                                        <div class="row g-4 mb-5">
-                                            <div class="col-sm-6">
-                                                <p class="heading-color mb-3"><i class="text-primary bi bi-diagram-3 fa-xl me-3"></i>Organized your data</p>
-                                                <p class="heading-color mb-0"><i class="text-primary bi bi-boxes fa-xl me-3"></i>Embedded Analytics</p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p class="heading-color mb-3"><i class="text-primary bi bi-people fa-xl me-3"></i>Work with any team</p>
-                                                <p class="heading-color mb-0"><i class="text-primary bi bi-shield-check fa-xl me-3"></i>Collaborate securely</p>
-                                            </div>
-                                        </div><a class="btn btn-white icon-link icon-link-hover" role="button" href="#">Explore collaboration benefits<i class="bi bi-arrow-right"></i></a>
+                            <div class="accordion-item mb-3">
+                                <div class="accordion-header font-base" id="heading-4"><button class="accordion-button fw-semibold collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4"><strong>AI-Powered Automation</strong></button></div>
+                                <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="heading-4" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body mt-3 pb-0"><span> AI-driven automation enhances efficiency by reducing manual work. Our automation solutions include: <br><br></span>
+                                        <ul class="list-group list-group-borderless">
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Robotic Process Automation (RPA) to streamline repetitive tasks.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>AI-driven document processing to extract insights from structured and unstructured data.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Intelligent workflow automation for business process optimization.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Smart scheduling and resource allocation for operational efficiency.</span></li>
+                                        </ul>
                                     </div>
-                                    <div class="col-lg-4 ms-auto position-relative">
-                                        <div class="d-none d-lg-block col-md-8 position-absolute top-50 start-0 translate-middle mt-xl-n9">
-                                            <div class="bg-body rounded p-3">
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2 mb-3">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Than continues its and because can use.</p>
-                                                </div>
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2 mb-3">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Entire first decided the so must.</p>
-                                                </div>
-                                                <div class="bg-light d-flex align-items-center rounded w-100 p-2">
-                                                    <div class="text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-md rounded-circle"><i class="fs-5 bi bi-check"></i></div>
-                                                    <p class="heading-color mb-0 ms-2">Separated sort.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="bg-white shadow d-inline-block d-sm-block rounded-4 position-absolute end-0 bottom-0 p-3 mb-n5 me-lg-n6 d-none"><img src="../assets/img/elements/trustpilot.svg" class="h-20px mb-2" alt="Client-img">
-                                            <div class="d-flex align-items-center"><img src="../assets/img/elements/trustpilot-star.svg" class="h-30px" alt="rating-img">
-                                                <h6 class="fw-bold font-base heading-color ms-1 mb-0">4.8/5.0</h6>
-                                            </div>
-                                            <p class="text-dark small mb-0 mt-2">Review by 365 users</p>
-                                        </div><figure class="position-absolute top-0 end-0 mt-n7 me-lg-n5">
-									<svg width="120.4px" height="124.5px" viewBox="0 0 120.4 124.5" style="enable-background:new 0 0 120.4 124.5;">
-										<path class="fill-mode" d="M92.9,58.4c-0.2-4.7-1.8-9-5-12.6c-3-3.3-6.4-6.2-10.4-8.4c-3.4-1.9-7-2.9-10.8-3.3c-3.1-0.4-6,0.2-8.6,1.8 c-6.5,3.8-11.5,9.1-14.6,16.1c-1.1,2.5-1.5,5.1-1.3,7.7c0.3,3.2,0.9,6.4,2.1,9.4c2.1,5.4,5.7,9.4,11.5,11c1.8,0.5,3.5,1,5.3,1.6 c2.1,0.7,4.3,0.8,6.5,0.5c2.4-0.3,4.8-0.8,7.1-1.4c1.8-0.5,3.4-1.5,4.6-2.9c2-2.2,3.9-4.6,5.2-7.3c0.7-1.4,1.3-3,1.6-4.5 c1.1-6.4-0.7-12.1-4.5-17.2c-1.8-2.5-4.3-4.2-7.2-5c-3-0.8-6.1-1.1-9.2-0.8c-4.5,0.4-8.4,2.2-11.4,5.7c-2.1,2.4-3.6,5-4.3,8.1 c-0.6,2.4-0.5,4.8-0.6,7.2c-0.2,5.8,6.2,12.5,12.3,12c2.7-0.2,5.5-0.5,8.2-0.7c5.4-0.5,9.3-4.9,9.8-9.6c0.2-1.9,0.2-3.9,0.1-5.8 c-0.1-2.5-1.3-4.6-3.1-6.3c-3.1-2.9-6.8-4.1-11.1-3.7c-2.4,0.2-4.4,1.2-5.8,3.2c-1.8,2.5-2.8,5.3-3.1,8.3c-0.2,1.9,0.3,3.7,1.9,5 c2.7,2.2,5.8,3.3,9.2,3c1.6-0.1,2.8-0.9,3.8-2.2c1.6-2.1,1.6-4.5,1.1-6.9c-1-4.3-4.6-5.5-8.2-2.9c-0.3,0.2-0.4,0.7-0.6,1.1 c0.1,0.1,0.3,0.3,0.4,0.4c0.9-0.4,1.8-0.9,2.8-1.2c1-0.3,2-0.1,2.8,0.7c1.6,1.8,1.9,5.4,0.5,7.4c-0.9,1.2-2.1,1.9-3.5,1.8 c-2.3-0.1-4.5-0.9-6.4-2.3c-1.3-1-1.8-2.3-1.7-3.9c0.2-1.7,0.7-3.4,1.4-4.9c1.8-3.6,4-4.9,8.1-4.4c0.9,0.1,1.8,0.3,2.7,0.6 c4.5,1.7,6.8,5,6.6,9.8c0,1.4-0.2,2.8-0.5,4.1c-0.9,3.2-2.9,5.5-6.3,6.1c-2.9,0.5-5.9,0.7-8.9,0.9c-5.6,0.4-10.5-5.4-10.3-9.9 c0.1-2.1,0.2-4.1,0.6-6.1c1.5-6.9,7.2-11.6,14.2-11.9c1.7-0.1,3.5,0,5.2,0.2c3.5,0.4,6.4,1.9,8.5,4.7c3.1,4.2,4.6,8.9,4.2,14.2 c-0.3,3.5-2.1,6.2-4,9c-2.1,3-4.7,5-8.4,5.4c-1.1,0.1-2.3,0.4-3.4,0.7c-2,0.5-3.9,0.4-5.8-0.1c-2.3-0.6-4.6-1.3-6.9-2 c-3.1-1-5.4-3-7.1-5.7c-2.7-4.3-3.8-9.1-3.8-14.1c0-2,0.6-3.8,1.5-5.6c2.9-6,7.3-10.5,12.9-14c2.2-1.4,4.7-1.9,7.3-1.6 c4.2,0.4,8.1,1.6,11.6,3.9c3.1,2,5.8,4.5,8.3,7.2c1.7,1.9,2.9,4.1,3.6,6.6c1.5,5,1.1,10.1-0.2,15c-2.2,8-9.4,14.2-17.5,15.9 c-1.7,0.4-3.3,0.9-4.9,1.5c-1.1,0.4-1.6,1.4-1.2,2.1c0.5,0.8,1.4,0.7,2.1,0.5c2.5-0.7,5.1-1.3,7.6-2.2c1.4-0.5,2.8-1.1,4-1.9 c2.9-1.7,5.4-3.9,7.6-6.4c2.6-3,4.5-6.5,5.2-10.4C92.8,65.1,93,61.7,92.9,58.4z"></path>
-										<path class="fill-primary" d="M98.2,97.6c-1.9-3-3.8-6-5.7-9c-0.7-1-1.2-2.2-3-3c0,0.8-0.1,1.3,0,1.7c0.4,0.9,1,1.8,1.5,2.7 c2.8,5,5.7,9.9,9.2,14.5c1,1.2,2.2,2.3,3.4,3.4c0.3,0.3,0.8,0.4,1.2-0.3c-0.5-0.8-1.1-1.8-1.8-2.7C101.4,102.3,99.7,100,98.2,97.6z "></path>
-										<path class="fill-primary" d="M75.3,98c-0.5-1.5-1.2-3-1.9-4.4c-0.1-0.3-0.6-0.4-0.9-0.6c-0.2,0.2-0.3,0.3-0.5,0.5c0.1,0.5,0.2,1.1,0.4,1.6 c1.6,5.3,3.1,10.5,4.8,15.8c0.5,1.6,1.1,3.3,1.7,4.9c0.5,1.3,1.4,1.8,1.9,1.4c0.8-0.6,0.5-1.4,0.2-2.2C79,109.3,77.2,103.6,75.3,98 z"></path>
-										<path class="fill-primary" d="M26.5,69.5c-5.5,1.6-11,3.2-16.5,4.8c-2.1,0.6-4.1,1.4-6.1,2.2c-0.6,0.2-1.1,0.7-1.9,1.2 c5.9-0.4,24.8-6,28.2-8.3C28.8,68.8,27.6,69.2,26.5,69.5z"></path>
-										<path class="fill-primary" d="M55,96.3c-2.2,7.9-4.5,15.8-6.7,23.8c-0.3,1.2-0.4,2.5-0.7,4.4c0.6-0.9,0.8-1.2,0.9-1.5 c2.6-7.8,5.1-15.7,7.6-23.5c0.3-1.1,0.5-2.2,0.6-3.4c0-0.4-0.4-0.9-0.8-1.7C55.5,95.3,55.2,95.8,55,96.3z"></path>
-										<path class="fill-primary" d="M25.2,48.7c0.6,0.3,1.3,0.5,2,0.6c0.5,0.1,1.1-0.1,1.6-0.2c0-0.2,0-0.3,0-0.5c-3-1.4-6-3-9-4.2 c-3.2-1.3-6.4-2.4-9.7-3.5c-3.1-1-6.1-2.3-10-2.8c0.8,0.7,1.1,1.1,1.5,1.3c1.5,0.7,2.9,1.3,4.4,1.9C12.4,43.6,18.9,45.7,25.2,48.7z "></path>
-										<path class="fill-primary" d="M38.2,86.5c-0.7,0.3-1.4,0.8-2,1.3c-5.1,4.5-10.1,9-14.5,14.2c-0.9,1-1.6,2.2-2.5,3.3c0.1,0.1,0.2,0.3,0.4,0.4 c6.7-6.2,13.4-12.3,20.1-18.5c0.1-0.1,0-0.4,0-0.9C39.2,86.4,38.6,86.3,38.2,86.5z"></path>
-										<path class="fill-primary" d="M106.5,77.4c-1.1-1.1-2.4-2.2-3.6-3.1c-0.7-0.5-1.6-0.8-2.5-1c-0.5-0.1-1.2,0-1,1.1c2.1,0.8,3.6,2.5,5.2,4.1 c1.3,1.3,2.4,2.7,3.8,3.9c1.8,1.5,3.8,3,5.7,4.3c1,0.7,2.2,1.3,4.1,0.7c-0.7-0.7-1.1-1.1-1.5-1.4C112.9,83.6,109.6,80.5,106.5,77.4 z"></path>
-										<path class="fill-primary" d="M33.5,27.3c0.7,0.7,1.6,1.3,2.5,1.8c0.5,0.3,1.3,0.4,1.9,0.5c-2.3-2.2-4-4.6-6-6.8c-3.5-3.8-7-7.6-10.5-11.3 c-0.4-0.4-0.7-0.9-1.4-0.6c-0.5,0.6-0.1,1.1,0.3,1.5C24.6,17.4,29.1,22.4,33.5,27.3z"></path>
-										<path class="fill-primary" d="M53.3,20c0.1,1.1,0.3,2.3,0.6,3.4c0.1,0.4,0.7,0.6,1.3,1c-0.1-3.1-0.1-5.8-0.3-8.5c-0.1-2.6-0.4-5.2-0.6-7.9 c-0.4-5-0.6-5.7-2-8c0,0.9-0.1,1.6-0.1,2.2C52.6,8.2,52.9,14.1,53.3,20z"></path>
-										<path class="fill-primary" d="M101.1,56.2c0.2,0.4,0.3,0.7,0.5,0.7c4.9,1.1,9.8,2.2,14.7,3.1c1.3,0.3,2.7,0.4,4.1-0.5 c-0.8-0.3-1.7-0.6-2.5-0.8c-5.2-0.9-10.3-1.9-15.5-2.7C102,56,101.6,56.1,101.1,56.2z"></path>
-										<path class="fill-primary" d="M97.8,36.8c4.7-1.9,8.9-4.8,12.6-8.3c0.3-0.3,0.7-0.6,0.1-1.3c-2.5,1.7-5.1,3.5-7.7,5.1 c-2.6,1.6-5.3,3-8.1,4.6C95.9,37.7,96.8,37.2,97.8,36.8z"></path>
-										<path class="fill-primary" d="M81.6,11.5c0.5-1.6,0.8-3.2,1.2-4.8c-0.3,0.2-0.6,0.3-0.7,0.5c-1.6,4.3-3.2,8.5-4.7,12.8 c-0.2,0.6-0.1,1.3-0.2,1.9C79.1,18.6,80.5,15.1,81.6,11.5z"></path>
-										<path class="fill-primary" d="M82.8,6.5c0,0,0,0.1,0,0.1C82.8,6.6,82.8,6.6,82.8,6.5C82.9,6.6,82.8,6.5,82.8,6.5z"></path>
-									</svg>
-								</figure><img class="rounded" src="../assets/img/about/17.jpg" alt="feature-img">
+                                </div>
+                            </div>
+                            <div class="accordion-item mb-3">
+                                <div class="accordion-header font-base" id="heading-5"><button class="accordion-button fw-semibold collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5"><strong>Computer Vision</strong></button></div>
+                                <div id="collapse-5" class="accordion-collapse collapse" aria-labelledby="heading-5" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body mt-3 pb-0"><span> Computer vision allows machines to interpret and analyze visual data. Our solutions include: <br><br></span>
+                                        <ul class="list-group list-group-borderless">
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Object detection and recognition for security and automation.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Facial recognition for authentication and access control.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Image classification and anomaly detection for quality control.</span></li>
+                                            <li class="list-group-item"><em class="text-primary bi bi-patch-check me-2"></em><span>Optical Character Recognition (OCR) for document processing and digitization.</span></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -647,140 +330,187 @@
                 </div>
             </div>
         </section>
-        <section class="pt-3">
+        <section class="pt-5">
             <div class="container">
-                <div class="text-center inner-container-small mb-4 mb-md-6">
-                    <h2 class="mb-0">How its work?</h2>
-                </div>
-                <div class="row g-4 g-lg-7">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="text-center bg-transparent d-flex flex-column justify-content-center align-items-center">
-                            <div class="fw-bold text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-lg rounded-3 mb-3"><span>01</span></div>
-                            <h6>Discovery &amp; Assessment</h6>
-                            <ul class="text-start" style="font-size: 15px;">
-                                <li>Understand the company’s data needs, challenges, and goals.</li>
-                                <li>Assess existing data infrastructure, sources, and quality.</li>
-                                <li>Define key performance indicators (KPIs) and success metrics.</li>
-                            </ul>
+                <div class="bg-dark rounded-3 position-relative overflow-hidden p-5 p-md-7" data-bs-theme="dark"><figure class="position-absolute bottom-0 start-0 mb-n5 ms-n7">
+					<svg class="fill-white" width="177" height="187" viewBox="0 0 177 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M145.997 54.7907C146.303 55.9483 147.111 56.7781 148.142 57.4275C148.71 57.7851 148.555 58.3776 148.482 58.842C148.419 59.2452 148.287 59.5844 148.46 60.0065C148.532 60.1801 148.397 60.5706 148.231 60.6875C147.703 61.0627 147.243 61.5096 146.628 61.801C144.465 62.8271 142.147 63.2656 139.827 63.6105C137.458 63.9623 135.087 64.3768 132.677 64.3899C131.927 64.3937 131.928 64.407 131.735 63.5032C133.049 63.4002 134.363 63.3426 135.664 63.1811C136.697 63.0532 137.712 62.7983 138.828 62.5815C138.54 62.2938 138.316 62.2013 137.914 62.2829C135.722 62.7261 133.518 63.0936 131.162 63.1237C131.131 62.9437 131.093 62.7258 131.055 62.5095C131.106 62.4847 131.219 62.4301 131.412 62.3365L130.707 62.0338C130.804 61.5801 130.891 61.1692 131.005 60.6343C131.35 60.3272 132.108 60.4369 132.465 59.8406C133.144 60.1569 133.745 59.7031 134.378 59.6166C135.162 59.5101 135.923 59.235 136.538 59.0732C136.659 58.644 136.732 58.316 136.843 57.9997C137.23 56.8911 137.253 56.9328 138.132 56.5166C139.109 56.0533 140.247 55.939 141.077 55.158C141.13 55.1076 141.254 55.0794 141.321 55.1043C142.025 55.371 142.442 55.0921 142.889 54.5154C143.264 54.0318 143.905 54.1232 144.48 54.34C144.921 54.5069 145.385 54.6119 145.997 54.7907Z"></path>
+						<path d="M24.428 116.334C25.1448 115.73 25.1448 115.73 24.5158 114.968C24.5615 114.364 25.1989 113.883 24.9199 113.199C25.284 112.72 25.6931 112.269 26.002 111.757C26.5002 110.931 27.3748 110.769 28.1599 110.519C28.6932 110.349 29.2345 110.164 29.7889 110.038C30.4375 109.89 31.0639 109.649 31.7116 109.499C32.2986 109.364 32.901 109.291 33.4982 109.203C33.6642 109.179 33.8684 109.145 34.0013 109.216C34.3549 109.405 34.657 109.384 35.0322 109.236C35.7537 108.952 36.4793 109.31 37.1858 109.407C37.844 109.499 38.4753 109.88 39.0822 110.203C39.3141 110.325 39.8134 110.578 39.2077 110.944C39.1647 110.97 39.2822 111.239 39.3021 111.399C39.3227 111.566 39.3736 111.86 39.3118 111.89C38.5819 112.237 38.8737 112.524 39.2484 112.987C39.8001 113.669 39.649 113.875 39.0359 114.806C38.6624 115.372 38.3638 116.014 37.677 116.145C35.8203 116.497 33.9632 116.877 32.0655 116.221C31.3051 115.958 30.4472 115.833 29.6556 116.213C28.9735 116.541 28.1709 116.608 27.6086 117.214C27.4389 117.397 27.114 117.444 26.8523 117.53C26.2949 117.713 25.7631 117.711 25.1905 117.476C24.5955 117.232 24.6639 116.708 24.428 116.334Z"></path>
+						<path d="M107.925 54.6811C107.026 55.0396 106.183 55.3027 105.408 55.6985C103.185 56.8338 100.753 56.7813 98.3713 57.0078C97.3016 57.1097 96.3873 56.5562 95.4595 56.133C95.2986 56.0594 95.2371 55.767 95.123 55.5624C95.5551 55.5356 95.9599 55.5105 96.5508 55.4736L94.8167 54.7282C94.7925 54.2801 94.8495 53.8726 94.7301 53.5265C94.5819 53.097 94.7873 52.772 94.9803 52.5195C95.2049 52.2253 95.6012 52.0623 95.9543 51.8212C96.7809 52.4066 97.6969 52.376 98.6818 52.2735C98.7451 51.83 99.2289 51.4823 98.9919 50.909C98.9415 50.7875 99.0535 50.5078 99.1765 50.4194C100.182 49.6971 101.007 48.6351 102.422 48.6597C102.677 48.6645 103 48.6868 103.173 48.5503C103.434 48.3445 103.784 48.7803 103.999 48.3272C104.177 47.9543 104.459 48.3627 104.699 48.3852C104.996 48.413 105.301 48.4077 105.588 48.477C105.851 48.5403 106.095 48.6843 106.349 48.7937C106.766 50.1287 107.562 51.2137 108.543 52.2046C108.334 53.0393 108.123 53.8866 107.925 54.6811Z"></path>
+						<path d="M3.22725 135.018C3.01142 134.651 2.82621 134.358 2.6643 134.052C2.60584 133.94 2.59095 133.8 2.57731 133.67C2.53843 133.299 3.1029 133.289 3.04058 132.867C2.99194 132.536 2.97883 132.167 3.07829 131.856C3.16105 131.598 3.61758 131.359 3.57889 131.185C3.49264 130.796 3.50464 130.591 3.90481 130.457C3.97853 130.432 4.01395 130.239 4.03446 130.118C4.18727 129.225 4.18475 129.224 5.15765 129.129C5.0126 128.997 4.88744 128.882 4.65873 128.674C5.06032 128.695 5.36079 128.675 5.64444 128.734C5.99106 128.805 6.32811 128.932 6.66056 129.057C6.99508 129.182 7.31918 129.336 7.73596 129.297L6.56754 128.649C6.58429 128.605 6.60126 128.561 6.61867 128.516C6.845 128.585 7.07915 128.636 7.29634 128.728C8.39764 129.193 9.47652 129.718 10.5979 130.126C11.5873 130.486 12.3905 131.027 12.9544 131.916C12.6709 132.036 12.2909 132.102 12.664 132.539C13.0715 133.016 12.857 133.407 12.3933 133.832C12.9178 134.161 13.5636 134.486 12.9514 135.326L11.5434 134.721C11.5047 134.777 11.4652 134.834 11.426 134.891C11.8428 135.245 12.2597 135.599 12.6887 135.963C12.2313 136.259 11.7885 136.473 11.2316 136.153C11.0752 136.064 10.8129 136.179 10.6028 136.162C9.68931 136.086 9.68926 136.081 9.38524 136.736C9.32706 136.861 9.27587 136.989 9.22141 137.116L9.07184 137.464C8.61231 137.647 8.17897 137.804 7.7589 137.99C6.86549 138.388 5.968 138.251 5.08368 137.997C4.64531 137.87 4.24938 137.593 3.80988 137.474C3.32539 137.343 3.08927 136.963 2.85718 136.617C2.39472 135.928 2.4732 135.694 3.22725 135.018Z"></path>
+						<path d="M45.1232 65.2617C45.2584 65.9616 45.403 66.6418 45.5014 67.3281C45.5109 67.3946 45.2383 67.5014 45.0079 67.6442C45.1784 67.8653 45.3473 68.0383 45.4581 68.2427C45.5893 68.4833 45.6663 68.7532 45.7726 69.0081C45.9873 69.5241 46.2494 70.0452 45.4624 70.3332C45.4026 70.3556 45.3917 70.4965 45.3469 70.5761C45.0273 71.1423 44.9322 71.7719 44.1975 72.164C43.6059 72.4798 43.0766 72.978 42.4099 73.2273C41.7843 73.4605 41.1793 73.7203 40.4896 73.7742C39.4305 73.8564 38.3836 73.9374 37.4391 73.3399C37.2022 73.19 37.0439 72.915 36.7713 72.6108C37.1705 72.4037 37.4404 72.2637 37.7561 72.1004C37.159 71.5986 36.3433 71.2982 36.012 70.4027C36.3054 70.2335 36.5888 70.07 36.9424 69.8661L36.0159 69.4679C36.2322 68.5719 36.2712 67.6903 36.6811 66.8754C36.9162 66.4081 37.2463 66.0587 37.6679 65.8802C38.2092 65.6505 38.682 65.2875 39.2978 65.1747C39.8547 65.073 40.3863 64.8352 40.9624 64.7248C41.9093 64.5441 42.8389 64.7449 43.7755 64.7177C44.2221 64.7044 44.6802 65.0713 45.1232 65.2617Z"></path>
+						<path d="M46.2804 129.498L49.0061 130.67C48.426 130.121 47.7113 129.866 47.0284 129.547C46.7534 129.419 46.3502 129.401 46.3291 128.992C46.3067 128.569 46.2946 128.127 46.4009 127.727C46.4376 127.59 46.8499 127.475 47.0823 127.488C47.332 127.501 47.5726 127.677 47.8446 127.794C47.8471 127.546 47.799 127.376 47.8598 127.269C47.9856 127.049 48.3374 126.822 48.3017 126.666C48.0996 125.798 48.7296 125.211 48.9848 124.513C49.1002 124.196 49.5073 123.818 49.8217 123.777C50.595 123.68 51.0987 123.027 51.9901 122.955C52.3057 123.076 52.7066 123.2 53.2579 123.055C53.9802 122.865 54.8069 122.793 55.5419 123.264C55.8837 123.483 56.2915 123.599 56.74 123.792C56.8815 124.879 56.9937 125.994 57.1795 127.097C57.3743 128.251 56.6292 128.905 55.8957 129.501C55.36 129.936 54.8984 130.629 54.033 130.482C52.9291 131.494 51.5109 131.149 50.2239 131.389C49.3586 131.551 48.583 131.201 47.8174 131.023C47.1848 130.876 46.6825 130.169 46.1228 129.71C46.1753 129.639 46.2282 129.568 46.2804 129.498Z"></path>
+						<path d="M70.5926 110.828C69.8281 111.133 69.0176 111.456 68.1052 111.82C67.6827 111.638 67.1604 111.466 66.7002 111.189C66.5294 111.086 66.4586 110.745 66.4359 110.504C66.4267 110.412 66.6809 110.296 66.8165 110.19C66.5305 109.848 66.0829 109.528 66.471 108.956C66.5438 108.85 66.6214 108.688 66.5917 108.582C66.4737 108.163 66.3624 107.714 66.6436 107.365C67.1481 106.738 67.6053 105.994 68.3353 105.65C69.7792 104.97 71.284 104.381 72.9227 104.438C73.8997 104.472 74.8905 104.55 75.8376 104.771C76.2517 104.868 76.7353 105.198 76.8534 105.769C77.0486 106.707 77.2959 107.636 77.4597 108.58C77.5152 108.902 77.4763 109.304 77.3247 109.586C76.3715 111.363 74.9375 112.305 72.6182 111.955C72.2802 111.904 71.8821 111.958 71.6155 111.795C71.2299 111.559 70.9384 111.168 70.5926 110.828Z"></path>
+						<path d="M117.847 127.388C117.571 127.329 117.295 127.27 117.018 127.211C118.028 127.648 117.947 128.878 118.706 129.48C118.978 129.695 118.92 130.208 118.668 130.323C118.258 130.511 118.371 130.807 118.409 131.029C118.511 131.618 118.314 131.997 117.837 132.349C116.462 133.364 115.132 134.45 113.335 134.625C112.4 135.364 111.22 135.191 110.158 135.443C109.642 135.566 109.063 135.427 108.45 135.404C108.087 134.829 108.444 134.373 109.022 133.885C108.703 133.819 108.44 133.687 108.221 133.738C107.919 133.81 107.907 133.589 107.908 133.476C107.913 132.959 107.974 132.449 107.783 131.94C107.736 131.815 107.877 131.58 107.99 131.446C108.193 131.206 108.471 131.045 108.353 130.631C108.32 130.513 108.583 130.291 108.737 130.146C110.066 128.906 111.503 127.884 113.383 127.619C113.637 127.584 113.968 127.401 114.248 127.277C115.048 126.923 115.893 127.156 116.679 126.953C117.202 126.82 117.519 127.034 117.847 127.388Z"></path>
+						<path d="M91.7672 24.8247C91.547 24.6914 91.3267 24.5567 91.0847 24.4087C91.1914 24.3453 91.2532 24.2747 91.3141 24.2755C92.2508 24.2918 93.1886 24.214 94.1227 24.389C94.7102 24.499 95.2887 24.5664 95.4832 25.2642C95.6155 25.7395 96.5858 25.7315 96.1984 26.507C96.6387 27.1399 96.321 27.7134 96.0335 28.2693C96.3799 28.5727 96.7377 28.8211 97.0145 29.1413C97.3269 29.5007 97.1767 30.157 96.7095 30.7302C96.6033 30.8604 96.3966 30.9421 96.3498 31.0845C95.9876 32.1812 95.9964 32.1824 94.9713 32.2693C94.4601 32.312 93.9473 32.41 93.4379 32.3949C92.8165 32.3769 92.3452 32.5594 91.8854 32.9972C91.2027 33.647 90.29 33.8676 89.4099 33.6518C88.6128 33.4571 88.0808 32.8153 87.8304 31.9216C88.401 31.7779 88.9702 31.6335 89.7678 31.4315C89.1539 31.1676 88.7378 30.9967 88.3291 30.8104C87.922 30.6261 88.0252 30.6171 88.0117 29.8426C88.0021 29.2882 88.5441 28.7258 88.0154 28.1815C88.1945 27.7162 88.3745 27.2513 88.554 26.7849C88.8844 25.9237 89.299 25.2133 90.4096 25.223C90.8495 25.2269 91.2921 24.9722 91.7672 24.8247Z"></path>
+						<path d="M44.107 152.712C43.459 153.621 42.5969 153.667 41.933 153.49C41.084 153.264 40.1846 153.198 39.3681 152.77C38.3108 152.216 37.1992 151.745 36.0708 151.357C35.5233 151.169 35.277 150.66 34.7775 150.454C34.6477 150.401 34.4752 150.114 34.5167 150.032C34.8351 149.394 34.2607 148.779 34.5511 148.091C34.7441 147.636 34.5125 147.001 34.4652 146.377C35.1831 146.091 35.0212 144.756 36.3034 144.825C36.9667 145.426 37.9354 145.056 38.829 145.173C38.9537 145.19 39.1033 145.116 39.2089 145.16C40.4687 145.689 41.7218 146.232 43.0851 146.818C42.8176 146.944 42.7019 146.999 42.4138 147.134C42.7381 147.192 42.9584 147.302 43.078 147.234C43.206 147.162 43.2123 146.897 43.3284 146.767C43.3808 146.708 43.5787 146.75 43.6947 146.791C43.7479 146.809 43.8138 146.971 43.7879 147.008C43.5956 147.289 43.3815 147.557 43.1557 147.853C43.5492 148.291 43.9691 148.758 44.2831 149.108C44.1087 149.443 44.004 149.643 43.8999 149.842C44.4206 149.637 44.3732 150.11 44.5331 150.357C44.6949 150.608 44.9019 150.83 45.0765 151.049C44.6463 151.811 44.0031 151.888 43.2288 151.808C43.5289 152.116 43.7977 152.394 44.107 152.712Z"></path>
+						<path d="M142.716 84.3152C142.415 84.9644 141.971 85.5099 142.563 86.1407C141.625 86.3733 141.096 86.221 140.769 85.4333C140.544 84.8894 140.167 84.4326 140.038 83.808C139.926 83.2613 139.343 82.8277 139.086 82.2877C138.888 81.8727 138.872 81.3703 138.776 80.9068C138.933 80.8421 139.103 80.7729 139.37 80.6632C139.426 80.9259 139.482 81.1839 139.537 81.442C139.598 81.442 139.658 81.4414 139.718 81.4414C139.797 81.132 139.876 80.8232 139.964 80.4756C140.132 80.4449 140.508 80.4876 140.713 80.3201C141.944 79.3147 143.426 78.9719 144.92 78.6814C145.41 78.5859 145.939 78.7078 146.448 78.6805C147.705 78.6135 147.954 78.5635 148.829 79.1248C149.462 79.5304 150.135 79.9671 150.461 80.741C150.589 81.0465 150.808 81.4079 151.083 81.5396C151.779 81.8718 151.726 82.3095 151.443 82.8658C151.364 83.0212 151.312 83.1991 151.287 83.3727C151.127 84.4857 151.054 84.5767 150.076 84.7453C148.627 84.9954 147.181 84.791 145.738 84.6785C144.719 84.599 143.705 84.4371 142.716 84.3152Z"></path>
+						<path d="M121.835 94.4787C121.131 95.0122 120.474 95.576 119.647 95.9019C118.103 96.5084 116.595 97.223 115.016 97.716C113.357 98.2345 111.689 98.8214 109.998 98.8377C109.465 98.5303 110.375 98.0553 109.719 97.7567C109.532 97.6711 109.548 97.1292 109.479 96.7951C109.308 95.9655 109.387 95.5771 110.082 95.3249C110.767 95.0762 111.171 94.6209 111.556 94.0752C112.151 93.2323 113.138 92.8985 113.918 92.2932C114.751 91.6455 115.766 91.3648 116.718 90.9566C117.21 90.7452 117.662 90.4132 118.169 90.2677C118.679 90.1213 119.256 90.0328 119.767 90.1229C120.078 90.1783 120.414 90.5741 120.573 90.8986C120.769 91.2989 121.163 91.618 121.113 92.1498C121.083 92.4573 121.401 92.5488 121.627 92.7083C121.887 92.8917 122.2 93.1206 121.628 93.4621C121.229 93.7011 121.459 94.1453 121.835 94.4787Z"></path>
+						<path d="M136.472 40.1805C135.254 41.3715 133.878 41.518 132.535 41.6733C131.354 41.8095 130.155 41.8815 128.967 41.8493C127.781 41.8178 126.52 42.1082 125.38 41.2466C126.412 40.6056 127.599 41.2053 128.793 40.6764C127.433 40.2827 126.149 40.5244 124.646 40.2742C125.098 39.9209 125.262 39.7928 125.462 39.6353C125.258 39.5008 125.044 39.3595 124.83 39.2197C124.923 38.805 125.013 38.3963 125.12 37.9146C125.36 37.8766 125.706 37.8427 126.045 37.7685C127.361 37.483 127.358 37.4765 128.384 36.3706C128.499 36.2468 128.642 36.1471 128.783 36.0505C129.857 35.3143 130.973 34.7028 132.323 34.6237C132.822 34.5945 133.697 34.6377 134.13 34.8381C134.231 34.8855 134.388 34.8517 134.506 34.8136C134.808 34.7182 134.959 34.8855 134.986 35.129C135.063 35.8387 135.59 36.3584 135.751 37.0273C135.82 37.3139 136.018 37.4446 136.268 37.5987C136.608 37.8088 136.773 38.7242 136.554 39.022C136.418 39.2073 135.984 39.1778 136.142 39.5774C136.225 39.7875 136.359 39.977 136.472 40.1805Z"></path>
+						<path d="M89.1868 68.5912C89.1283 68.8288 89.0665 69.0775 88.9818 69.4213C89.2737 69.3968 89.4812 69.3789 89.6988 69.3603C90.0427 70.2228 90.4007 71.1207 90.7703 72.0465C90.7254 72.1509 90.6515 72.2704 90.6217 72.3998C90.2729 73.9381 89.0565 74.5392 87.7415 74.9115C86.7142 75.2023 85.6469 75.3732 84.5538 75.3933C83.8714 75.4058 83.2459 75.41 82.5487 74.8918C83.6848 74.868 84.6962 74.8464 85.7081 74.825C85.7152 74.7469 85.7228 74.669 85.73 74.5905C85.5555 74.5525 85.3806 74.4828 85.2057 74.4815C84.4829 74.4761 83.7589 74.5119 83.0375 74.4893C82.7178 74.4794 82.2782 74.5636 82.4035 73.9216C82.4423 73.7236 82.0972 73.4494 81.9251 73.2115C81.7741 73.0031 81.6191 72.7975 81.4964 72.631C81.6972 72.0138 82.2189 72.2314 82.5924 71.9533C82.2284 71.8989 81.8643 71.8444 81.3851 71.7731C81.3163 71.5184 81.2243 71.178 81.1317 70.8375C81.3599 70.7457 81.705 70.6424 81.3216 70.2442C80.9076 69.813 80.8464 69.4125 81.3985 69.0434C81.4488 69.0099 81.5136 68.9234 81.5016 68.8819C81.2679 68.0789 81.9048 67.9389 82.3962 67.825C83.5707 67.5539 84.7755 67.7065 85.9641 67.7529C86.2432 67.7636 86.8916 67.8044 86.6283 68.4913C86.6133 68.5302 86.8108 68.6498 86.9092 68.7313C87.0037 68.6053 87.2057 68.436 87.1746 68.3592C86.9577 67.8173 87.5411 67.8264 87.6121 67.9011C88.0494 68.3589 88.7933 68.0534 89.1868 68.5912Z"></path>
+						<path d="M60.1016 61.539C60.3147 61.4539 60.5285 61.3688 60.8524 61.2392C60.5112 61.0434 60.2297 60.8815 59.9227 60.7049C60.0379 60.1352 60.1316 59.537 60.2859 58.9549C60.3792 58.6032 60.5307 58.2545 60.7233 57.9465C60.8705 57.7119 61.2541 58.1107 61.4967 57.6593C61.6536 57.3676 62.2689 57.356 62.7202 57.2946C63.0866 57.2445 63.6041 57.7777 63.8523 57.0964C64.2742 57.2508 64.6967 57.4053 65.1192 57.5587C65.16 57.5741 65.2036 57.5818 65.2463 57.5929L67.9449 56.5169C68.0318 56.3148 68.0978 56.0893 68.2179 55.8986C68.4042 55.6051 68.8627 55.4 68.987 55.6448C69.2632 56.1896 69.838 55.6729 70.0797 56.0798C69.9519 57.1887 69.8514 57.5124 69.368 58.2516C69.8868 58.2374 70.339 58.2252 70.9073 58.2103C70.9749 58.3905 71.2012 58.687 71.129 58.8524C70.6711 59.8956 70.4631 61.1112 69.3192 61.7249C69.0088 61.8911 68.7195 62.1288 68.3887 62.2194C67.6341 62.4266 66.8621 62.5703 66.0936 62.7251C65.7148 62.8013 65.3278 62.839 64.9464 62.9046C64.3558 63.0062 63.7289 62.6314 63.1623 63.0394C62.6383 62.7154 62.0791 62.8492 61.5094 62.8433C60.7353 62.8355 60.1804 62.3956 60.1016 61.539Z"></path>
+						<path d="M24.4201 92.6484C24.6329 92.1533 24.778 91.8144 24.9238 91.4764C25.1196 91.0237 25.2545 90.5005 25.954 90.6782C26.0315 90.6982 26.2157 90.5766 26.2389 90.4905C26.3899 89.9196 26.957 89.9985 27.3212 89.766C28.3098 89.1352 29.3635 89.4325 30.3814 89.6063C30.9619 89.7052 31.2661 90.0374 31.367 90.7899C31.4803 91.6344 31.3685 92.5824 31.9007 93.3574C31.7336 93.768 32.2272 94.3747 31.5132 94.6312C31.41 94.6685 31.3196 94.8107 31.2728 94.9246C30.6145 96.5411 29.2628 97.1487 27.6753 97.459C26.8702 97.6168 26.0852 97.9101 25.2473 97.7475C24.9035 97.6809 24.5639 97.5824 24.2334 97.4668C24.1247 97.4295 23.9688 97.2891 23.9739 97.204C24.0206 96.4599 23.6721 95.7544 23.717 95.0325C23.7728 94.1427 24.0445 93.2821 24.4201 92.6484Z"></path>
+						<path d="M85.1622 121.171C85.5341 121.11 85.8079 121.066 86.3399 120.98C85.923 120.73 85.7815 120.643 85.6369 120.56C85.1575 120.288 85.158 120.289 85.3668 119.625C85.3927 119.542 85.456 119.424 85.423 119.376C85.0904 118.889 85.1571 118.381 85.4916 117.983C85.8704 117.531 86.3053 117.059 86.8188 116.802C88.8218 115.798 90.9977 115.636 93.1932 115.728C93.5675 115.744 93.9306 116.025 94.2939 116.181C94.1918 116.36 94.1118 116.501 94.0312 116.643C94.5005 116.807 94.794 117.055 94.6726 117.634C94.6365 117.807 94.781 118.128 94.9349 118.213C95.4606 118.503 94.9509 118.951 95.152 119.271C94.5173 119.37 94.89 120.17 94.381 120.37C93.8938 120.561 93.4312 120.911 92.9335 120.962C91.8375 121.074 90.7144 121.149 89.6272 121.024C89.0712 120.959 88.6498 121.037 88.2631 121.32C87.6363 121.781 86.9717 122.063 86.1902 122.083C85.5378 122.1 85.5384 122.113 85.1622 121.171Z"></path>
+						<path d="M80.624 91.0137C80.4978 90.9595 80.3092 90.9142 80.1693 90.8056C80.0759 90.7328 80.0816 90.5217 79.9874 90.4624C79.8844 90.3978 79.702 90.4728 79.5812 90.4225C79.4742 90.3776 79.4078 90.1714 79.3165 90.1668C79.1486 90.1582 78.9628 90.2206 78.8091 90.3009C78.7068 90.354 78.6473 90.4902 78.5292 90.6391C78.8385 90.6783 79.0875 90.7098 79.3374 90.741C78.8711 91.072 78.4389 91.4767 77.8741 90.974C78.033 90.8226 78.19 90.6744 78.384 90.4901C77.622 90.0765 77.7186 90.9893 77.2214 91.1111C77.4485 90.7176 77.2817 90.3187 77.5163 89.9257C77.625 89.7434 77.3224 89.3152 77.1692 88.8985C77.6818 88.6315 78.256 88.332 78.928 87.9818C78.6288 87.7908 78.4158 87.6546 78.1564 87.489C78.3006 86.8287 78.4488 86.1517 78.5983 85.4672C79.1525 85.3208 79.6398 85.2295 80.0983 85.0602C80.495 84.9128 80.8412 84.6246 81.2407 84.49C82.3684 84.1105 83.5386 84.2218 84.6843 84.3589C85.0944 84.4076 85.7209 84.5368 85.5193 85.274C86.1887 85.5579 85.9856 86.305 86.2724 86.8047C86.6314 87.4307 86.4199 88.1743 85.7862 88.8025C84.8371 89.7432 83.6269 90.1093 82.4489 90.4644C81.859 90.6417 81.2743 90.8744 80.624 91.0137Z"></path>
+						<path d="M106.096 77.1603C106.254 76.9853 106.406 76.8162 106.581 76.6227C105.532 76.1173 104.758 77.0928 103.708 76.8237C103.903 76.6426 104.023 76.4785 104.184 76.3917C104.444 76.2527 104.73 76.1649 105.107 76.0146C104.533 75.8743 104.384 75.881 103.886 76.029C103.366 75.0139 103.366 75.0139 103.702 74.2241C104.377 74.0006 105.18 73.9069 105.758 73.497C106.396 73.0447 107.114 73.1391 107.767 72.884C108.392 72.6407 109.114 72.6108 109.798 72.5656C110.173 72.5403 110.623 72.5754 110.924 72.7656C111.305 73.0064 111.83 73.4387 111.822 73.7773C111.809 74.3347 112.191 74.3728 112.415 74.6465C112.722 75.021 112.985 75.4664 112.849 76.0171C112.769 76.3387 112.844 76.7949 112.651 76.9726C112.178 77.4048 111.632 77.8263 111.04 78.0411C109.921 78.4463 108.756 78.7382 107.592 78.9962C107.301 79.0612 106.941 78.8189 106.48 78.6772C106.745 78.538 106.849 78.4825 107.071 78.3649C106.383 78.1795 106.405 77.5177 106.096 77.1603Z"></path>
+						<path d="M149.811 103.865C149.471 104.129 149.308 104.257 149.148 104.381C150.058 105.11 150.08 105.204 149.346 105.888C149.96 105.888 150.451 105.887 150.985 105.887C151.019 106.162 151.052 106.444 151.087 106.729C150.499 106.964 149.902 107.202 149.249 107.462C149.749 108.003 150.36 107.369 150.926 107.701C150.729 108.42 150.098 108.615 149.506 108.824C149.181 108.937 148.808 108.913 148.491 109.037C147.074 109.59 145.621 110.008 144.14 110.344C144.008 110.374 143.883 110.441 143.756 110.495C143.071 110.787 142.393 111.109 141.608 110.815C141.518 110.192 142.096 110.13 142.529 109.918C142.111 109.333 141.696 110.091 141.294 109.876C140.805 109.63 141.856 108.95 140.931 108.84L141.523 107.465C141.969 107.19 142.415 106.909 142.868 106.64C143.322 106.37 143.844 106.287 144.283 105.906C144.71 105.537 145.377 105.457 145.915 105.202C146.266 105.036 146.664 105.005 146.954 104.622C147.163 104.346 147.704 104.382 147.846 103.886C147.885 103.748 148.224 103.613 148.42 103.619C148.796 103.63 149.167 103.743 149.811 103.865Z"></path>
+						<path d="M61.1012 76.0729C61.3179 75.6484 61.2217 75.2495 61.6818 74.9738C61.6643 75.2069 61.6519 75.3759 61.6382 75.5603C62.2118 75.6293 62.7893 75.6799 63.358 75.7793C63.5038 75.8049 63.7352 75.9866 63.7344 76.095C63.7306 76.6971 64.2125 77.087 64.3423 77.6129C64.4001 77.8457 64.3303 78.1275 64.2577 78.3683C64.2208 78.4888 63.9888 78.5497 63.9515 78.67C63.9061 78.8166 63.9734 78.9978 63.9937 79.1815C63.1296 79.0682 63.1032 79.0437 62.4417 79.7764C62.0457 80.2148 61.4949 80.1045 61.0207 80.3322C61.1594 80.4884 61.2933 80.6392 61.4437 80.808C61.2544 80.8785 61.0397 81.0417 60.9188 80.9892C59.4082 80.3321 59.3736 80.319 58.1699 80.6199C58.6867 81.3034 59.4034 80.7273 60.0901 80.9746C59.9818 81.147 59.8845 81.4325 59.792 81.4307C58.8634 81.4162 57.9055 81.5906 57.177 80.6765C56.9508 80.3928 56.8089 80.2981 56.9548 79.9419C57.0452 79.7226 57.0179 79.4332 56.9783 79.1861C56.8766 78.5459 56.7386 77.9121 56.6032 77.2165C56.8396 77.1724 57.0585 77.1319 57.0052 77.1415C57.4833 76.8443 56.877 76.0595 57.738 76.3456C57.9825 76.4265 57.6467 75.658 58.2639 75.9232C58.5024 76.0258 58.9297 75.6902 59.2448 75.5645C59.4149 75.7309 59.5776 75.8892 59.74 76.0479C59.8102 76.0041 59.8803 75.9603 59.9507 75.9161C59.788 75.7153 59.6254 75.5146 59.4212 75.2619C59.9044 75.2009 60.1842 75.165 60.5514 75.1181C60.7213 75.4134 60.9114 75.743 61.1012 76.0729Z"></path>
+						<path d="M80.6889 135.08C80.1943 135.214 79.8028 135.32 79.3672 135.438C79.5787 135.684 79.7129 135.84 79.888 136.044C79.4488 136.434 78.9292 136.6 78.4143 136.711C77.276 136.954 76.1081 137.019 74.9648 137.27C74.262 137.425 73.5773 137.158 72.9441 136.705C73.0755 136.076 73.81 136.243 74.1893 135.834L72.9526 135.303C73.2161 134.335 73.47 133.403 73.7031 132.549C74.8258 132.03 75.8853 131.826 77.0023 131.838C77.6389 131.845 78.2438 131.555 78.9221 131.679C79.1903 131.728 79.3841 132.182 79.7313 131.875C79.7369 131.87 79.982 132.119 79.9789 132.122C79.4819 132.653 80.3029 133.257 79.8967 133.799C79.8701 133.834 80.0578 134.041 80.1601 134.157C80.2721 134.284 80.4204 134.383 80.5146 134.52C80.5855 134.623 80.5956 134.766 80.6889 135.08Z"></path>
+						<path d="M108.148 113.549C108.646 113.548 109.009 113.547 109.526 113.546C109.26 113.289 109.138 113.171 109.009 113.046C109.068 113.004 109.132 112.921 109.183 112.929C109.668 113.001 110.129 112.954 110.595 112.782C110.873 112.679 111.187 112.653 111.487 112.63C112.019 112.591 112.453 112.398 112.769 111.919C112.639 111.766 112.504 111.609 112.442 111.536C112.725 111.373 113.034 111.196 113.263 111.064C113.421 111.132 113.497 111.144 113.501 111.169C113.552 111.463 113.592 111.759 113.631 112.03C114.004 112.117 114.343 112.196 114.85 112.314C114.502 112.616 114.31 112.78 114.035 113.017C114.298 113.327 114.563 113.639 114.847 113.973C114.793 114.152 114.73 114.362 114.653 114.618L115.217 114.861C115.421 115.704 115.132 116.199 114.39 116.535C113.581 116.902 112.825 117.382 111.906 117.715C111.846 117.383 111.789 117.063 111.726 116.711C111.153 116.631 110.588 116.685 109.985 116.855C109.382 117.024 108.716 116.973 108.1 117.017C107.802 116.448 108.267 116.3 108.558 116.02C108.436 115.951 108.325 115.833 108.215 115.834C107.533 115.842 107.297 115.61 107.504 115.059C107.698 114.542 107.936 114.042 108.148 113.549Z"></path>
+						<path d="M97.6308 151.861C98.0372 151.784 98.3694 151.72 98.7836 151.641C98.6323 151.51 98.5523 151.384 98.4501 151.361C97.9542 151.25 97.4522 151.167 96.8842 151.062L97.2016 150.324C97.3618 150.317 97.558 150.309 97.9464 150.293L96.9086 149.846C96.9199 149.68 96.9573 149.551 96.9306 149.437C96.8685 149.177 96.6696 148.722 96.7095 148.701C97.1138 148.492 97.1249 148.025 97.3797 147.763C97.7592 147.373 98.2618 147.064 98.8544 147.326C99.0316 147.404 99.1283 147.725 99.293 147.754C99.4269 147.777 99.5942 147.463 99.7735 147.425C99.9199 147.393 100.224 147.516 100.254 147.626C100.375 148.069 100.746 148.142 101.075 148.257C101.485 148.399 101.651 148.677 101.6 149.074C101.545 149.497 101.749 149.689 102.076 149.923C102.537 150.255 102.726 150.75 102.447 151.331C102.35 151.532 102.264 151.746 102.222 151.963C102.115 152.515 101.721 153.099 101.283 153.098C100.214 153.093 99.1212 153.283 98.1023 152.722C97.7051 152.503 97.6946 152.203 97.6308 151.861Z"></path>
+						<path d="M92.2876 101.301C92.5161 101.026 92.7542 100.737 93.0472 100.383C92.7116 100.035 92.3404 99.8155 91.8189 100.021C91.6057 99.4014 92.3431 99.3675 92.4646 98.9026C92.2617 98.7673 92.0484 98.6243 91.839 98.4847C91.62 97.9855 92.4279 97.9674 92.2869 97.4173C92.1424 96.8547 92.8921 97.0506 93.127 96.7261C93.2588 96.5439 93.55 96.4455 93.7889 96.3776C94.5789 96.1522 95.4387 96.4334 96.2258 96.0107C96.4139 95.9095 96.7983 96.1718 97.1862 96.2978C96.5302 96.8596 97.6415 97.3886 97.0789 97.9596C97.3296 98.3174 98.0343 98.3841 97.7766 99.1877C97.6028 99.2096 97.3304 99.2437 96.9421 99.2919C97.1983 99.5854 97.3227 99.7276 97.4507 99.8738C97.3674 100.35 96.9097 100.388 96.6116 100.428C95.6193 100.56 94.7525 100.912 93.9404 101.499C93.4407 101.861 92.8523 101.924 92.2876 101.301Z"></path>
+						<path d="M55.8827 92.9763C56.0945 93.7776 56.251 94.3684 56.4534 95.1314L55.9946 96.1986C55.2153 96.3557 54.3668 96.151 53.6074 96.5503C52.7432 96.255 51.9761 96.6106 51.177 96.8626C50.9224 96.9425 50.5841 96.7563 50.2094 96.6756C50.237 96.4701 50.3187 96.2901 50.2706 96.1568C49.7781 94.7901 50.6854 94.0919 51.6411 93.5822C52.4568 93.147 53.3994 92.8889 54.3159 92.7261C54.8352 92.6335 55.4167 92.8919 55.8827 92.9763Z"></path>
+					</svg>
+				</figure>
+                    <div class="row position-relative">
+                        <div class="col-lg-5 order-1 position-relative">
+                            <div class="border-white d-flex flex-column justify-content-center align-items-center border border-opacity-50 rounded-circle h-250px w-250px">
+                                <div class="d-flex">
+                                    <h4 class="text-white purecounter mb-0" data-purecounter-start="0" data-purecounter-end="600" data-purecounter-delay="300">0</h4><span class="text-primary h4 mb-0">+</span>
+                                </div>
+                                <p class="text-center text-white mb-0">Happy Customers</p>
+                            </div>
+                            <div class="d-flex justify-content-end mt-n6 mt-lg-0 mt-xl-n7 me-n3">
+                                <div class="bg-light d-flex flex-column justify-content-center align-items-center rounded-circle h-200px w-200px">
+                                    <div class="d-flex justify-content-center">
+                                        <h4 class="purecounter mb-0" data-purecounter-start="0" data-purecounter-end="25" data-purecounter-delay="300">0</h4><span class="text-primary h4 mb-0">+</span>
+                                    </div>
+                                    <p class="text-center heading-color mb-0">Completed Projects</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center mt-n6 mt-lg-0">
+                                <div class="bg-primary d-flex flex-column justify-content-center align-items-center bg-opacity0 rounded-circle h-200px w-200px">
+                                    <div class="d-flex justify-content-center">
+                                        <h4 class="purecounter mb-0" data-purecounter-start="0" data-purecounter-end="200" data-purecounter-delay="300">0</h4><span class="text-primary h4 mb-0">+</span>
+                                    </div>
+                                    <p class="text-center heading-color mb-0">Acquired Users</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="text-center bg-transparent d-flex flex-column justify-content-center align-items-center">
-                            <div class="fw-bold text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-lg rounded-3 mb-3"><span>02</span></div>
-                            <h6>Data Strategy &amp; Architecture</h6>
-                            <ul style="font-size: 15px;text-align: left;">
-                                <li>Design a scalable data architecture (Data Warehouse, Data Lake, or Hybrid).</li>
-                                <li>Select appropriate technologies and tools (BI, AI, Cloud, etc.).</li>
-                                <li>Establish data governance, security, and compliance frameworks.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="text-center bg-transparent d-flex flex-column justify-content-center align-items-center">
-                            <div class="fw-bold text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-lg rounded-3 mb-3"><span>03</span></div>
-                            <h6>Implementation &amp; Integration</h6>
-                            <ul style="font-size: 15px;text-align: left;">
-                                <li>Extract, transform, and load (ETL) data from various sources.</li>
-                                <li>Develop dashboards, reports, and AI-driven analytics models.</li>
-                                <li>Ensure seamless integration with existing systems and applications.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="text-center bg-transparent d-flex flex-column justify-content-center align-items-center">
-                            <div class="fw-bold text-primary bg-primary bg-opacity-10 flex-shrink-0 icon-lg rounded-3 mb-3"><span>04</span></div>
-                            <h6>Optimization &amp; Support</h6>
-                            <ul style="font-size: 15px;text-align: left;">
-                                <li>Validate data accuracy and performance.</li>
-                                <li>Provide user training and knowledge transfer.</li>
-                                <li>Continuously monitor, optimize, and scale analytics solutions.</li>
-                            </ul>
+                        <div class="col-lg-6 ms-auto order-lg-2 mb-6 mb-lg-0">
+                            <h3 class="mb-4"><strong>The Future of AI at Verto Next</strong></h3>
+                            <p class="mb-3">&nbsp; &nbsp;At Verto Next, we are committed to continuous innovation in AI. Our research and development teams are constantly exploring new AI techniques and methodologies to help businesses stay ahead in the digital landscape. We focus on:<br><br></p>
+                            <h5 class="mb-4"><strong>Why Choose Verto Next AI Solutions?</strong></h5>
+                            <div class="d-sm-flex mb-2"><figure class="text-primary mb-2">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M9.24609 17.2586V14.6904H14.7461V17.2586C14.7461 19.1706 14.7461 20.1266 14.5249 20.557C14.0158 21.5475 12.7956 21.9314 11.8111 21.4107C11.3833 21.1845 10.836 20.4007 9.74136 18.833L9.74136 18.833C9.60764 18.6415 9.54079 18.5457 9.48641 18.4451C9.36533 18.2209 9.2882 17.9757 9.25914 17.7226C9.24609 17.609 9.24609 17.4922 9.24609 17.2586Z" fill="currentColor"></path>
+									<path d="M17.5114 9.84101C19.375 6.88684 20.3067 5.40976 19.9484 4.21191C19.8359 3.83574 19.6441 3.48802 19.386 3.19214C18.5641 2.25 16.8176 2.25 13.3248 2.25H10.6405C7.12482 2.25 5.36697 2.25 4.54466 3.1974C4.28652 3.49482 4.09526 3.84421 3.98384 4.22194C3.6289 5.42518 4.57619 6.90596 6.47077 9.86751L9.23438 14.1875H14.7695L17.5114 9.84101Z" fill="currentColor" fill-opacity="0.25"></path>
+								</svg>
+							</figure>
+                                <div class="ms-sm-4">
+                                    <h6>Cutting-Edge Technology</h6>
+                                    <p class="pb-0">We leverage the latest AI advancements to provide state-of-the-art solutions.</p>
+                                </div>
+                            </div>
+                            <div class="d-sm-flex mb-2"><figure class="text-primary mb-2">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2.5C9.79086 2.5 8 4.41878 8 6.78571C8 6.97115 8.01099 7.15383 8.03232 7.33306C8.28317 9.44152 11 10 12 10C13 10 15.7168 9.44152 15.9677 7.33306C15.989 7.15383 16 6.97115 16 6.78571C16 4.41878 14.2091 2.5 12 2.5Z" fill="currentColor"></path>
+									<path fill-rule="evenodd" d="M7.24989 7.1053C7.24989 7.05966 7.2505 7.01416 7.25173 6.96883C4.2677 7.95454 2.25 9.97184 2.25 12.1034C2.25 14.0748 3.97605 15.8116 6.59627 16.8293L4.46793 18.9716C4.176 19.2655 4.17756 19.7403 4.47141 20.0323C4.76526 20.3242 5.24013 20.3226 5.53207 20.0288L8.20833 17.3349C9.15517 17.5678 10.1784 17.7162 11.25 17.7636V21C11.25 21.4142 11.5858 21.75 12 21.75C12.4142 21.75 12.75 21.4142 12.75 21V17.7636C13.8164 17.7164 14.8348 17.5693 15.7777 17.3384L18.4697 20.0303C18.7626 20.3232 19.2374 20.3232 19.5303 20.0303C19.8232 19.7374 19.8232 19.2626 19.5303 18.9697L17.3938 16.8331C20.0196 15.816 21.75 14.0773 21.75 12.1034C21.75 9.97178 19.7322 7.95444 16.748 6.96875C16.7493 7.01411 16.7499 7.05963 16.7499 7.1053C16.7499 7.31546 16.7368 7.5225 16.7115 7.72562C16.4136 10.1152 13.1874 10.7482 11.9999 10.7482C10.8124 10.7482 7.58615 10.1152 7.28826 7.72562C7.26294 7.5225 7.24989 7.31546 7.24989 7.1053Z" fill="currentColor" fill-opacity="0.25"></path>
+								</svg>
+							</figure>
+                                <div class="ms-sm-4">
+                                    <h6>Custom AI Models</h6>
+                                    <p class="pb-0">Our AI solutions are tailored to fit your specific business needs.</p>
+                                </div>
+                            </div>
+                            <div class="d-sm-flex mb-2"><figure class="text-primary mb-2">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M3.40004 19.9484C3.41524 20.1895 3.42283 20.3101 3.51172 20.4292C3.53619 20.462 3.58073 20.5066 3.61353 20.5311C3.73269 20.6199 3.85325 20.6275 4.09437 20.6427C5.14741 20.7091 7.28849 20.6474 8.66268 19.2732C9.39454 18.5414 9.77757 17.5685 9.97243 16.6532C10.0108 16.4728 10.03 16.3826 10.0112 16.2835C10.0053 16.2528 9.99478 16.2173 9.98295 16.1883C9.94486 16.0949 9.87386 16.0239 9.73186 15.8819L8.16087 14.3109C8.01887 14.1689 7.94787 14.0979 7.85449 14.0598C7.82551 14.048 7.78998 14.0375 7.75923 14.0316C7.66016 14.0127 7.56997 14.0319 7.38958 14.0703C6.47423 14.2652 5.50139 14.6482 4.76953 15.3801C3.39534 16.7543 3.33368 18.8954 3.40004 19.9484Z" fill="currentColor"></path>
+									<path fill-rule="evenodd" d="M7.02164 6.44822C5.26483 6.54451 3.88965 7.99713 3.88965 9.75657C3.88965 11.5264 5.28055 12.9837 7.04843 13.0663L7.85685 13.104C7.90862 13.1064 7.95762 13.1281 7.99427 13.1647L10.8462 16.0167C10.8829 16.0533 10.9045 16.1023 10.9069 16.1541L10.9447 16.9625C11.0272 18.7304 12.4846 20.1213 14.2544 20.1213C16.0138 20.1213 17.4665 18.7461 17.5627 16.9893L17.7857 12.9211C20.8652 9.28048 20.5871 5.1321 20.4317 3.95598C20.4053 3.75678 20.2527 3.60577 20.0532 3.58128C18.883 3.43754 14.774 3.19885 11.0864 6.22543L7.02164 6.44822ZM14.8799 11.3516C14.8799 12.5942 13.8725 13.6016 12.6299 13.6016C11.3872 13.6016 10.3799 12.5942 10.3799 11.3516C10.3799 10.1089 11.3872 9.10156 12.6299 9.10156C13.8725 9.10156 14.8799 10.1089 14.8799 11.3516Z" fill="currentColor" fill-opacity="0.25"></path>
+								</svg>
+							</figure>
+                                <div class="ms-sm-4">
+                                    <h6>Experienced Team</h6>
+                                    <p class="pb-0">Our team of experienced professionals is committed to delivering excellence and quality in every project we undertake.</p>
+                                </div>
+                            </div>
+                            <div class="d-sm-flex mb-2"><figure class="text-primary mb-2">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M3.40004 19.9484C3.41524 20.1895 3.42283 20.3101 3.51172 20.4292C3.53619 20.462 3.58073 20.5066 3.61353 20.5311C3.73269 20.6199 3.85325 20.6275 4.09437 20.6427C5.14741 20.7091 7.28849 20.6474 8.66268 19.2732C9.39454 18.5414 9.77757 17.5685 9.97243 16.6532C10.0108 16.4728 10.03 16.3826 10.0112 16.2835C10.0053 16.2528 9.99478 16.2173 9.98295 16.1883C9.94486 16.0949 9.87386 16.0239 9.73186 15.8819L8.16087 14.3109C8.01887 14.1689 7.94787 14.0979 7.85449 14.0598C7.82551 14.048 7.78998 14.0375 7.75923 14.0316C7.66016 14.0127 7.56997 14.0319 7.38958 14.0703C6.47423 14.2652 5.50139 14.6482 4.76953 15.3801C3.39534 16.7543 3.33368 18.8954 3.40004 19.9484Z" fill="currentColor"></path>
+									<path fill-rule="evenodd" d="M7.02164 6.44822C5.26483 6.54451 3.88965 7.99713 3.88965 9.75657C3.88965 11.5264 5.28055 12.9837 7.04843 13.0663L7.85685 13.104C7.90862 13.1064 7.95762 13.1281 7.99427 13.1647L10.8462 16.0167C10.8829 16.0533 10.9045 16.1023 10.9069 16.1541L10.9447 16.9625C11.0272 18.7304 12.4846 20.1213 14.2544 20.1213C16.0138 20.1213 17.4665 18.7461 17.5627 16.9893L17.7857 12.9211C20.8652 9.28048 20.5871 5.1321 20.4317 3.95598C20.4053 3.75678 20.2527 3.60577 20.0532 3.58128C18.883 3.43754 14.774 3.19885 11.0864 6.22543L7.02164 6.44822ZM14.8799 11.3516C14.8799 12.5942 13.8725 13.6016 12.6299 13.6016C11.3872 13.6016 10.3799 12.5942 10.3799 11.3516C10.3799 10.1089 11.3872 9.10156 12.6299 9.10156C13.8725 9.10156 14.8799 10.1089 14.8799 11.3516Z" fill="currentColor" fill-opacity="0.25"></path>
+								</svg>
+							</figure>
+                                <div class="ms-sm-4">
+                                    <h6>Seamless Integration</h6>
+                                    <p class="pb-0">We ensure smooth AI integration with your existing systems.</p>
+                                </div>
+                            </div>
+                            <div class="d-sm-flex mb-2"><figure class="text-primary mb-2">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M3.40004 19.9484C3.41524 20.1895 3.42283 20.3101 3.51172 20.4292C3.53619 20.462 3.58073 20.5066 3.61353 20.5311C3.73269 20.6199 3.85325 20.6275 4.09437 20.6427C5.14741 20.7091 7.28849 20.6474 8.66268 19.2732C9.39454 18.5414 9.77757 17.5685 9.97243 16.6532C10.0108 16.4728 10.03 16.3826 10.0112 16.2835C10.0053 16.2528 9.99478 16.2173 9.98295 16.1883C9.94486 16.0949 9.87386 16.0239 9.73186 15.8819L8.16087 14.3109C8.01887 14.1689 7.94787 14.0979 7.85449 14.0598C7.82551 14.048 7.78998 14.0375 7.75923 14.0316C7.66016 14.0127 7.56997 14.0319 7.38958 14.0703C6.47423 14.2652 5.50139 14.6482 4.76953 15.3801C3.39534 16.7543 3.33368 18.8954 3.40004 19.9484Z" fill="currentColor"></path>
+									<path fill-rule="evenodd" d="M7.02164 6.44822C5.26483 6.54451 3.88965 7.99713 3.88965 9.75657C3.88965 11.5264 5.28055 12.9837 7.04843 13.0663L7.85685 13.104C7.90862 13.1064 7.95762 13.1281 7.99427 13.1647L10.8462 16.0167C10.8829 16.0533 10.9045 16.1023 10.9069 16.1541L10.9447 16.9625C11.0272 18.7304 12.4846 20.1213 14.2544 20.1213C16.0138 20.1213 17.4665 18.7461 17.5627 16.9893L17.7857 12.9211C20.8652 9.28048 20.5871 5.1321 20.4317 3.95598C20.4053 3.75678 20.2527 3.60577 20.0532 3.58128C18.883 3.43754 14.774 3.19885 11.0864 6.22543L7.02164 6.44822ZM14.8799 11.3516C14.8799 12.5942 13.8725 13.6016 12.6299 13.6016C11.3872 13.6016 10.3799 12.5942 10.3799 11.3516C10.3799 10.1089 11.3872 9.10156 12.6299 9.10156C13.8725 9.10156 14.8799 10.1089 14.8799 11.3516Z" fill="currentColor" fill-opacity="0.25"></path>
+								</svg>
+							</figure>
+                                <div class="ms-sm-4">
+                                    <h6>Scalability</h6>
+                                    <p class="pb-0">Our AI solutions grow with your business needs, ensuring long-term sustainability.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="bg-dark position-relative overflow-hidden pt-6" data-bs-theme="dark"><figure class="position-absolute top-0 start-0 mt-n8 ms-n9">
-		<svg class="fill-mode" width="775px" height="834px" viewBox="0 0 775 834" style="enable-background:new 0 0 775 834;opacity:0.05;">
-			<path d="M486.1,564.4c-3.6,2.5-7.4,4.8-11.3,6.4c-12,5.5-25.7,7.9-42.2,7.4c-30.6-1.1-65.6-12.5-102.8-24.4 c-50.7-16.2-103.3-33.4-152.5-27c-56.1,7.2-97.9,44.4-128,114l-0.4-0.2c67.5-156.1,181-119.5,281.1-87.1c37,12,72,23.2,102.5,24.3 c34.3,1.2,58.1-10.7,74.9-37.4C530.1,505,547.1,466,565,425.1C619.4,301,675.6,172.7,892.1,141.3l0.1,0.4 c-216.2,31.4-272.5,159.5-326.8,283.5c-18.1,41.1-35,79.7-57.7,115.6C501.6,550.7,494.5,558.5,486.1,564.4z"></path>
-			<path d="M500.9,551.4c-43.7,31-103,15.8-165.5-0.2c-49.9-12.7-101.5-25.8-148.7-16.7c-53.3,10.5-93.2,49-121.6,118 l-0.5-0.1c15.3-37.1,33.3-64.7,55.1-84.7c19.5-17.7,41.3-28.6,66.7-33.7c47.4-9.2,99,3.9,148.9,16.6 c70.4,17.9,137.1,34.9,181.3-14.4c35.7-39.9,57.3-91.7,80.2-146.7c23.8-56.7,48.2-115.5,90.2-163.6c22.7-25.9,48.4-46.4,78.4-62.4 c33.9-18.1,72.2-30.3,117.1-37.1l0.1,0.4C695,155.3,645.2,274.5,597.1,389.7c-22.9,55-44.5,106.8-80.4,146.8 C512.3,542.4,506.6,547.3,500.9,551.4z"></path>
-			<path d="M521.3,536.4c-21.9,15.5-48.4,23.4-80.8,23.8c-31.2,0.5-65.1-5.8-97.9-11.9c-49.3-9.2-100.2-18.7-145.7-6.5 c-51.1,13.7-88.9,53.7-116,122.6l-0.6-0.2c60.5-154.1,163.3-135,262.6-116.5c68.1,12.7,132.6,24.6,183.6-15.8 c48.1-38.2,71.1-100.6,95.6-166.5c20.3-55,41.4-111.6,78.3-158.1c20-25.1,42.7-44.9,69.2-60.5c30.1-17.5,64.2-29.1,104.3-35.4 l0.2,0.6c-167.2,26.3-210,141.9-251.4,253.5C598.3,431.5,575,493.8,527,532.2C525.1,533.8,523.2,535.1,521.3,536.4z"></path>
-			<path d="M548.9,520.3c-4,2.9-8.2,5.6-12.6,8c-56.6,31.5-120.9,23.8-183,16.6c-51.7-6-100.4-11.8-144.6,3.2 c-49.9,16.9-85.5,57.7-111.3,128.2l-0.6-0.2c13.7-37.3,30.1-66,49.9-87.8c17.8-19.4,37.9-32.8,61.8-40.9 c44.3-15,93.1-9.3,144.9-3.2c62.1,7.2,126.3,14.8,182.8-16.6c59.6-33.2,82-104.7,105.9-180.4c17.1-54.3,34.7-110.5,67.2-156.6 c36.7-52,87.8-82.8,155.7-94l0.2,0.6c-151.9,25-187.8,139.3-222.3,250C620.4,417.6,599.4,484.5,548.9,520.3z"></path>
-			<path d="M573.5,509.5c-8.2,5.8-17.4,10.7-27.7,14.6c-59.3,22-119.1,18.8-176.8,15.8c-53.2-2.8-103.3-5.3-147.1,12.5 C172.6,572.3,138.1,615.5,113,688l-0.5-0.1c25.1-72.7,59.6-115.9,108.9-136c44-18,94.2-15.3,147.6-12.6 c57.7,3,117.4,6.1,176.6-15.9c70.7-26.2,91.1-106.3,112.8-191.4c13.9-54.5,28.3-111,56.7-156.9C747,123.2,793,92.6,855.6,82l0,0.7 C716.3,106.5,687,221.4,658.9,332.2C640.4,405,622.6,474.4,573.5,509.5z"></path>
-			<path d="M595.2,502.3c-11.3,8-24.6,14-40,17.4c-56.8,12.7-112,12.7-160.5,12.9c-60.2,0.1-112,0.2-157,21.1 c-49.5,23-84,69.3-108.5,146l-0.6-0.2c24.3-76.7,58.9-123.1,108.6-146.3c45.1-21.1,97.2-21.1,157.4-21.2 c48.6,0,103.6-0.1,160.5-12.9c81.6-18.3,99-106.7,117.4-200.6c10.7-55,22-112,46.6-158.2C747,108,788.6,77.5,846.5,67.2l0.1,0.8 C718,91.2,695.2,206.9,673.2,318.9C658.3,394.9,643.8,467.8,595.2,502.3z"></path>
-			<path d="M615.3,497.4c-13.7,9.7-30.2,16-50.8,18c-44.4,4.6-86.5,5.8-123.6,6.8c-71.2,2-132.8,3.7-182,27.7 C206,575.6,169.8,627,145,711.3l-0.8-0.1c13-44.6,29-79.3,48.6-106.3c18.1-24.9,39.5-43.1,65.6-55.7 c49.5-24.1,110.9-25.8,182.4-27.7c37.1-1,79.3-2.2,123.5-6.7c92.6-9.4,106.2-106.5,120.5-209.2c7.8-55.9,15.9-113.6,37-160 c23.8-52.7,61.6-83.1,115.3-93.4l0.3,0.7c-53.4,10.1-91,40.4-114.6,92.9c-21.1,46.4-29.2,104.1-36.8,159.9 C674.6,386,663.8,463,615.3,497.4z"></path>
-			<path d="M634.4,494c-15.5,11-35.2,17.2-60.4,17.3c-12.3,0.1-24.5,0.1-36.1,0.1c-103.7,0-185.5-0.1-246.4,26.4 c-63.5,27.7-103.7,85-130.5,185.5l-0.8-0.1c13.9-52.5,31.3-92.6,53.2-122.9c20.7-28.8,46.2-49.4,77.8-63.2 c61-26.6,142.9-26.4,246.6-26.4c11.7,0.1,23.8,0,36.1-0.1c103.8-0.2,112.9-105.6,122.5-217.2c4.7-56.9,9.9-115.5,27.5-162.4 c20-53.1,54.1-83.7,104.1-93.7l0.1,0.8c-49.5,9.8-83.5,40.3-103.3,93.1c-17.6,46.9-22.7,105.4-27.6,162 C690.1,378.2,682.9,459.6,634.4,494z"></path>
-			<path d="M652.7,491.8c-17.9,12.7-40.7,17.7-69.2,15.4C328,486.2,228.3,517.5,177.2,735.2l-0.9-0.3 c25.9-110.7,64-171.6,127-204c66.6-34.2,160.2-34.6,280.3-24.7c32.2,2.6,56.9-4.1,75.4-20.5c42.1-37.4,45.1-118.6,48-204.7 c4-116.5,8.1-236.8,112.1-258.6l0.1,0.8C715.9,44.8,711.8,164.8,707.8,280.9c-3.1,86.3-5.8,167.7-48.3,205.2 C657.3,488.3,655,490.1,652.7,491.8z"></path>
-			<path d="M670.6,490.3c-19.3,13.7-44.8,17.9-77.7,12.7c-138.5-21.4-227.1-13-287.3,27 c-55.4,36.8-89.1,101.7-112.4,216.9l-0.9-0.3C215.8,631,249.6,566,305.1,528.9c60.3-40.1,149.1-48.6,288.1-27.3 c35.9,5.5,63,0,82.6-16.9c43.2-37.5,42.2-124.3,40.9-216.1C714.9,151,713,28.8,809.9,7.7l0.1,0.8c-96,21.1-94.3,142.7-92.7,260.6 c1.3,92.1,2.4,179-41.1,216.7C674.3,487.4,672.6,488.9,670.6,490.3z"></path>
-		</svg>
-	</figure>
-        <div class="position-absolute top-0 end-0 mt-n3 me-n4"><img src="../assets/img/elements/decoration-pattern-2.svg" style="opacity:0.05;" alt=""></div>
+    <footer class="bg-dark position-relative overflow-hidden pt-4" data-bs-theme="dark">
         <div class="container position-relative mt-5">
-            <div class="row justify-content-between g-4">
-                <div class="col-lg-3"><a class="me-0" href="../index.html"><img class="light-mode-item h-40px" src="../assets/img/logo.svg" alt="logo"><img class="dark-mode-item h-40px" src="../assets/img/logo-light.svg" alt="logo"></a>
-                    <p class="mt-4 mb-2">A Bootstrap theme that's both stylish and functional, perfect for any type of technology or corporate website.</p>
-                </div>
-                <div class="col-lg-8 col-xxl-7">
-                    <div class="row g-4">
-                        <div class="col-6 col-md-4">
-                            <h6 class="mb-2 mb-md-4">Quick links</h6>
-                            <ul class="nav flex-column">
-                                <li class="nav-item"><a class="nav-link pt-0" href="about-v1.html">About us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="contact-v1.html">Contact us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="career.html">Career <span class="badge text-bg-danger ms-2">2 Job</span></a></li>
-                                <li class="nav-item"><a class="nav-link" href="career-single.html">Career detail</a></li>
-                                <li class="nav-item"><a class="nav-link" href="contact-v1.html">Become a partner</a></li>
-                                <li class="nav-item"><a class="nav-link" href="sign-in.html">Sign in</a></li>
-                                <li class="nav-item"><a class="nav-link" href="sign-up.html">Sign up</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-4">
-                            <h6 class="mb-2 mb-md-4">Community</h6>
-                            <ul class="nav flex-column">
-                                <li class="nav-item"><a class="nav-link pt-0" href="#">Documents</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Supports <i class="bi bi-box-arrow-up-right small ms-1"></i></a></li>
-                                <li class="nav-item"><a class="nav-link" href="faq.html">Faqs</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
-                                <li class="nav-item"><a class="nav-link" href="blog-grid.html">News and blogs</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Terms &amp; condition</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="mb-2 mb-md-4">App available on</h6>
-                            <div class="row g-2 mt-2 mb-4 mb-sm-5">
-                                <div class="col-5 col-sm-4 col-md-6"><a href="#"><img src="../assets/img/elements/google-play.svg" alt=""></a></div>
-                                <div class="col-5 col-sm-4 col-md-6"><a href="#"><img src="../assets/img/elements/app-store.svg" alt="app-store"></a></div>
-                            </div>
-                            <h6 class="mb-2 mb-md-4">Follow on</h6>
-                            <ul class="list-inline mb-0 mt-3">
-                                <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-facebook-f lh-base fa-fw"></i></a></li>
-                                <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-instagram lh-base fa-fw"></i></a></li>
-                                <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-twitter lh-base fa-fw"></i></a></li>
-                                <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-linkedin-in lh-base fa-fw"></i></a></li>
-                                <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-youtube lh-base fa-fw"></i></a></li>
-                            </ul>
+            <div class="row g-3 g-lg-3" style="text-align: center;">
+                <div class="col-xl-4 text-lg-center text-xl-start mb-4 mb-xl-0"><a href="index.html"><img class="light-mode-item h-40px" src="../assets/img/logo.svg" alt="logo"><img class="dark-mode-item h-40px" src="../assets/img/logo_verto_old.png" alt="logo"></a>
+                    <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                        <div class="col" style="padding-left: 0px;padding-right: 0px;">
+                            <h1 style="font-size: 15px;text-align: left;"><br><span style="font-weight: normal !important; color: rgb(96, 98, 97);">Initiate the Transformation, Seize the Future.</span><br><br></h1>
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr class="mt-4 mb-0">
-            <div class="text-center text-lg-start d-md-flex justify-content-between align-items-center py-4">
-                <div class="text-body"><span> Copyrights ©2024 Mizzle. Build by </span><a href="https://www.webestica.com/" class="text-body text-primary-hover">Webestica</a><span>. </span></div>
-                <div class="text-center text-md-end dropdown dropup mt-3 mt-md-0"><a class="btn btn-light btn-sm dropdown-toggle mb-0" role="button" href="#" id="languageSwitcher" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe me-2"></i>Language </a>
-                    <ul class="dropdown-menu min-w-auto" aria-labelledby="languageSwitcher">
-                        <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="../assets/img/flags/uk.svg" alt="">English</a></li>
-                        <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="../assets/img/flags/gr.svg" alt="">German </a></li>
-                        <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="../assets/img/flags/sp.svg" alt="">French</a></li>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="mb-2 mb-md-4">Company</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/about-us">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/team">Team</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/partners">Partners</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/career">Career</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/newsroom">Newsroom</a></li>
                     </ul>
                 </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="mb-2 mb-md-4">Industries</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/banking">Banking</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/telco">Telecommunications</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/insurance">Insurance</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/public">Public</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="mb-2 mb-md-4">Categories</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/ai">Artificial Intelligence</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/data-and-analytics">Data &amp; Analytics</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/cloud-and-migration">Cloud &amp; Migration</a></li>
+                        <li class="nav-item"><a class="nav-link mb-1" href="https://vertonext.com/digital-transformation">Digital Transformation</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2" style="text-align: right;">
+                    <h6 class="text-center mb-2 mb-md-4">Contact details</h6>
+                    <ul class="list-group list-group-borderless">
+                        <li class="text-end d-flex mb-3" style="font-size: 14px;"><i class="text-primary me-2 bi bi-geo-alt"></i>Istanbul, Türkiye</li>
+                        <li class="d-flex mb-3" style="font-size: 14px;"><i class="text-primary me-2 bi bi-headset"></i>+90 (532) XXX-XXXX</li>
+                        <li class="d-flex mb-3" href="mailto:info@vertonext.com" style="font-size: 14px;"><i class="text-primary me-2 bi bi-envelope"></i> info@vertonext.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="opacity-1 my-4 my-sm-4">
+            <div class="text-center text-lg-start d-md-flex justify-content-between align-items-center py-1">
+                <div class="text-body mb-3 mb-md-0"><span> Copyrights ©2025 Verto Next</span></div>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-linkedin-in lh-base fa-fw"></i></a></li>
+                    <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="#"><i class="fab fa-youtube lh-base fa-fw"></i></a></li>
+                </ul>
             </div>
         </div>
     </footer>
     <div class="back-top"></div>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/js/aos.min.js"></script>
-    <script src="../assets/js/bs-init.js"></script>
     <script src="../assets/js/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
     <script src="../assets/js/vendor/swiper/swiper-bundle.min.js"></script>
