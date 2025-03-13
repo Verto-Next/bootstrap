@@ -1,8 +1,8 @@
 
 /* Update below HEX and RGB color code to your primary color for light mode */
 [data-bs-theme=light] {
-  --bs-primary: #f01919 !important;
-  --bs-primary-rgb: 240, 25, 25 !important; 
+  --bs-primary: #2a32ea !important;
+  --bs-primary-rgb: 46, 50, 174 !important; 
   --bs-link-color:#f01919 !important;
   --bs-link-hover-color:#880505 !important;
   --bs-link-color-rgb:240, 25, 25 !important;
@@ -12,8 +12,8 @@
 
 /* Update below HEX and RGB color code to your primary color for dark mode */
 [data-bs-theme=dark] {
-  --bs-primary: #f01919 !important;
-  --bs-primary-rgb: 240, 25, 25 !important; 
+  --bs-primary: #2a32ea !important;
+  --bs-primary-rgb: 46, 50, 174 !important; 
   --bs-link-color:#f01919 !important;
   --bs-link-hover-color:#880505 !important;
   --bs-link-color-rgb:240, 25, 25 !important;
