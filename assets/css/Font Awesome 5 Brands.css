@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'Font Awesome 5 Brands';
+	src: url(../../assets/fonts/Font%20Awesome%205%20Brands-d40bb338db943991413043b18bc5f5c1.woff2) format('woff2'),
+	url(../../assets/fonts/Font%20Awesome%205%20Brands-f6871a9e524cf192f59107b17ae296f3.ttf) format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: block;
+}
