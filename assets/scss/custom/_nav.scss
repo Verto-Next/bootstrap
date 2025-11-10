@@ -7,6 +7,12 @@
 // Additional style for theme
 // 
 
+// Remove blue border on nav-link hover
+.nav-link:focus-visible {
+  outline: 0;
+  box-shadow: none;
+}
+
 // Pills
 .nav-pills {
   .nav-link {

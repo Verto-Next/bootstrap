@@ -5269,8 +5269,8 @@ textarea.form-control-lg {
 
 .nav-link:focus-visible {
   outline: 0;
-  -webkit-box-shadow: rgba(42, 50, 234, 0.25);
-  box-shadow: rgba(42, 50, 234, 0.25);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .nav-link.disabled, .nav-link:disabled {
