@@ -28084,5 +28084,22 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
 
 /* User CSS */
 
+/* Remove blue border on navbar hover */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.navbar .dropdown-toggle:hover,
+.navbar .dropdown-toggle:focus,
+.navbar .dropdown-toggle:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 /* # sourceMappingURL=style.css.map */
 
