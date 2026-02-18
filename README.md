@@ -1,6 +1,6 @@
 # Verto Next - Corporate Website
 
-A modern, responsive corporate website for Verto Next, a technology consulting and service provider company. The website showcases various digital transformation services including AI, Data & Analytics, Cloud & Migration, and industry-specific solutions.
+A modern, responsive corporate website for Verto Next, a technology consulting and service provider company. The website showcases various digital transformation services including AI, Data & Analytics, Cloud & Migration, and industry-specific solutions. **Bilingual**: English (root) and Turkish (`tr/`).
 
 ## Project Overview
 
@@ -11,11 +11,23 @@ Verto Next is a full-featured corporate website built with Bootstrap, featuring:
 - Modern UI components and animations
 - SEO-optimized structure
 
+## Bilingual Development Guidelines
+
+**Important:** This site is bilingual—English pages are at the project root, Turkish pages under `tr/`. When you change the layout or markup of a page, you **must** apply the same change to both language versions:
+
+- **English:** e.g. `about-us/index.html`, `ai/index.html`
+- **Turkish:** e.g. `tr/about-us/index.html`, `tr/ai/index.html`
+
+Only the content text differs between languages; structure, CSS classes, asset paths, and layout markup must stay in sync. This keeps both versions consistent and avoids maintenance drift.
+
 ## Directory Structure
 
 ```
 bootstrap/
-├── index.html                    # Home page
+├── index.html                    # Home page (English)
+├── tr/                           # Turkish version
+│   ├── index.html               # Turkish home page
+│   └── [same structure as root]
 ├── about-us/
 │   └── index.html               # About Us page
 ├── team/

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto" lang="tr">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" hreflang="en" href="https://vertonext.com/">
+<link rel="alternate" hreflang="tr" href="https://vertonext.com/tr/">
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+		const getPreferredTheme = () => {
+			if (storedTheme) return storedTheme
+			return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+		}
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+		setTheme(getPreferredTheme())
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => { element.classList.remove('active') })
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') setTheme(getPreferredTheme())
+			})
+			showActiveTheme(getPreferredTheme())
+			document.querySelectorAll('[data-bs-theme-value]').forEach(toggle => {
+				toggle.addEventListener('click', () => {
+					const theme = toggle.getAttribute('data-bs-theme-value')
+					localStorage.setItem('theme', theme)
+					setTheme(theme)
+					showActiveTheme(theme)
+				})
+			})
+			}
+		})
+	</script>
+<link rel="shortcut icon" href="https://vertonext.com/assets/img/verto_fav_icon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://vertonext.com/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="https://vertonext.com/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="https://vertonext.com/assets/vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" type="text/css" href="https://vertonext.com/assets/css/style.css">
+    <title>Verto Next - Dönüşümü Başlat, Geleceği Yakala</title>
+    <script>
+        (function() {
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+            const getPreferredTheme = () => {
+                if (forcedTheme) return forcedTheme;
+                const storedTheme = getStoredTheme();
+                if (storedTheme) return storedTheme;
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+                if (pageTheme) return pageTheme;
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+            setTheme(getPreferredTheme());
+            const showActiveTheme = (theme) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+                if (!themeSwitchers.length) return;
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active');
+                    element.setAttribute('aria-pressed', 'false');
+                });
+                for (const themeSwitcher of themeSwitchers) {
+                    const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
+                    if (btnToActivate) {
+                        btnToActivate.classList.add('active');
+                        btnToActivate.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') setTheme(getPreferredTheme());
+            });
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+                document.querySelectorAll('[data-bs-theme-value]').forEach(toggle => {
+                    toggle.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const theme = toggle.getAttribute('data-bs-theme-value');
+                        setStoredTheme(theme);
+                        setTheme(theme);
+                        showActiveTheme(theme);
+                    })
+                })
+            });
+        })();
+    </script>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+    <link rel="stylesheet" href="../assets/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%205%20Brands.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%205%20Free.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%206%20Brands.css">
+    <link rel="stylesheet" href="../assets/css/Font%20Awesome%206%20Free.css">
+    <link rel="stylesheet" href="../assets/css/FontAwesome.css">
+    <link rel="stylesheet" href="../assets/css/swiper-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@400;500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header class="header-sticky header-absolute">
+        <nav class="navbar navbar-expand-xl px-lg-5 px-xl-5 px-xxl-5">
+            <div class="container-fluid"><a class="navbar-brand me-3" href="index.html"><img class="light-mode-item navbar-brand-item" src="../assets/img/logo_verto.png" alt="logo"><img class="dark-mode-item navbar-brand-item" src="../assets/img/logo_verto.png" alt="logo"></a>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav navbar-nav-scroll mx-auto dropdown-hover">
+                        <li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#">Şirket</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="about-us/">Hakkımızda</a></li>
+                                <li><a class="dropdown-item" href="team/">Ekip</a></li>
+                                <li><a class="dropdown-item" href="career/">Kariyer</a></li>
+                                <li><a class="dropdown-item" href="newsroom/">Basın Odası</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" id="solutionsMenu" aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" href="#">Çözümler</a>
+                            <div class="dropdown-menu dropdown-menu-center dropdown-menu-size-lg" aria-labelledby="megaMenu">
+                                <div class="row g-xl-3">
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled">
+                                            <li class="dropdown-header h6 mb-2">Kategoriye Göre</li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="ai/">&nbsp;Yapay Zeka (AI)</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="data-and-analytics/">&nbsp;Veri ve Analitik</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="cloud-and-migration/">&nbsp;Bulut ve Migrasyon</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="digital-transformation/">&nbsp;Dijital Dönüşüm</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="server-hosting/">&nbsp;Sunucu Barındırma</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled">
+                                            <li class="dropdown-header h6 mb-2">Sektöre Göre</li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="banking/">&nbsp;Bankacılık</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="telco/">&nbsp;Telekomünikasyon</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="insurance/">&nbsp;Sigorta</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="healthcare/">&nbsp;Sağlık</a></li>
+                                            <li><a class="dropdown-item bi bi-caret-right-fill" href="public/">&nbsp;Kamu</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" href="#">Ürünler</a>
+                            <div class="dropdown-menu dropdown-menu-center dropdown-menu-size-lg">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="d-flex">
+                                            <div class="card bg-transparent"><img class="card-img-top w-100 d-block card-img" alt="" src="../assets/img/portfolio/list/02.jpg">
+                                                <div class="card-body text-start px-0 pb-0">
+                                                    <h6>Lyncfirm</h6>
+                                                    <p class="mb-2 small">Ürünleri müşterilerle buluşturma</p><a class="stretched-link icon-link icon-link-hover mb-0" href="http://lyncfirm.com/">Daha Fazla<i class="bi bi-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="contact/">İletişim</a></li>
+                    </ul>
+                </div>
+                <ul class="navbar-nav flex-row justify-content-start align-items-center dropdown-hover">
+                    <li class="nav-item"><a class="nav-link px-2" href="../" title="English">EN</a></li>
+                    <li class="nav-item dropdown dropdown-animation"><button class="btn btn-link lh-1 mb-0 px-2" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-circle-half theme-icon-active fill-mode fa-fw" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path><use href="#"></use></svg></button>
+                        <ul class="dropdown-menu min-w-auto dropdown-menu-end" aria-labelledby="bd-theme">
+                            <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><svg width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path><use href="#"></use></svg>Açık</button></li>
+                            <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path><use href="#"></use></svg>Koyu</button></li>
+                            <li><button class="active dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half fa-fw mode-switch me-1" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path><use href="#"></use></svg>Otomatik</button></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><button data-bs-target="#navbarCollapse" data-bs-toggle="collapse" class="navbar-toggler ms-sm-3 p-2" type="button" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Menüyü aç/kapat"><span class="navbar-toggler-animation"><span></span><span></span><span></span></span></button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="pt-0">
+            <div class="swiper" data-swiper-options='{"effect":"fade","speed":1000,"autoplay":{"delay":3000,"disableOnInteraction":false},"navigation":{"nextEl":".swiper-button-next-hero","prevEl":".swiper-button-prev-hero"}}'>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card overflow-hidden min-vh-75 rounded-0" style="background:url(../assets/img/bg/10.jpg) no-repeat;background-size:cover;background-position:center;">
+                            <div class="bg-overlay bg-linear-overlay"></div>
+                            <div class="d-flex flex-column m-auto position-relative z-index-2 h-100 py-9">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-11 col-lg-8 col-xl-7 text-center m-auto">
+                                            <h1 class="display-4 text-white my-4"><span class="text-primary">Yapay Zekanın</span> gücünü keşfedin</h1>
+                                            <p class="text-white mb-5">İşletme ihtiyaçlarınıza özel akıllı çözümlerle otomatikleştirin, optimize edin ve yenilik yapın.</p><a class="btn btn-lg btn-white icon-link icon-link-hover mb-0" role="button" href="ai/">Hemen Başlayın<i class="bi bi-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card overflow-hidden min-vh-75 rounded-0" style="background:url(../assets/img/bg/09.jpg) no-repeat;background-size:cover;background-position:center;">
+                            <div class="bg-overlay bg-linear-overlay"></div>
+                            <div class="d-flex flex-column m-auto position-relative z-index-2 h-100 py-9">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-11 col-lg-8 col-xl-7 text-center m-auto">
+                                            <h1 class="display-4 text-white my-4">Veriyi <span class="text-primary">içgörülere</span>, içgörüleri <span class="text-primary">eylemlere</span> ve eylemleri <span class="text-primary">başarıya</span> dönüştürün</h1>
+                                            <p class="text-white mb-5">Veri ve analitik çözümleri ham veriyi eyleme dönüştürülebilir içgörülere çevirir; daha akıllı karar verme, operasyonları optimize etme, verimliliği artırma ve gelişmiş analitik, BI ve tahmine dayalı modelleme ile iş büyümesini sağlar.</p><a class="btn btn-lg icon-link icon-link-hover mb-0 btn-white" role="button" href="data-and-analytics/">Veri ve Analitik Çözümlerimizi Keşfedin<i class="bi bi-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card overflow-hidden min-vh-75 rounded-0" style="background:url(../assets/img/bg/11.jpg) no-repeat;background-size:cover;background-position:center;">
+                            <div class="bg-overlay bg-linear-overlay"></div>
+                            <div class="d-flex flex-column m-auto position-relative z-index-2 h-100 py-9">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-11 col-lg-8 col-xl-7 text-center m-auto">
+                                            <h1 class="display-4 text-white my-4">Güvenilir ve Ölçeklenebilir <span class="text-primary">GPU Sunucu Barındırma</span></h1>
+                                            <p class="text-white mb-5">Kurumsal sınıf GPU sunucu barındırma çözümleri, son teknoloji donanım hızlandırma, optimal performans ve 7/24 çalışma süresi ile. AI, makine öğrenimi ve yoğun bilgi işlem iş yükleriniz için güvenilir barındırma hizmetlerimizle güç kazanın.</p><a class="btn btn-lg btn-white icon-link icon-link-hover mb-0" role="button" href="server-hosting/">Sunucu Barındırmayı Keşfedin<i class="bi bi-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="swiper-button-prev swiper-button-prev-hero" type="button" aria-label="Önceki slayt"><i class="bi bi-chevron-left"></i></button>
+                <button class="swiper-button-next swiper-button-next-hero" type="button" aria-label="Sonraki slayt"><i class="bi bi-chevron-right"></i></button>
+            </div>
+        </section>
+        <section class="bg-light overflow-hidden" style="padding-top: 60px;padding-bottom: 60px;">
+            <div class="container">
+                <div class="row mb-3 mb-md-3" style="margin-right: 5px;margin-left: 5px;margin-top: 16px;">
+                    <div class="col-md-6 col-lg-5">
+                        <h2 class="mb-0">Dijital dönüşümünüzü hızlandırıyoruz</h2>
+                    </div>
+                    <div class="col-md-6 col-lg-4 ms-auto">
+                        <p>Uzman ekibimiz, kuruluşunuzu bugünün hızlı dijital ortamında ileriye taşımak için tasarlanmış özel hizmetleri sunmada uzmanlaşmıştır.</p>
+                        <div class="d-flex gap-3 position-relative mt-3"><a class="btn btn-white border btn-icon rounded-circle mb-0 swiper-button-prev-team" role="button" href="#"><i class="bi bi-arrow-left"></i></a><a class="btn btn-white border btn-icon rounded-circle mb-0 swiper-button-next-team" role="button" href="#"><i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                </div>
+                <div class="swiper swiper-outside-end-n10" data-swiper-options="{&quot;spaceBetween&quot;: 30,&quot;loop&quot;: false,&quot;navigation&quot;:{&quot;nextEl&quot;:&quot;.swiper-button-next-team&quot;,&quot;prevEl&quot;:&quot;.swiper-button-prev-team&quot;},&quot;breakpoints&quot;: {	&quot;576&quot;: {&quot;slidesPerView&quot;: 1},&quot;768&quot;: {&quot;slidesPerView&quot;: 3},&quot;992&quot;: {&quot;slidesPerView&quot;: 3},&quot;1200&quot;: {&quot;slidesPerView&quot;: 3}}}">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="card bg-body card-img-scale overflow-hidden">
+                                <div class="card-img-scale-wrapper"><img src="../assets/img/services/4by3/01.jpg" class="card-img-top img-scale" alt="hizmet görseli"></div>
+                                <div class="card-body p-4">
+                                    <h6>Yapay Zeka (AI)</h6>
+                                    <p class="mb-0">Makine öğrenimi, NLP ve otomasyon dahil AI destekli çözümler, işletmelerin karar vermeyi geliştirmesine, süreçleri optimize etmesine ve sorunsuz inovasyon sağlamasına yardımcı olur.</p>
+                                </div>
+                                <div class="card-footer bg-body border-top p-4"><a class="stretched-link icon-link icon-link-hover p-0 m-0" href="ai/">Devamını Oku...<i class="bi bi-arrow-right"></i></a></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card bg-body card-img-scale overflow-hidden">
+                                <div class="card-img-scale-wrapper"><img src="../assets/img/services/4by3/02.jpg" class="card-img-top img-scale" alt="hizmet görseli"></div>
+                                <div class="card-body p-4">
+                                    <h6>Veri ve Analitik</h6>
+                                    <p class="mb-0">Makine öğrenimi, NLP ve otomasyon dahil AI destekli çözümler, işletmelerin karar vermeyi geliştirmesine, süreçleri optimize etmesine ve sorunsuz inovasyon sağlamasına yardımcı olur.</p>
+                                </div>
+                                <div class="card-footer bg-body border-top p-4"><a class="stretched-link icon-link icon-link-hover p-0 m-0" href="data-and-analytics/">Devamını Oku...<i class="bi bi-arrow-right"></i></a></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card bg-body card-img-scale overflow-hidden">
+                                <div class="card-img-scale-wrapper"><img src="../assets/img/services/4by3/03.jpg" class="card-img-top img-scale" alt="hizmet görseli"></div>
+                                <div class="card-body p-4">
+                                    <h6>Bulut ve Migrasyon</h6>
+                                    <p class="mb-0">Bulut ve migrasyon çözümleri sorunsuz veri transferi, ölçeklenebilirlik ve optimize performans sağlayarak işletmelerin altyapıyı modernize etmesine, güvenliği artırmasına ve operasyonel maliyetleri düşürmesine olanak tanır.</p>
+                                </div>
+                                <div class="card-footer bg-body border-top p-4"><a class="stretched-link icon-link icon-link-hover p-0 m-0" href="cloud-and-migration/">Devamını Oku...<i class="bi bi-arrow-right"></i></a></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card bg-body card-img-scale overflow-hidden">
+                                <div class="card-img-scale-wrapper"><img src="../assets/img/services/4by3/04.jpg" class="card-img-top img-scale" alt="hizmet görseli"></div>
+                                <div class="card-body p-4">
+                                    <h6>Dijital Dönüşüm</h6>
+                                    <p class="mb-0">Dijital dönüşüm çözümleri, verimliliği artırmak, müşteri deneyimlerini iyileştirmek ve sürdürülebilir iş büyümesi için inovasyon sağlamak üzere veri, AI ve otomasyondan yararlanır.</p>
+                                </div>
+                                <div class="card-footer bg-body border-top p-4"><a class="stretched-link icon-link icon-link-hover p-0 m-0" href="digital-transformation/">Devamını Oku...<i class="bi bi-arrow-right"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="overflow-hidden pb-0">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-center position-relative mb-5 mb-lg-0">
+                        <div class="pe-lg-6 pe-xl-8"><img class="rounded" src="../assets/img/about/20.jpg" alt=""></div><figure class="position-absolute bottom-0 end-0 rotate-13 mb-n6">
+					<svg class="text-primary" width="297" height="294" viewBox="0 0 297 294" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M146.895 166.815C146.895 166.815 146.818 166.922 146.667 167.128C146.519 167.339 146.299 167.651 146.012 168.06C145.456 168.873 144.652 170.064 143.691 171.61C142.719 173.152 141.589 175.05 140.352 177.258C139.105 179.46 137.794 181.994 136.408 184.778C135.066 187.583 133.626 190.629 132.282 193.927C131.573 195.559 130.945 197.278 130.253 199.013C129.62 200.77 128.939 202.554 128.333 204.397C127.719 206.238 127.092 208.108 126.54 210.027C125.944 211.933 125.431 213.888 124.907 215.855C124.631 216.835 124.401 217.831 124.169 218.829C123.935 219.827 123.7 220.827 123.464 221.83C123.06 223.849 122.622 225.87 122.265 227.906L121.757 230.963L121.507 232.489L121.307 234.021C121.042 236.062 120.754 238.091 120.596 240.119C120.501 241.131 120.407 242.139 120.313 243.142C120.231 244.146 120.194 245.148 120.133 246.142C120.078 247.136 120.023 248.124 119.969 249.105C119.951 250.087 119.933 251.063 119.915 252.03C119.9 252.997 119.884 253.956 119.868 254.906C119.869 255.856 119.907 256.797 119.925 257.727C119.971 259.587 119.989 261.408 120.136 263.175C120.194 264.059 120.251 264.931 120.308 265.79C120.365 266.648 120.408 267.495 120.512 268.322C120.692 269.979 120.866 271.58 121.032 273.116C121.213 274.65 121.474 276.109 121.675 277.502C121.892 278.894 122.067 280.217 122.337 281.444C122.58 282.674 122.809 283.826 123.021 284.891C123.227 285.957 123.42 286.934 123.652 287.805C124.511 291.301 125.001 293.299 125.001 293.299C125.001 293.299 124.556 291.291 123.778 287.777C123.567 286.903 123.395 285.922 123.214 284.853C123.027 283.785 122.825 282.631 122.61 281.397C122.37 280.167 122.225 278.842 122.04 277.449C121.871 276.055 121.644 274.596 121.499 273.063C121.368 271.529 121.232 269.93 121.09 268.276C121.005 267.45 120.982 266.606 120.944 265.75C120.908 264.894 120.871 264.025 120.833 263.144C120.726 261.383 120.751 259.571 120.747 257.72C120.751 256.795 120.734 255.86 120.755 254.915C120.792 253.972 120.829 253.019 120.867 252.059C120.906 251.099 120.947 250.131 120.987 249.156C121.063 248.183 121.14 247.203 121.217 246.217C121.3 245.232 121.359 244.239 121.463 243.245C121.579 242.252 121.695 241.254 121.812 240.253C122.014 238.246 122.347 236.24 122.655 234.224L122.888 232.711L123.171 231.204L123.743 228.188C124.142 226.18 124.622 224.189 125.067 222.201C125.322 221.214 125.577 220.23 125.832 219.249C126.084 218.267 126.334 217.287 126.629 216.324C127.191 214.39 127.742 212.471 128.375 210.601C128.963 208.718 129.624 206.884 130.272 205.081C130.912 203.275 131.625 201.529 132.289 199.81C133.011 198.113 133.668 196.433 134.405 194.839C135.803 191.619 137.291 188.651 138.674 185.921C140.101 183.213 141.446 180.751 142.718 178.619C143.982 176.481 145.131 174.648 146.112 173.167C147.086 171.679 147.891 170.543 148.442 169.777C148.718 169.402 148.93 169.115 149.072 168.921C149.219 168.728 149.295 168.629 149.295 168.629L146.895 166.815Z" fill="#202124"></path>
+					</svg>
+				</figure>
+                    </div>
+                    <div class="col-lg-6 ms-auto">
+                        <h2 class="mb-lg-4">Dijital yolculuğunuz için bizi seçin</h2>
+                        <p class="mb-lg-4">Mükemmelliğe bağlılığımız, son teknoloji uzmanlığımız ve müşteriye adanmışlığımız.</p>
+                        <hr class="my-4 my-lg-5">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ul class="list-group list-group-borderless">
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Özel Çözümler</span></li>
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Müşteri Odaklı Yaklaşım</span></li>
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Kanıtlanmış Geçmiş</span></li>
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Ölçeklenebilirlik</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul class="list-group list-group-borderless">
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Kalite Güvencesi</span></li>
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Maliyet Etkinliği</span></li>
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>Uzun Vadeli Ortaklık</span></li>
+                                    <li class="list-group-item fw-normal d-flex heading-color mb-0"><i class="text-primary bi bi-patch-check-fill me-2"></i><span>7/24 teknik ve iş desteği</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-6">
+            <div class="container">
+                <div class="text-center inner-container-small mb-4 mb-md-6">
+                    <h2><span class="text-primary">4</span> kolay adımda nasıl çalışırız</h2>
+                </div>
+                <div class="row step-process">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card bg-transparent text-center card-body">
+                            <div class="text-white bg-dark mx-auto icon-lg rounded-circle mb-3"><i class="bi bi-search fa-lg"></i></div>
+                            <h5>Keşif ve Danışmanlık</h5>
+                            <p>Benzersiz ihtiyaçlarınızı, hedeflerinizi ve zorluklarınızı öğrenerek başlıyoruz.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card bg-transparent text-center card-body">
+                            <div class="text-white bg-dark mx-auto icon-lg rounded-circle mb-3"><i class="bi bi-bullseye fa-lg"></i></div>
+                            <h5>Planlama ve Strateji</h5>
+                            <p>Süreci yolunda tutmak için proje kilometre taşları ve teslim edilebilirleri tanımlıyoruz.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card bg-transparent text-center card-body">
+                            <div class="text-white bg-dark mx-auto icon-lg rounded-circle mb-3"><i class="bi bi-rocket-takeoff fa-lg"></i></div>
+                            <h5>Dağıtım ve Lansman</h5>
+                            <p>Her adımda destek sağlayarak canlıya sorunsuz geçiş sağlıyoruz.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card bg-transparent text-center card-body">
+                            <div class="text-white bg-dark mx-auto icon-lg rounded-circle mb-3"><i class="bi bi-headset fa-lg"></i></div>
+                            <h5>Destek ve Bakım</h5>
+                            <p>Yazılımınızın çalışmaya devam etmesi için sürekli destek ve bakım hizmetleri sunuyoruz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pb-3" style="padding-top: 20px;">
+            <div class="container">
+                <div class="row justify-content-center g-2 g-lg-2" style="margin-top: 10px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;">
+                    <div class="col-sm-6 col-md-4 text-center" style="margin-top: 0px;">
+                        <div class="d-flex justify-content-center display-1 heading-color"><span class="purecounter" data-purecounter-start="0" data-purecounter-end="20" data-purecounter-delay="300">20</span><span class="text-primary">+</span><span class="mb-0" style="font-size: 24px;">yıl</span></div>
+                        <h6 class="fw-normal text-body position-relative">Deneyimli Lider Kadrosu</h6>
+                    </div>
+                    <div class="col-sm-6 col-md-4 text-center" style="margin-top: 0px;">
+                        <div class="d-flex justify-content-center display-1 heading-color"><span class="purecounter" data-purecounter-start="0" data-purecounter-end="5" data-purecounter-delay="300">5</span></div>
+                        <h6 class="fw-normal text-body position-relative">Farklı Sektör Deneyimi</h6>
+                    </div>
+                    <div class="col-sm-6 col-md-4 text-center" style="margin-top: 0px;">
+                        <div class="d-flex justify-content-center display-1 heading-color"><span class="purecounter" data-purecounter-start="0" data-purecounter-end="30" data-purecounter-delay="300">30</span><span class="text-primary">+</span></div>
+                        <h6 class="fw-normal text-body position-relative">Başarı Hikayesi</h6>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pb-4" style="padding-top: 0px;">
+            <div class="container position-relative mt-sm-5">
+                <div class="row align-items-center g-3 g-md-4">
+                    <div class="col-md-6">
+                        <h2 class="lh-base mb-0">Başarı yolculuğunuza <span class="position-relative z-index-1">bizimle <span class="d-none d-lg-block position-absolute top-50 start-50 translate-middle z-index-n1 ms-n2"><svg width="188" height="53" viewbox="0 0 188 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="fill-primary" d="M3.50843 26.6791C5.35764 34.7553 19.176 38.9851 26.7629 41.4254C47.5981 47.4215 69.586 48.7695 91.2825 49.6062C107.583 50.0478 123.91 49.7573 140.135 48.1885C154.13 46.7243 169.469 45.5158 180.691 36.9051C185.618 33.0239 185.82 27.2834 181.324 22.9954C169.418 11.8166 138.589 7.57514 121.756 4.98378C103.226 2.36919 84.4557 3.171 65.8116 4.27494C77.9834 4.49573 90.1553 5.19295 102.238 6.57578C107.406 7.27301 112.802 8.35371 117.032 11.3053C113.093 10.457 109.015 10.4338 105 10.1084C76.8182 7.19166 47.1675 4.62355 19.9233 13.5713C13.9704 15.8256 2.97647 19.5442 3.50843 26.6791ZM0 25.7727C1.06393 10.1897 39.758 5.03027 53.3231 4.43763C51.1192 4.29818 48.9154 4.07739 46.7242 3.78688C50.3846 2.79915 54.121 2.04382 57.9081 1.60224C65.5583 0.939879 73.2464 0.753952 80.9092 0.323997C94.0944 -0.349987 107.305 0.0102456 120.414 1.56738C136.816 4.10063 197.384 11.3983 186.757 34.918C184.554 38.8573 180.399 41.4603 176.27 43.5403C166.163 48.6068 154.523 49.8618 143.263 51.1285C126.456 52.7902 109.559 53.3131 92.6631 52.825C67.7368 51.907 42.1772 50.501 18.6947 42.1459C11.1586 39.1943 0.126658 34.3834 0 25.7727Z"></path></svg></span></span> başlayın</h2>
+                    </div>
+                    <div class="col-md-5 text-md-end ms-auto"><a class="btn btn-lg btn-primary-soft icon-link icon-link-hover mb-0" role="button" href="contact/">İletişime Geçin<i class="bi bi-arrow-right"></i></a></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="position-relative overflow-hidden pt-4">
+        <div class="container position-relative mt-5">
+            <div class="row g-3 g-lg-3" style="text-align: center;">
+                <div class="col-xl-4 text-lg-center text-xl-start mb-4 mb-xl-0"><a href="index.html"><img class="light-mode-item h-40px" src="../assets/img/logo_verto_old.png" alt="logo"><img class="dark-mode-item h-40px" src="../assets/img/logo_verto_old.png" alt="logo"></a>
+                    <div class="row text-xl-center" style="margin-right: 0px;margin-left: 0px;">
+                        <div class="col text-xl-start text-xxl-start" style="padding: 0px;">
+                            <h1 class="text-sm-center text-md-center text-lg-center text-xl-start text-xxl-start" style="font-size: 15px;text-align: left;"><span style="font-weight: normal !important; color: rgb(96, 98, 97);">Dönüşümü Başlat, Geleceği Yakala.</span></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="text-start mb-2 mb-md-4">Şirket</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="about-us/">Hakkımızda</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="team/">Ekip</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="career/">Kariyer</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="newsroom/">Basın Odası</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="text-start mb-2 mb-md-4">Kategoriler</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="ai/">Yapay Zeka</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="data-and-analytics/">Veri ve Analitik</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="cloud-and-migration/">Bulut ve Migrasyon</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="digital-transformation/">Dijital Dönüşüm</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="server-hosting/">Sunucu Barındırma</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <h6 class="text-start mb-2 mb-md-4">Sektörler</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="banking/">Bankacılık</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="telco/">Telekomünikasyon</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="insurance/">Sigorta</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="healthcare/">Sağlık</a></li>
+                        <li class="nav-item"><a class="nav-link text-start mb-1" href="public/">Kamu</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2" style="text-align: left;">
+                    <h6 class="text-start mb-2 mb-md-4">İletişim</h6>
+                    <ul class="list-group list-group-borderless">
+                        <li class="d-flex mb-3" style="font-size: 14px;"><i class="text-primary me-2 bi bi-geo-alt"></i>İstanbul Medeniyet Üniversitesi Teknopark</li>
+                        <li class="d-flex mb-3" style="font-size: 14px;"><i class="text-primary me-2 bi bi-envelope"></i><a href="mailto:info@vertonext.com">info@vertonext.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="opacity-1 my-4 my-sm-4">
+            <div class="text-center text-lg-start d-md-flex justify-content-between align-items-center py-1">
+                <div class="text-body mb-3 mb-md-0"><span> Telif Hakkı ©2025 Verto Next</span></div>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item list-inline-item"><a class="btn btn-light btn-xs btn-icon" role="button" href="https://www.linkedin.com/company/verto-next"><i class="fab fa-linkedin-in lh-base fa-fw"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="back-top"></div>
+<script src="https://vertonext.com/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://vertonext.com/assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+<script src="https://vertonext.com/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="https://vertonext.com/assets/vendor/jarallax/jarallax.min.js"></script>
+<script src="https://vertonext.com/assets/vendor/jarallax/jarallax-video.min.js"></script>
+<script src="https://vertonext.com/assets/js/functions.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
