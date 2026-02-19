@@ -72,6 +72,15 @@
 }
 
 // Swiper negative
+.swiper-outside-end-n10 {
+  margin-right: -10vw;
+}
+@include media-breakpoint-down(md) {
+  .swiper-outside-end-n10 {
+    margin-right: 0;
+  }
+}
+
 .swiper-outside-end-n20 {
   margin-right: -20vw;
 }

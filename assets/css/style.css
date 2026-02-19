@@ -27706,6 +27706,16 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
   background-color: var(--bs-primary);
 }
 
+.swiper-outside-end-n10 {
+  margin-right: -10vw;
+}
+
+@media (max-width: 767.98px) {
+  .swiper-outside-end-n10 {
+    margin-right: 0;
+  }
+}
+
 .swiper-outside-end-n20 {
   margin-right: -20vw;
 }
