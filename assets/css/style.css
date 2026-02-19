@@ -10124,6 +10124,10 @@ textarea.form-control-lg {
   height: 100vh !important;
 }
 
+.min-vh-75 {
+  min-height: 75vh !important;
+}
+
 .min-vh-100 {
   min-height: 100vh !important;
 }
@@ -27604,6 +27608,21 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
+}
+
+/* Hero swiper - 3 slide aynı boyutta */
+.hero-swiper.swiper,
+.hero-swiper .swiper-wrapper,
+.hero-swiper .swiper-slide {
+  min-height: 85vh !important;
+  height: 85vh !important;
+}
+
+.hero-swiper .swiper-slide .card {
+  min-height: 85vh !important;
+  height: 85vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
 }
 
 .swiper-button-prev,
