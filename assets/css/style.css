@@ -28103,6 +28103,36 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
 
 /* User CSS */
 
+/* Footer - Theme-aware styling for light and dark modes */
+footer {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-top: 1px solid var(--bs-border-color);
+}
+
+footer .nav-link {
+  color: var(--bs-body-color);
+}
+
+footer .nav-link:hover {
+  color: var(--bs-primary);
+}
+
+/* Footer social button - adapts to both themes */
+footer .btn-footer-social,
+footer a.btn-icon[href*="linkedin"] {
+  background: var(--bs-tertiary-bg) !important;
+  color: var(--bs-body-color) !important;
+  border-color: var(--bs-border-color) !important;
+}
+
+footer .btn-footer-social:hover,
+footer a.btn-icon[href*="linkedin"]:hover {
+  background: var(--bs-secondary-bg) !important;
+  color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
 /* Remove blue border on navbar hover */
 .navbar .nav-link:hover,
 .navbar .nav-link:focus,
