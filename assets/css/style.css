@@ -28242,11 +28242,11 @@ footer a.btn-icon[href*="linkedin"]:hover {
   box-shadow: none !important;
 }
 
-/* Verto Next — Products mega-menu tiles */
-.dropdown-menu:has([href$="/products/dikera"]) a .card.shadow-sm {
+/* Verto Next — Products mega-menu tiles (class hook; URLs may change) */
+.dropdown-menu.dropdown-menu-products-tiles a .card.shadow-sm {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.dropdown-menu:has([href$="/products/dikera"]) a:hover .card.shadow-sm {
+.dropdown-menu.dropdown-menu-products-tiles a:hover .card.shadow-sm {
   transform: translateY(-3px);
   box-shadow: 0 0.75rem 1.75rem rgba(var(--bs-primary-rgb), 0.12), var(--bs-box-shadow) !important;
 }
