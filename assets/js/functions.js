@@ -240,25 +240,29 @@ var e = {
     // END: Preloader
 
     // START: 02 Menu Dropdown Hover
+    // Match navbar-expand-xl (1200px): below that the collapsed navbar must use tap/click only.
+    // Use currentTarget so the toggle is found when the pointer enters a child (e.g. .nav-link).
     dropdownHover: function () {
-      if (window.matchMedia('(min-width: 992px)').matches) {
-        (function($bs) {
-          document.querySelectorAll('.dropdown-hover .dropdown').forEach(function(dd) {
-              dd.addEventListener('mouseenter', function(e) {
-                  let toggle = e.target.querySelector(':scope>[data-bs-toggle="dropdown"]');
-                  if (!toggle.classList.contains('show')) {
-                      $bs.Dropdown.getOrCreateInstance(toggle).toggle();
-                  }
-              });
-              dd.addEventListener('mouseleave', function(e) {
-                  let toggle = e.target.querySelector(':scope>[data-bs-toggle="dropdown"]');
-                  if (toggle.classList.contains('show')) {
-                      $bs.Dropdown.getOrCreateInstance(toggle).toggle();
-                  }
-              });
+      (function($bs) {
+        document.querySelectorAll('.dropdown-hover .dropdown').forEach(function(dd) {
+          dd.addEventListener('mouseenter', function(e) {
+            if (!window.matchMedia('(min-width: 1200px)').matches) return;
+            var toggle = e.currentTarget.querySelector(':scope > [data-bs-toggle="dropdown"]');
+            if (!toggle) return;
+            if (!toggle.classList.contains('show')) {
+              $bs.Dropdown.getOrCreateInstance(toggle).toggle();
+            }
           });
-        })(bootstrap);
-      }
+          dd.addEventListener('mouseleave', function(e) {
+            if (!window.matchMedia('(min-width: 1200px)').matches) return;
+            var toggle = e.currentTarget.querySelector(':scope > [data-bs-toggle="dropdown"]');
+            if (!toggle) return;
+            if (toggle.classList.contains('show')) {
+              $bs.Dropdown.getOrCreateInstance(toggle).toggle();
+            }
+          });
+        });
+      })(bootstrap);
     },
     // END: Menu Dropdown Hover
 

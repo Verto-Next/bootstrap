@@ -28160,5 +28160,23 @@ footer a.btn-icon[href*="linkedin"]:hover {
   box-shadow: none !important;
 }
 
+/* Verto Next — Products mega-menu tiles */
+.dropdown-menu:has([href$="/products/dikera"]) a .card.shadow-sm {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.dropdown-menu:has([href$="/products/dikera"]) a:hover .card.shadow-sm {
+  transform: translateY(-3px);
+  box-shadow: 0 0.75rem 1.75rem rgba(var(--bs-primary-rgb), 0.12), var(--bs-box-shadow) !important;
+}
+
+/* Home — digital transformation services band: narrower than full viewport */
+.section-home-services {
+  width: 80%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
 /* # sourceMappingURL=style.css.map */
 
