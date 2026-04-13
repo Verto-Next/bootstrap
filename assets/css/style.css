@@ -27619,11 +27619,11 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
 .section-home-hero .hero-swiper.swiper,
 .section-home-hero .hero-swiper .swiper-wrapper,
 .section-home-hero .hero-swiper .swiper-slide {
-  height: calc(100vh - var(--hero-header-gap) - 0.75rem) !important;
-  height: calc(100dvh - var(--hero-header-gap) - 0.75rem) !important;
+  height: calc(100vh - var(--hero-header-gap) - 0.75rem - var(--hero-swiper-trim)) !important;
+  height: calc(100dvh - var(--hero-header-gap) - 0.75rem - var(--hero-swiper-trim)) !important;
   min-height: 12rem !important;
-  max-height: calc(100vh - var(--hero-header-gap) - 0.75rem) !important;
-  max-height: calc(100dvh - var(--hero-header-gap) - 0.75rem) !important;
+  max-height: calc(100vh - var(--hero-header-gap) - 0.75rem - var(--hero-swiper-trim)) !important;
+  max-height: calc(100dvh - var(--hero-header-gap) - 0.75rem - var(--hero-swiper-trim)) !important;
 }
 
 .section-home-hero .hero-swiper .swiper-slide .card {
@@ -28223,6 +28223,8 @@ header.header-sticky.header-absolute {
 /* Hero: clear full navbar height; gap reused for viewport-based hero height */
 .section-home-hero {
   --hero-header-gap: calc(20px + 30px + 20px + 1.5rem);
+  /* Pull hero a bit shorter than remaining viewport (tweak here if needed) */
+  --hero-swiper-trim: 3.5rem;
   padding-top: var(--hero-header-gap);
 }
 
