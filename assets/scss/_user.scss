@@ -54,17 +54,31 @@
    }
  }
 
-// Home — bands aligned to same width as services section
+// Site — main bands + footer: same width as home services section
 .section-home-services,
 .section-home-choose-us,
 .section-home-steps,
 .section-home-stats,
-.section-home-cta {
+.section-home-cta,
+footer.position-relative.overflow-hidden.pt-4.bg-body {
   width: 80%;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
+}
+
+// CTA row: one-line headline beside button on md+
+.section-home-cta .section-home-cta__title {
+  min-width: 0;
+  font-size: clamp(0.9rem, 0.55rem + 1.35vw, 1.65rem);
+  line-height: 1.28;
+}
+
+@include media-breakpoint-up(md) {
+  .section-home-cta .section-home-cta__title {
+    white-space: nowrap;
+  }
 }
 
 // Service cards: lift + shadow on hover (image zoom stays from .card-img-scale)
