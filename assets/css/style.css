@@ -28199,7 +28199,8 @@ footer a.btn-icon[href*="linkedin"]:hover {
   box-shadow: 0 0.75rem 1.75rem rgba(var(--bs-primary-rgb), 0.12), var(--bs-box-shadow) !important;
 }
 
-/* Site — main bands + footer: same width as home services section */
+/* Site — header, main bands + footer: same 80% page width */
+header.header-sticky.header-absolute,
 .section-home-hero,
 .section-home-services,
 .section-home-choose-us,
@@ -28242,6 +28243,11 @@ header.header-sticky.header-absolute {
   .section-home-cta .section-home-cta__title {
     white-space: nowrap;
   }
+}
+
+/* Services band: same corner radius as hero swiper */
+.section-home-services {
+  border-radius: 0.85rem;
 }
 
 /* Service cards: lift + shadow on hover (image zoom stays from .card-img-scale) */
