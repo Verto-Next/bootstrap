@@ -62,3 +62,28 @@
   margin-right: auto;
   box-sizing: border-box;
 }
+
+// Service cards: lift + shadow on hover (image zoom stays from .card-img-scale)
+.section-home-services .card.card-img-scale {
+  position: relative;
+  border: 1px solid var(--#{$prefix}border-color-translucent);
+  box-shadow: var(--#{$prefix}box-shadow-sm);
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+.section-home-services .card.card-img-scale:hover {
+  z-index: 2;
+  border-color: rgba(var(--#{$prefix}primary-rgb), 0.22);
+  box-shadow:
+    0 0.5rem 1.25rem rgba(var(--#{$prefix}primary-rgb), 0.14),
+    0 1rem 2.5rem rgba(0, 0, 0, 0.08);
+  transform: translateY(-6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-home-services .card.card-img-scale,
+  .section-home-services .card.card-img-scale:hover {
+    transition-duration: 0.01ms;
+    transform: none;
+  }
+}
