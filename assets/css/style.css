@@ -28329,5 +28329,32 @@ header.header-sticky.header-absolute {
   }
 }
 
+/* Navbar language: round flag (align with 20px theme toggle) */
+.nav-lang-switch {
+  border: none;
+  box-shadow: none;
+}
+.nav-lang-switch:focus-visible {
+  outline: 2px solid rgba(var(--bs-primary-rgb), 0.55);
+  outline-offset: 2px;
+}
+.nav-lang-switch__badge {
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+}
+[data-bs-theme="dark"] .nav-lang-switch__badge {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+.nav-lang-switch__badge svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 /* # sourceMappingURL=style.css.map */
 
