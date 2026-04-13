@@ -27610,17 +27610,17 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
   background-repeat: no-repeat !important;
 }
 
-/* Hero swiper - 3 slide aynı boyutta */
+/* Hero swiper - equal-height slides; subtract navbar clearance */
 .hero-swiper.swiper,
 .hero-swiper .swiper-wrapper,
 .hero-swiper .swiper-slide {
-  min-height: 85vh !important;
-  height: 85vh !important;
+  min-height: 75vh !important;
+  height: 75vh !important;
 }
 
 .hero-swiper .swiper-slide .card {
-  min-height: 85vh !important;
-  height: 85vh !important;
+  min-height: 75vh !important;
+  height: 75vh !important;
   overflow-y: auto !important;
   overflow-x: hidden;
 }
@@ -28170,6 +28170,7 @@ footer a.btn-icon[href*="linkedin"]:hover {
 }
 
 /* Site — main bands + footer: same width as home services section */
+.section-home-hero,
 .section-home-services,
 .section-home-choose-us,
 .section-home-steps,
@@ -28181,6 +28182,22 @@ footer.position-relative.overflow-hidden.pt-4.bg-body {
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
+}
+
+/* Absolute header must stack above hero */
+header.header-sticky.header-absolute {
+  z-index: 1030;
+}
+
+/* Hero: clear full navbar height (theme brand padding + logo + gap) */
+.section-home-hero {
+  padding-top: calc(20px + 30px + 20px + 1.5rem);
+}
+
+@media (min-width: 1200px) {
+  .section-home-hero {
+    padding-top: calc(30px + 40px + 30px + 1.5rem);
+  }
 }
 
 /* CTA row: one-line headline beside button on md+ */
