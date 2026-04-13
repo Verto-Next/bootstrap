@@ -28169,8 +28169,12 @@ footer a.btn-icon[href*="linkedin"]:hover {
   box-shadow: 0 0.75rem 1.75rem rgba(var(--bs-primary-rgb), 0.12), var(--bs-box-shadow) !important;
 }
 
-/* Home — digital transformation services band: narrower than full viewport */
-.section-home-services {
+/* Home — bands aligned to same width as services section */
+.section-home-services,
+.section-home-choose-us,
+.section-home-steps,
+.section-home-stats,
+.section-home-cta {
   width: 80%;
   max-width: 100%;
   margin-left: auto;

@@ -54,8 +54,12 @@
    }
  }
 
-// Home — digital transformation services band (narrower than full viewport)
-.section-home-services {
+// Home — bands aligned to same width as services section
+.section-home-services,
+.section-home-choose-us,
+.section-home-steps,
+.section-home-stats,
+.section-home-cta {
   width: 80%;
   max-width: 100%;
   margin-left: auto;
