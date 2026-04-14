@@ -74,6 +74,32 @@ header.header-sticky.header-absolute {
   z-index: 1030;
 }
 
+// Below xl, Bootstrap keeps .navbar flex-wrap: wrap — logo + flag/theme/toggler stack.
+// Keep one row: nowrap container, shrinkable brand, fixed-height logo with max-width, icons don't shrink.
+@include media-breakpoint-down(xl) {
+  .navbar-expand-xl > .container {
+    flex-wrap: nowrap;
+  }
+
+  .navbar-expand-xl .navbar-brand {
+    flex-shrink: 1;
+    min-width: 0;
+    margin-right: auto !important;
+  }
+
+  .navbar-expand-xl .navbar-brand .navbar-brand-item {
+    max-width: min(9rem, 46vw);
+    width: auto;
+    height: $navbar-mobile-brand-height;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .navbar-expand-xl > .container > .navbar-nav.flex-row {
+    flex-shrink: 0;
+  }
+}
+
 // Hero: navbar clearance + shared gap for viewport-based hero height
 .section-home-hero {
   --hero-header-gap: calc(20px + 30px + 20px + 1.5rem);
