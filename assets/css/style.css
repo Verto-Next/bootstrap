@@ -19248,6 +19248,7 @@ header.header-sticky.header-absolute {
 }
 .section-home-hero {
   --hero-header-gap: calc(20px + 30px + 20px + 1.5rem);
+  --hero-height-trim: clamp(2.5rem, 8vh, 6.5rem);
   padding-top: var(--hero-header-gap);
 }
 
@@ -19264,11 +19265,11 @@ header.header-sticky.header-absolute {
 .section-home-hero .hero-swiper.swiper,
 .section-home-hero .hero-swiper .swiper-wrapper,
 .section-home-hero .hero-swiper .swiper-slide {
-  height: calc(100vh - var(--hero-header-gap) - 0.75rem) !important;
-  height: calc(100dvh - var(--hero-header-gap) - 0.75rem) !important;
+  height: calc(100vh - var(--hero-header-gap) - 0.75rem - var(--hero-height-trim)) !important;
+  height: calc(100dvh - var(--hero-header-gap) - 0.75rem - var(--hero-height-trim)) !important;
   min-height: 12rem !important;
-  max-height: calc(100vh - var(--hero-header-gap) - 0.75rem) !important;
-  max-height: calc(100dvh - var(--hero-header-gap) - 0.75rem) !important;
+  max-height: calc(100vh - var(--hero-header-gap) - 0.75rem - var(--hero-height-trim)) !important;
+  max-height: calc(100dvh - var(--hero-header-gap) - 0.75rem - var(--hero-height-trim)) !important;
 }
 
 .section-home-hero .hero-swiper .swiper-slide .card {
