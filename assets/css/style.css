@@ -28202,12 +28202,71 @@ footer {
   border-top: 1px solid var(--bs-border-color);
 }
 
-footer .nav-link {
+footer.footer-site-nav .nav.flex-column .nav-link {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
   color: var(--bs-body-color);
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
-footer .nav-link:hover {
+footer.footer-site-nav .nav.flex-column .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.12em;
+  width: 0;
+  height: 2px;
+  background-color: var(--bs-primary);
+  border-radius: 1px;
+  opacity: 0.9;
+  transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+footer.footer-site-nav .nav.flex-column .nav-link:hover,
+footer.footer-site-nav .nav.flex-column .nav-link:focus-visible {
   color: var(--bs-primary);
+  transform: translateX(4px);
+}
+
+footer.footer-site-nav .nav.flex-column .nav-link:hover::after,
+footer.footer-site-nav .nav.flex-column .nav-link:focus-visible::after {
+  width: 100%;
+}
+
+footer.footer-site-nav .list-group-borderless a.text-body {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+footer.footer-site-nav .list-group-borderless a.text-body:hover,
+footer.footer-site-nav .list-group-borderless a.text-body:focus-visible {
+  color: var(--bs-primary) !important;
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  footer.footer-site-nav .nav.flex-column .nav-link {
+    transition: none;
+  }
+
+  footer.footer-site-nav .nav.flex-column .nav-link::after {
+    transition: none;
+  }
+
+  footer.footer-site-nav .nav.flex-column .nav-link:hover,
+  footer.footer-site-nav .nav.flex-column .nav-link:focus-visible {
+    transform: none;
+  }
+
+  footer.footer-site-nav .list-group-borderless a.text-body {
+    transition: none;
+  }
+
+  footer.footer-site-nav .list-group-borderless a.text-body:hover,
+  footer.footer-site-nav .list-group-borderless a.text-body:focus-visible {
+    transform: none;
+  }
 }
 
 /* Footer social button - adapts to both themes */
@@ -28259,7 +28318,7 @@ header.header-sticky.header-absolute,
 .section-home-steps,
 .section-home-stats,
 .section-home-cta,
-footer.position-relative.overflow-hidden.pt-4.bg-body {
+footer.position-relative.overflow-hidden.pt-4.bg-body.footer-site-nav {
   width: 80%;
   max-width: 100%;
   margin-left: auto;

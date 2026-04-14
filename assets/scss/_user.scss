@@ -61,7 +61,7 @@
 .section-home-steps,
 .section-home-stats,
 .section-home-cta,
-footer.position-relative.overflow-hidden.pt-4.bg-body {
+footer.position-relative.overflow-hidden.pt-4.bg-body.footer-site-nav {
   width: 80%;
   max-width: 100%;
   margin-left: auto;
@@ -166,5 +166,73 @@ header.header-sticky.header-absolute {
   .section-home-services .card.card-img-scale:hover {
     transition-duration: 0.01ms;
     transform: none;
+  }
+}
+
+// Footer column links: slide + underline reveal (Products / Categories / Company)
+// Scoped with .footer-site-nav on all EN/TR page footers
+footer.footer-site-nav .nav.flex-column .nav-link {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--#{$prefix}body-color);
+  transition: color 0.25s ease, transform 0.25s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0.12em;
+    width: 0;
+    height: 2px;
+    background-color: var(--#{$prefix}primary);
+    border-radius: 1px;
+    opacity: 0.9;
+    transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--#{$prefix}primary);
+    transform: translateX(4px);
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+footer.footer-site-nav .list-group-borderless a.text-body {
+  transition: color 0.25s ease, transform 0.25s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--#{$prefix}primary) !important;
+    transform: translateX(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  footer.footer-site-nav .nav.flex-column .nav-link {
+    transition: none;
+
+    &::after {
+      transition: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
+  }
+
+  footer.footer-site-nav .list-group-borderless a.text-body {
+    transition: none;
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
   }
 }
