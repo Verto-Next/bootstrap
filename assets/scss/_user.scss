@@ -232,6 +232,50 @@ header.header-sticky.header-absolute {
   }
 }
 
+// Navbar Products mega-menu tiles: lift + shadow on hover
+// (Bootstrap .shadow-sm is forced to none in dark mode — these rules restore depth with higher specificity.)
+.dropdown-menu-products-tiles {
+  overflow: visible;
+
+  a .card.shadow-sm {
+    position: relative;
+    z-index: 0;
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+    box-shadow: var(--#{$prefix}box-shadow-sm) !important;
+  }
+
+  a:hover .card.shadow-sm,
+  a:focus-visible .card.shadow-sm {
+    z-index: 2;
+    box-shadow:
+      0 0.5rem 1.25rem rgba(var(--#{$prefix}primary-rgb), 0.14),
+      0 1rem 2.5rem rgba(0, 0, 0, 0.08) !important;
+    transform: translateY(-4px);
+  }
+}
+
+[data-bs-theme="dark"] .dropdown-menu-products-tiles a .card.shadow-sm {
+  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-bs-theme="dark"] .dropdown-menu-products-tiles a:hover .card.shadow-sm,
+[data-bs-theme="dark"] .dropdown-menu-products-tiles a:focus-visible .card.shadow-sm {
+  box-shadow:
+    0 0.75rem 1.75rem rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(var(--#{$prefix}primary-rgb), 0.22) !important;
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-menu-products-tiles a:hover .card.shadow-sm,
+  .dropdown-menu-products-tiles a:focus-visible .card.shadow-sm,
+  [data-bs-theme="dark"] .dropdown-menu-products-tiles a:hover .card.shadow-sm,
+  [data-bs-theme="dark"] .dropdown-menu-products-tiles a:focus-visible .card.shadow-sm {
+    transition-duration: 0.01ms;
+    transform: none;
+  }
+}
+
 // Footer column links: slide + underline reveal (Products / Categories / Company)
 // Scoped with .footer-site-nav on all EN/TR page footers
 footer.footer-site-nav .nav.flex-column .nav-link {
