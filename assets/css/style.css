@@ -19190,6 +19190,42 @@ header.header-sticky.header-absolute {
   z-index: 1030;
 }
 
+.nav-lang-switch {
+  border: none;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.375rem;
+  min-height: 1.375rem;
+}
+
+.nav-lang-switch:focus-visible {
+  outline: 2px solid rgba(var(--bs-primary-rgb), 0.55);
+  outline-offset: 2px;
+}
+
+.nav-lang-switch__badge {
+  display: block;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  line-height: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+}
+
+[data-bs-theme=dark] .nav-lang-switch__badge {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.nav-lang-switch__badge svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 @media (max-width: 1199.98px) {
   .navbar-expand-xl > .container {
     flex-wrap: nowrap;
